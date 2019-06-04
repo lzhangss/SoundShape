@@ -29,7 +29,7 @@ align.wave(wav.at = getwd(), wav.to = "Aligned", dBlevel = 25,
 Recreate each \code{wave} file on a given folder while placing calls at the beggining of sound window.
 }
 \examples{
-library(seewave) 
+library(seewave)
 library(tuneR)
 
 data("tico")
@@ -53,10 +53,10 @@ writeWave(cut.tico3, filename = "C:/R/example align.wave/cut.tico3.wav", extensi
 # Align acoustic units selected at 3\% of time window
 align.wave(wav.at = "C:/R/example align.wave", wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.03, dBlevel = 20)
-           
+
 # Verify alignment
-eigensound(analysis.type = "twoDshape", flim=c(0, 12), tlim=c(0,0.3), dBlevel = 20, 
-          wav.at = "C:/R/example align.wave/Aligned", 
+eigensound(analysis.type = "twoDshape", flim=c(0, 12), tlim=c(0,0.3), dBlevel = 20,
+          wav.at = "C:/R/example align.wave/Aligned",
           store.at = "C:/R/example align.wave/output",
           plot.exp = TRUE, plot.as = "jpeg")
 
@@ -67,7 +67,7 @@ eigensound(analysis.type = "twoDshape", flim=c(0, 12), tlim=c(0,0.3), dBlevel = 
 \references{
 MacLeod, N., Krieger, J. & Jones, K. E. (2013). Geometric morphometric approaches to acoustic signal analysis in mammalian biology. \emph{Hystrix, the Italian Journal of Mammalogy, 24}(1), 110-125.
 
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 }
 \seealso{
 \code{\link{threeDshape}}, \code{\link{twoDshape}}, \code{\link{eigensound}}
