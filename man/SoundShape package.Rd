@@ -2,15 +2,15 @@
 \name{SoundShape}
 \alias{SoundShape}
 \alias{SoundShape-package}
-
 \title{Sound Waves Onto Morphometric Data}
 
-\description{A set of functions that crosses the bridge between Bioacoustics and Geometric Morphometrics.}
+\description{A set of functions that crosses the bridge between Bioacoustics and Geometric Morphometrics.
 
 \itemize{
   \item{\code{\link{eigensound}} }
   \item{\code{\link{align.wave}} }
   \item{\code{\link{pca.plot}} }
+}
 }
 
 \seealso{
