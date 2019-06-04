@@ -11,7 +11,8 @@
 #' @param time.length intended length in seconds for the time (X-axis) so that it encompasses all sounds in the study. By default: \code{time.length = 4}
 #' @param time.perc slight time gap (in \%) relative to the intended length that encompass all sounds in the study (i.e. \code{time.length}). Intervals are added before and after the minimum and maximum time coordinates (X-values) of the selected curve of relative amplitude (\code{dBlevel}). By default: \code{time.perc = 0.005} (i.e. 0.5\%)
 #'
-#' @author Pedro Rocha
+#' @author
+#' Pedro Rocha
 #'
 #' @seealso
 #' \code{\link{threeDshape}}, \code{\link{twoDshape}}, \code{\link{eigensound}}
