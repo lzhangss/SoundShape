@@ -48,34 +48,38 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' data("tico")
+#' # Create folder at current working directory to store wave files
+#' wav.at <- file.path(getwd(), "example SoundShape")
+#' dir.create(wav.at)
 #'
+#' # Create folder to store results
+#' store.at <- file.path(getwd(), "example SoundShape/output")
+#' dir.create(store.at)
+#'
+#' # Select three acoustic units within each sound data
+#' data("tico")
+#' spectro(tico) # Visualize sound data that will be used
+#'
+#' # Cut acoustic units from original wave
 #' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 #' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 #' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 #'
-#' # Create folder to store wave files
-#' dir.create("C:/R/example threeDshape")
-#'
-#' # Create folder to store results
-#' dir.create("C:/R/example threeDshape/output")
-#'
-#' writeWave(cut.tico1, filename = "C:/R/example threeDshape/cut.tico1.wav", extensible = FALSE)
-#' writeWave(cut.tico2, filename = "C:/R/example threeDshape/cut.tico2.wav", extensible = FALSE)
-#' writeWave(cut.tico3, filename = "C:/R/example threeDshape/cut.tico3.wav", extensible = FALSE)
+#' # Export wave files containing acoustic units and store on previosly created folder
+#' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
+#' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
+#' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
 #'
 #' # Place sounds at beggining of sound window before analysis
-#' align.wave(wav.at = "C:/R/example threeDshape", wav.to = "Aligned",
-#'            time.length = 0.3, time.perc = 0.025, dBlevel = 20)
+#' align.wave(wav.at = wav.at, wav.to = "Aligned",
+#'            time.length = 0.3, time.perc = 0.01, dBlevel = 25)
 #'
 #' # Verify alignment using twoDshape function
-#' twoDshape(wav.at = "C:/R/example threeDshape/Aligned",
-#'           store.at = "C:/R/example threeDshape/output",
+#' twoDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'           flim=c(0, 12), tlim=c(0,0.3), plot.exp = TRUE, plot.as = "jpeg", dBlevel = 20)
 #'
 #' # Run threeDshape function on aligned wave files and store results as R object
-#' threeD.sample <- threeDshape(wav.at = "C:/R/example threeDshape/Aligned",
-#'                       store.at = "C:/R/example threeDshape/output",
+#' threeD.sample <- threeDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'                       x.length = 80, y.length = 60, TPS.file = "threeD.sample.tps",
 #'                       flim=c(0, 12), tlim=c(0,0.2), dBlevel = 20, log.scale = FALSE,
 #'                       plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
