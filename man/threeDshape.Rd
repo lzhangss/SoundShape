@@ -50,7 +50,7 @@ In order to store the results from \code{threeDshape} function and proceed with 
 Additionally, one might also export three-dimensional plots of semilandmarks either as simplified sound surfaces or as points. These images can be exported as \code{jpeg} (compressed image) or \code{tiff} (uncompressed image) file formats, which can be edited for publication purposes.
 }
 \examples{
-library(seewave) 
+library(seewave)
 library(tuneR)
 
 data("tico")
@@ -72,15 +72,15 @@ writeWave(cut.tico3, filename = "C:/R/example threeDshape/cut.tico3.wav", extens
 # Place sounds at beggining of sound window before analysis
 align.wave(wav.at = "C:/R/example threeDshape", wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.025, dBlevel = 20)
-           
+
 # Verify alignment using twoDshape function
-twoDshape(wav.at = "C:/R/example threeDshape/Aligned", 
+twoDshape(wav.at = "C:/R/example threeDshape/Aligned",
           store.at = "C:/R/example threeDshape/output",
           flim=c(0, 12), tlim=c(0,0.3), plot.exp = TRUE, plot.as = "jpeg", dBlevel = 20)
-          
+
 # Run threeDshape function on aligned wave files and store results as R object
 threeD.sample <- threeDshape(wav.at = "C:/R/example threeDshape/Aligned",
-                      store.at = "C:/R/example threeDshape/output", 
+                      store.at = "C:/R/example threeDshape/output",
                       x.length = 80, y.length = 60, TPS.file = "threeD.sample.tps",
                       flim=c(0, 12), tlim=c(0,0.2), dBlevel = 20, log.scale = FALSE,
                       plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
@@ -91,12 +91,17 @@ Adams, D. C., M. L. Collyer, A. Kaliontzopoulou & Sherratt, E. (2017) \emph{Geom
 
 MacLeod, N., Krieger, J. & Jones, K. E. (2013). Geometric morphometric approaches to acoustic signal analysis in mammalian biology. \emph{Hystrix, the Italian Journal of Mammalogy, 24}(1), 110-125.
 
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 
 Rohlf, F.J. (2015) The tps series of software. \emph{Hystrix 26}, 9-12.
 }
 \seealso{
 \code{\link{twoDshape}}, \code{\link{eigensound}}, \code{\link{geomorph}}
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
 \author{
 Pedro Rocha

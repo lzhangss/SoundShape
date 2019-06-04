@@ -71,6 +71,11 @@ Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} packa
 }
 \seealso{
 \code{\link{threeDshape}}, \code{\link{twoDshape}}, \code{\link{eigensound}}
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
 \author{
 Pedro Rocha

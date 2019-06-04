@@ -22,10 +22,15 @@ ZC(c(2, 6, 8, 1, 2) - 5) # y values from the polygon minus any given value
 
 }
 \references{
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 }
 \seealso{
 \code{\link{twoDshape}}, \code{\link{eigensound}}
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
 \author{
 Jerome Sueur

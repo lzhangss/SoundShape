@@ -44,7 +44,7 @@ Require the output of \code{prcomp} and a vector with \code{groups} to plot. In 
 Ordination of Principal Components from the output of a PCA performed by \code{\link{prcomp}} function (\code{\link{stats}} package).
 }
 \examples{
-library(seewave) 
+library(seewave)
 library(tuneR)
 
 # Create folder to store wave files
@@ -73,22 +73,22 @@ writeWave(cut.orni2, filename = "C:/R/example pca.plot/cut.orni2.wav", extensibl
 writeWave(cut.orni3, filename = "C:/R/example pca.plot/cut.orni3.wav", extensible = FALSE)
 
 # Place sounds at beggining of sound window before analysis
-align.wave(wav.at = "C:/R/example pca.plot", wav.to = "Aligned", 
+align.wave(wav.at = "C:/R/example pca.plot", wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.01, dBlevel = 25)
-           
+
 # Verify alignment using analysis.type = "twoDshape"
-eigensound(analysis.type = "twoDshape", wav.at = "C:/R/example pca.plot/Aligned", 
+eigensound(analysis.type = "twoDshape", wav.at = "C:/R/example pca.plot/Aligned",
            store.at = "C:/R/example pca.plot/output", flim=c(3, 18), tlim=c(0,0.22),
            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
-           
+
 # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 # Store results as R object and tps file
 eig.sample <- eigensound(analysis.type="threeDshape", wav.at = "C:/R/example pca.plot/Aligned",
-                 store.at = "C:/R/example pca.plot/output", 
+                 store.at = "C:/R/example pca.plot/output",
                  x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
                  flim=c(3, 18), tlim=c(0,0.22), , dBlevel = 25,
                  plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
-                         
+
 # PCA using three-dimensional semilandmark coordinates
 pca.eig.sample <- prcomp(geomorph::two.d.array(eig.sample))
 
@@ -101,10 +101,15 @@ pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
 
 }
 \references{
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 }
 \seealso{
 \code{\link{prcomp}}, \code{\link{palette}}, \code{\link{rgb}}, \code{\link{rainbow}}, \code{\link{legend}}
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
 \author{
 Pedro Rocha

@@ -50,12 +50,12 @@ For each \code{wave} file on a given folder, compute spectrogram data and acquir
 When \code{add.points = TRUE}, \code{twoDshape} will compute spectrogram data and acquire semilandmarks through cross-correlation between energy quantiles (i.e. \code{EQ}) and a curve of relative amplitude (i.e. \code{dBlevel}). However, this is often subtle and prone to incur in errors (e.g. bad alignment of acoustic units; inappropriate X and Y coordinates for the sound window; narrow banded calls). Therefore, a more robust protocol for error verification is achieved using \code{add.points = FALSE} and \code{add.contour = TRUE} (default), which allow for quick verification of acoustic units alignment and the shape of each curve of relative amplitude (specified by \code{dBlevel}).
 }
 \note{
-In order to store the results from \code{twoDshape} function and proceed with the Geometric Morphometric steps of the analysis (e.g. \code{\link{geomorph}} package; Adams et al., 2017), one can simultaneosly assign the function's output to an \code{R} object and/or store them as a \code{tps} file to be used by numerous softwares of geometric analysis of shape, such as the TPS series (Rohlf, 2015). 
+In order to store the results from \code{twoDshape} function and proceed with the Geometric Morphometric steps of the analysis (e.g. \code{\link{geomorph}} package; Adams et al., 2017), one can simultaneosly assign the function's output to an \code{R} object and/or store them as a \code{tps} file to be used by numerous softwares of geometric analysis of shape, such as the TPS series (Rohlf, 2015).
 
 Additionally, one might also export spectrogram images with contour and semilandmarks ploted, which is very useful as a protocol for error verification through semilandmark inspection (see Zelditch et al., 2012 for protocols of error verification in Geometric Morphometrics). These images can be exported as \code{jpeg} (compressed image) or \code{tiff} (uncompressed image) file formats.
 }
 \examples{
-library(seewave) 
+library(seewave)
 data("tico")
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
@@ -65,23 +65,28 @@ savewav(cut.tico1, filename = "C:/R/example twoDshape/cut.tico1.wav")
 savewav(cut.tico2, filename = "C:/R/example twoDshape/cut.tico2.wav")
 savewav(cut.tico3, filename = "C:/R/example twoDshape/cut.tico3.wav")
 
-twoDshape(wav.at = "C:/R/example twoDshape", 
+twoDshape(wav.at = "C:/R/example twoDshape",
           store.at = "C:/R/example twoDshape/output", add.points=TRUE,
           wl=512, ovlp=70, dBlevel = 20, flim=c(0, 12), tlim=c(0,0.22),
           plot.exp = TRUE, plot.as = "jpeg", TPS.file = "twoDshape-example-tico.tps")
-     
+
 }
 \references{
 Adams, D. C., M. L. Collyer, A. Kaliontzopoulou & Sherratt, E. (2017) \emph{Geomorph: Software for geometric morphometric analyses}. R package version 3.0.5. https://cran.r-project.org/package=geomorph.
 
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 
-Rohlf, F.J. (2015) The tps series of software. \emph{Hystrix 26}, 9-12. 
+Rohlf, F.J. (2015) The tps series of software. \emph{Hystrix 26}, 9-12.
 
 Zelditch, M. L., Swiderski, D. L., Sheets, H. D. & Fink, W. L. (2012). \emph{Geometric morphometrics for biologists: A primer.} Elsevier (Second Edition). Elsevier, San Diego.
 }
 \seealso{
 \code{\link{threeDshape}}, \code{\link{eigensound}}, \code{\link{geomorph}}
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
 \author{
 Pedro Rocha
