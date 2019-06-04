@@ -56,19 +56,35 @@ Additionally, one might also export spectrogram images with contour and semiland
 }
 \examples{
 library(seewave)
+library(tuneR)
+
+# Create folder at current working directory to store wave files
+wav.at <- file.path(getwd(), "example SoundShape")
+dir.create(wav.at)
+
+# Create folder to store results
+store.at <- file.path(getwd(), "example SoundShape/output")
+dir.create(store.at)
+
+# Select three acoustic units within each sound data
 data("tico")
+spectro(tico) # Visualize sound data that will be used
+
+# Cut acoustic units from original wave
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 
-savewav(cut.tico1, filename = "C:/R/example twoDshape/cut.tico1.wav")
-savewav(cut.tico2, filename = "C:/R/example twoDshape/cut.tico2.wav")
-savewav(cut.tico3, filename = "C:/R/example twoDshape/cut.tico3.wav")
+# Export wave files containing acoustic units and store on previosly created folder
+writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
+writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
+writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
 
-twoDshape(wav.at = "C:/R/example twoDshape",
-          store.at = "C:/R/example twoDshape/output", add.points=TRUE,
-          wl=512, ovlp=70, dBlevel = 20, flim=c(0, 12), tlim=c(0,0.22),
-          plot.exp = TRUE, plot.as = "jpeg", TPS.file = "twoDshape-example-tico.tps")
+# Run twoDshape and store semilandmark coordinates on tps file
+twoDshape(wav.at = wav.at, store.at = store.at, add.points=TRUE,
+          flim=c(0, 12), tlim=c(0,0.22), plot.exp = TRUE, plot.as = "jpeg",
+          TPS.file = "twoDshape-example-tico.tps")
+
 
 }
 \references{

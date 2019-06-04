@@ -32,34 +32,35 @@ Recreate each \code{wave} file on a given folder while placing calls at the begg
 library(seewave)
 library(tuneR)
 
-data("tico")
+# Create folder at current working directory to store wave files
+wav.at <- file.path(getwd(), "example SoundShape")
+dir.create(wav.at)
+
+# Create folder to store results
+store.at <- file.path(getwd(), "example SoundShape/output")
+dir.create(store.at)
 
 # Select acoustic units to be analyzed
+data("tico")
+spectro(tico) # Visualize sound data that will be used
+
+# Cut acoustic units from original wave
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 
-# Create folder to store wave files
-dir.create("C:/R/example align.wave")
-
-# Create folder to store results
-dir.create("C:/R/example align.wave/output")
-
-# Export new wave files containing acoustic units and store on previosly created folder
-writeWave(cut.tico1, filename = "C:/R/example align.wave/cut.tico1.wav", extensible = FALSE)
-writeWave(cut.tico2, filename = "C:/R/example align.wave/cut.tico2.wav", extensible = FALSE)
-writeWave(cut.tico3, filename = "C:/R/example align.wave/cut.tico3.wav", extensible = FALSE)
+# Export wave files containing selected acoustic units and store on previosly created folder
+writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
+writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
+writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
 
 # Align acoustic units selected at 3\% of time window
-align.wave(wav.at = "C:/R/example align.wave", wav.to = "Aligned",
+align.wave(wav.at = wav.at, wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.03, dBlevel = 20)
 
 # Verify alignment
 eigensound(analysis.type = "twoDshape", flim=c(0, 12), tlim=c(0,0.3), dBlevel = 20,
-          wav.at = "C:/R/example align.wave/Aligned",
-          store.at = "C:/R/example align.wave/output",
-          plot.exp = TRUE, plot.as = "jpeg")
-
+          wav.at = file.path(wav.at, "Aligned"), store.at = store.at, plot.exp = TRUE, plot.as = "jpeg")
 # To see jpeg files created, check folder specified by store.at
 
 

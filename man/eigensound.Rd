@@ -70,53 +70,65 @@ Additionally, one might also export two or three-dimensional plots as \code{jpeg
 library(seewave)
 library(tuneR)
 
-# Create folder to store wave files
-dir.create("C:/R/example eigensound")
+# Create folder at current working directory to store wave files
+wav.at <- file.path(getwd(), "example SoundShape")
+dir.create(wav.at)
 
 # Create folder to store results
-dir.create("C:/R/example eigensound/output")
+store.at <- file.path(getwd(), "example SoundShape/output")
+dir.create(store.at)
 
 # Select three acoustic units within each sound data
 data("tico")
+spectro(tico) # Visualize sound data that will be used
+
+# Cut acoustic units from original wave
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 
 data("orni")
+spectro(orni) # Visualize sound data that will be used
+
+# Cut acoustic units from original wave
 cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
 cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
 cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
 
-# Export new wave files containing acoustic units and store on previosly created folder
-writeWave(cut.tico1, filename = "C:/R/example eigensound/cut.tico1.wav", extensible = FALSE)
-writeWave(cut.tico2, filename = "C:/R/example eigensound/cut.tico2.wav", extensible = FALSE)
-writeWave(cut.tico3, filename = "C:/R/example eigensound/cut.tico3.wav", extensible = FALSE)
-writeWave(cut.orni1, filename = "C:/R/example eigensound/cut.orni1.wav", extensible = FALSE)
-writeWave(cut.orni2, filename = "C:/R/example eigensound/cut.orni2.wav", extensible = FALSE)
-writeWave(cut.orni3, filename = "C:/R/example eigensound/cut.orni3.wav", extensible = FALSE)
+# Export wave files containing acoustic units and store on previosly created folder
+writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
+writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
+writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
+writeWave(cut.orni1, filename = file.path(wav.at, "cut.orni1.wav"), extensible = FALSE)
+writeWave(cut.orni2, filename = file.path(wav.at, "cut.orni2.wav"), extensible = FALSE)
+writeWave(cut.orni3, filename = file.path(wav.at, "cut.orni3.wav"), extensible = FALSE)
 
 # Place sounds at beggining of sound window before analysis
-align.wave(wav.at = "C:/R/example eigensound", wav.to = "Aligned",
+align.wave(wav.at = wav.at, wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.01, dBlevel = 25)
 
 # Verify alignment using analysis.type = "twoDshape"
-eigensound(analysis.type = "twoDshape", wav.at = "C:/R/example eigensound/Aligned",
-           store.at = "C:/R/example eigensound/output", flim=c(3, 18), tlim=c(0,0.22),
+eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
+           store.at = store.at, flim=c(3, 18), tlim=c(0,0.22),
            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
+# Go to folder specified by store.at and check jpeg files created
 
 # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 # Store results as R object and tps file
-eig.sample <- eigensound(analysis.type="threeDshape", wav.at = "C:/R/example eigensound/Aligned",
-                 store.at = "C:/R/example eigensound/output",
-                 x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
-                 flim=c(3, 18), tlim=c(0,0.22), , dBlevel = 25,
-                 plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
+eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
+                   wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
+                   x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
+                   plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
+# Go to folder specified by store.at and check jpeg files created
 
 # PCA using three-dimensional semilandmark coordinates
-pca.eig.sample <- prcomp(geomorph::two.d.array(eig.sample))
+pca.eig.sample <- stats::prcomp(geomorph::two.d.array(eig.sample))
 
-# Create factor to use as groups in subsequent eigensound
+# Create factor to use as groups in subsequent plot of principal components
 sample.gr <- factor(c(rep("orni", 3), rep("tico", 3)))
+
+# Clear current R plot to prevent errors
+dev.off()
 
 # Plot result of Principal Components Analysis
 pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
