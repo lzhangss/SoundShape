@@ -67,7 +67,7 @@ In order to store the results from \code{eigensound} function and proceed with t
 Additionally, one might also export two or three-dimensional plots as \code{jpeg} (compressed image) or \code{tiff} (uncompressed image) file formats, which can be edited for publication purposes.
 }
 \examples{
-library(seewave) 
+library(seewave)
 library(tuneR)
 
 # Create folder to store wave files
@@ -96,22 +96,22 @@ writeWave(cut.orni2, filename = "C:/R/example eigensound/cut.orni2.wav", extensi
 writeWave(cut.orni3, filename = "C:/R/example eigensound/cut.orni3.wav", extensible = FALSE)
 
 # Place sounds at beggining of sound window before analysis
-align.wave(wav.at = "C:/R/example eigensound", wav.to = "Aligned", 
+align.wave(wav.at = "C:/R/example eigensound", wav.to = "Aligned",
            time.length = 0.3, time.perc = 0.01, dBlevel = 25)
-           
+
 # Verify alignment using analysis.type = "twoDshape"
-eigensound(analysis.type = "twoDshape", wav.at = "C:/R/example eigensound/Aligned", 
+eigensound(analysis.type = "twoDshape", wav.at = "C:/R/example eigensound/Aligned",
            store.at = "C:/R/example eigensound/output", flim=c(3, 18), tlim=c(0,0.22),
            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
-           
+
 # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 # Store results as R object and tps file
 eig.sample <- eigensound(analysis.type="threeDshape", wav.at = "C:/R/example eigensound/Aligned",
-                 store.at = "C:/R/example eigensound/output", 
+                 store.at = "C:/R/example eigensound/output",
                  x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
                  flim=c(3, 18), tlim=c(0,0.22), , dBlevel = 25,
                  plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
-                         
+
 # PCA using three-dimensional semilandmark coordinates
 pca.eig.sample <- prcomp(geomorph::two.d.array(eig.sample))
 
@@ -128,7 +128,7 @@ Adams, D. C., M. L. Collyer, A. Kaliontzopoulou & Sherratt, E. (2017) \emph{Geom
 
 MacLeod, N., Krieger, J. & Jones, K. E. (2013). Geometric morphometric approaches to acoustic signal analysis in mammalian biology. \emph{Hystrix, the Italian Journal of Mammalogy, 24}(1), 110-125.
 
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 
 Rohlf, F.J. (2015) The tps series of software. \emph{Hystrix 26}, 9-12.
 }

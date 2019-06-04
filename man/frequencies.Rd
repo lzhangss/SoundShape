@@ -33,7 +33,7 @@ data(tico)
 sample.sound <- spec(tico)
 
 # assign result to object
-sample.freq <- frequencies(sample.sound) 
+sample.freq <- frequencies(sample.sound)
 
 # print result
 print(sample.freq)
@@ -46,14 +46,19 @@ sample.freq3 <- frequencies(sample.sound, EQ = c(0.2, 0.4, 0.6, 0.8))
 
 # multiple energy quantiles within a predefined frequency bandwidth
 sample.freq4 <- frequencies(sample.sound, EQ = 0.5, f=44100, flim = c(2.5, 10))
- 
+
 
 }
 \references{
-Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics. \emph{Methods in Ecology and Evolution}.
+Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} package that crosses the bridge between Geometric Morphometrics and Bioacoustics.
 
 Sueur J., Aubin T., Simonis C. (2008). Seewave: a free modular tool for sound analysis and synthesis. \emph{Bioacoustics, 18}: 213-226
 }
 \seealso{
 \code{\link{specprop}}, \code{\link{spec}}, \code{\link{meanspec}}, \code{\link{seewave}} package
+
+Useful links:
+\itemize{
+  \item{\url{https://github.com/p-rocha/SoundShape}}
+  \item{Report bugs at \url{https://github.com/p-rocha/SoundShape/issues}}}
 }
