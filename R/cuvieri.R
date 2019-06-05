@@ -5,8 +5,9 @@
 #'
 #' @docType data
 #'
-#' @usage
-#' data(cuvieri)
+#' @usage data(cuvieri)
+#'
+#' @keywords datasets
 #'
 #' @details
 #' Duration = 2.37 s. Sampling Frequency = 22050 Hz. Air temperature 22ºC.
@@ -14,7 +15,7 @@
 #' Recorded at São José dos Campos Municipality, São Paulo State, Brazil, on 24 September 2013.
 #'
 #' @format
-#' An object of the class \code{"Wave"} (\code{\link{tuneR}} package.
+#' An object of the class \code{"Wave"} (\code{\link{tuneR}} package).
 #'
 #' @source
 #' Original recording housed at Coleção Bioacústica da Universidade Federal de Minas Gerais (CBUFMG-00196). Recorded by Pedro Rocha.
