@@ -35,25 +35,25 @@
 #' dir.create(store.at)
 #'
 #' # Select acoustic units to be analyzed
-#' data("tico")
-#' spectro(tico) # Visualize sound data that will be used
+#' data(cuvieri)
+#' spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
 #'
 #' # Cut acoustic units from original Wave
-#' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
-#' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
-#' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
+#' cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
+#' cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
+#' cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
 #'
 #' # Export Wave files containing selected acoustic units and store on previosly created folder
-#' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
-#' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
-#' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
 #'
-#' # Align acoustic units selected at 3% of time window
-#' align.wave(wav.at = wav.at, wav.to = "Aligned",
-#'            time.length = 0.3, time.perc = 0.03, dBlevel = 20)
+#' # Align acoustic units selected at 1% of time window
+#' align.wave(wav.at = wav.at, wav.to = "Aligned", f=22050,
+#'            time.length = 0.5, time.perc = 0.01, dBlevel = 25)
 #'
 #' # Verify alignment
-#' eigensound(analysis.type = "twoDshape", flim=c(0, 12), tlim=c(0,0.3), dBlevel = 20,
+#' eigensound(analysis.type = "twoDshape", flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25,
 #'           wav.at = file.path(wav.at, "Aligned"), store.at = store.at, plot.exp = TRUE, plot.as = "jpeg")
 #' # To see jpeg files created, check folder specified by store.at
 #'

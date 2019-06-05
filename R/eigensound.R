@@ -66,61 +66,69 @@
 #' store.at <- file.path(getwd(), "example SoundShape/output")
 #' dir.create(store.at)
 #'
-#' # Select three acoustic units within each sound data
-#' data("tico")
-#' spectro(tico) # Visualize sound data that will be used
+#' # Select acoustic units to be analyzed
+#' data(cuvieri)
+#' spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
 #'
 #' # Cut acoustic units from original Wave
-#' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
-#' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
-#' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
+#' cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
+#' cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
+#' cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
 #'
-#' data("orni")
-#' spectro(orni) # Visualize sound data that will be used
+#' data("centralis")
+#' spectro(centralis, flim = c(0,4))
+#' cut.centralis1 <- cutw(centralis, f=22050, from=0.1, to=0.8, output = "Wave")
+#' cut.centralis2 <- cutw(centralis, f=22050, from=1.2, to=1.9, output = "Wave")
+#' cut.centralis3 <- cutw(centralis, f=22050, from=2.15, to=2.85, output = "Wave")
 #'
-#' # Cut acoustic units from original Wave
-#' cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
-#' cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
-#' cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
+#' data("kroyeri")
+#' spectro(kroyeri, flim = c(0,4))
+#' cut.kroyeri1 <- cutw(kroyeri, f=22050, from=0.2, to=1, output = "Wave")
+#' cut.kroyeri2 <- cutw(kroyeri, f=22050, from=1.4, to=2.3, output = "Wave")
+#' cut.kroyeri3 <- cutw(kroyeri, f=22050, from=2.7, to=3.5, output = "Wave")
+#'
 #'
 #' # Export Wave files containing acoustic units and store on previosly created folder
-#' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
-#' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
-#' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
-#' writeWave(cut.orni1, filename = file.path(wav.at, "cut.orni1.wav"), extensible = FALSE)
-#' writeWave(cut.orni2, filename = file.path(wav.at, "cut.orni2.wav"), extensible = FALSE)
-#' writeWave(cut.orni3, filename = file.path(wav.at, "cut.orni3.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
+#' writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
+#' writeWave(cut.centralis1, filename = file.path(wav.at, "cut.centralis1.wav"), extensible = FALSE)
+#' writeWave(cut.centralis2, filename = file.path(wav.at, "cut.centralis2.wav"), extensible = FALSE)
+#' writeWave(cut.centralis3, filename = file.path(wav.at, "cut.centralis3.wav"), extensible = FALSE)
+#' writeWave(cut.kroyeri1, filename = file.path(wav.at, "cut.kroyeri1.wav"), extensible = FALSE)
+#' writeWave(cut.kroyeri2, filename = file.path(wav.at, "cut.kroyeri2.wav"), extensible = FALSE)
+#' writeWave(cut.kroyeri3, filename = file.path(wav.at, "cut.kroyeri3.wav"), extensible = FALSE)
 #'
 #' # Place sounds at beggining of sound window before analysis
-#' align.wave(wav.at = wav.at, wav.to = "Aligned",
-#'            time.length = 0.3, time.perc = 0.01, dBlevel = 25)
+#' align.wave(wav.at = wav.at, wav.to = "Aligned", f=22050,
+#'            time.length = 0.8, time.perc = 0.01, dBlevel = 25)
 #'
 #' # Verify alignment using analysis.type = "twoDshape"
 #' eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
-#'            store.at = store.at, flim=c(3, 18), tlim=c(0,0.22),
+#'            store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8), f=22050,
 #'            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 #' # Go to folder specified by store.at and check jpeg files created
 #'
-#' # Run eigensound function using analysis.type = "threeDshape" on aligned Wave files
+#' # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 #' # Store results as R object and tps file
-#' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
-#'                    wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-#'                    x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
-#'                    plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
+#' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), f=22050, dBlevel = 25,
+#'                         wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
+#'                         x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
+#'                         plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
 #' # Go to folder specified by store.at and check jpeg files created
 #'
 #' # PCA using three-dimensional semilandmark coordinates
-#' pca.eig.sample <- stats::prcomp(geomorph::two.d.array(eig.sample))
+#' pca.eig.sample <- prcomp(geomorph::two.d.array(eig.sample))
 #'
-#' # Create factor to use as groups in subsequent plot of principal components
-#' sample.gr <- factor(c(rep("orni", 3), rep("tico", 3)))
+#' # Create factor to use as groups in subsequent eigensound
+#' sample.gr <- factor(c(rep("centralis", 3), rep("cuvieri", 3), rep("kroyeri", 3)))
 #'
 #' # Clear current R plot to prevent errors
 #' dev.off()
 #'
 #' # Plot result of Principal Components Analysis
 #' pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
-#'          main="PCA of 3D coordinates", leg=TRUE, leg.pos = "bottomleft")
+#'          main="PCA of 3D coordinates", leg=TRUE, leg.pos = "top")
 #'
 #' @export
 #'
