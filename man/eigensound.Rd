@@ -17,7 +17,7 @@ eigensound(analysis.type = NULL, dBlevel = 25, wav.at = getwd(),
 
 \item{dBlevel}{absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition in both \code{"threeDshape"} and \code{"twoDshape"}. By default: \code{dBlevel = 25}}
 
-\item{wav.at}{filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
+\item{wav.at}{filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
 
 \item{store.at}{filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
 
@@ -41,13 +41,13 @@ eigensound(analysis.type = NULL, dBlevel = 25, wav.at = getwd(),
 
 \item{EQ}{only applies when \code{analysis.type = "twoDshape"} and \code{add.points = TRUE}. A vector of energy quantiles intended (with \code{0 < EQ < 1}). By default: \code{EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95)} \strong{Note:} When dealing with narrow banded calls, consider reducing the number of quantiles to prevent errors in the analysis.}
 
-\item{f}{sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}}
+\item{f}{sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}}
 
 \item{wl}{length of the window for the analysis. By default: \code{wl} = 512.}
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 
-\item{plot.exp}{a logical. If \code{TRUE}, for each \code{wave} file on the folder indicated by \code{wav.at}, \code{eigensound} will store a spectrogram image on the folder indicated by \code{store.at}. Depending on the \code{analysis.type}, plots may consist of two or three-dimensional spectrogram images. By default: \code{plot.exp = TRUE}}
+\item{plot.exp}{a logical. If \code{TRUE}, for each \code{Wave} file on the folder indicated by \code{wav.at}, \code{eigensound} will store a spectrogram image on the folder indicated by \code{store.at}. Depending on the \code{analysis.type}, plots may consist of two or three-dimensional spectrogram images. By default: \code{plot.exp = TRUE}}
 
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
@@ -56,7 +56,7 @@ eigensound(analysis.type = NULL, dBlevel = 25, wav.at = getwd(),
 \item{TPS.file}{Desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. \strong{Note:} Whenever \code{analysis.type = "twoDshape"}, it will only work if \code{add.points = TRUE}. By default: \code{TPS.file = NULL} (i.e. prevents \code{eigensound} from creating a \code{tps} file)}
 }
 \description{
-For each \code{wave} file on a given folder, compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (\code{analysis.type = "threeDshape"}), or the cross-correlation between energy quantiles and a curve of relative amplitude (\code{analysis.type = "twoDshape"}).
+For each \code{Wave} file on a given folder, compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (\code{analysis.type = "threeDshape"}), or the cross-correlation between energy quantiles and a curve of relative amplitude (\code{analysis.type = "twoDshape"}).
 }
 \details{
 When \code{analysis.type = "twoDshape"} and \code{add.points = TRUE}, \code{eigensound} will compute semilandmarks acquired by cross-correlation between energy quantiles (i.e. \code{EQ}) and a curve of relative amplitude (i.e. \code{dBlevel}). However, this is often subtle and prone to incur in errors (e.g. bad alignment of acoustic units; inappropriate X and Y coordinates for the sound window; narrow banded calls). Therefore, a more robust protocol of error verification is achieved using \code{add.points = FALSE} and \code{add.contour = TRUE} (default), which allow for quick verification of acoustic units alignment and the shape of each curve of relative amplitude (specified by \code{dBlevel}).
@@ -70,7 +70,7 @@ Additionally, one might also export two or three-dimensional plots as \code{jpeg
 library(seewave)
 library(tuneR)
 
-# Create folder at current working directory to store wave files
+# Create folder at current working directory to store Wave files
 wav.at <- file.path(getwd(), "example SoundShape")
 dir.create(wav.at)
 
@@ -82,7 +82,7 @@ dir.create(store.at)
 data("tico")
 spectro(tico) # Visualize sound data that will be used
 
-# Cut acoustic units from original wave
+# Cut acoustic units from original Wave
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
@@ -90,12 +90,12 @@ cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 data("orni")
 spectro(orni) # Visualize sound data that will be used
 
-# Cut acoustic units from original wave
+# Cut acoustic units from original Wave
 cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
 cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
 cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
 
-# Export wave files containing acoustic units and store on previosly created folder
+# Export Wave files containing acoustic units and store on previosly created folder
 writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
@@ -113,7 +113,7 @@ eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 # Go to folder specified by store.at and check jpeg files created
 
-# Run eigensound function using analysis.type = "threeDshape" on aligned wave files
+# Run eigensound function using analysis.type = "threeDshape" on aligned Wave files
 # Store results as R object and tps file
 eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
                    wav.at = file.path(wav.at, "Aligned"), store.at = store.at,

@@ -9,9 +9,9 @@ align.wave(wav.at = getwd(), wav.to = "Aligned", dBlevel = 25,
   ovlp = 70)
 }
 \arguments{
-\item{wav.at}{filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
+\item{wav.at}{filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
 
-\item{wav.to}{name of the folder where new \code{wave} files will be stored. Should be presented between quotation marks. By default: \code{wav.to = "Aligned"}}
+\item{wav.to}{name of the folder where new \code{Wave} files will be stored. Should be presented between quotation marks. By default: \code{wav.to = "Aligned"}}
 
 \item{dBlevel}{absolute amplitude value to be used as relative amplitude contour, which will serve as reference for call placement. By default: \code{dBlevel = 25}}
 
@@ -19,20 +19,20 @@ align.wave(wav.at = getwd(), wav.to = "Aligned", dBlevel = 25,
 
 \item{time.perc}{slight time gap (in \%) relative to the intended length that encompass all sounds in the study (i.e. \code{time.length}). Intervals are added before and after the minimum and maximum time coordinates (X-values) of the selected curve of relative amplitude (\code{dBlevel}). By default: \code{time.perc = 0.005} (i.e. 0.5\%)}
 
-\item{f}{sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}}
+\item{f}{sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}}
 
 \item{wl}{length of the window for the analysis. By default: \code{wl} = 512.}
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 }
 \description{
-Recreate each \code{wave} file on a given folder while placing calls at the beggining of sound window.
+Recreate each \code{Wave} file on a given folder while placing calls at the beggining of sound window.
 }
 \examples{
 library(seewave)
 library(tuneR)
 
-# Create folder at current working directory to store wave files
+# Create folder at current working directory to store Wave files
 wav.at <- file.path(getwd(), "example SoundShape")
 dir.create(wav.at)
 
@@ -44,12 +44,12 @@ dir.create(store.at)
 data("tico")
 spectro(tico) # Visualize sound data that will be used
 
-# Cut acoustic units from original wave
+# Cut acoustic units from original Wave
 cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 
-# Export wave files containing selected acoustic units and store on previosly created folder
+# Export Wave files containing selected acoustic units and store on previosly created folder
 writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
