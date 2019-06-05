@@ -1,7 +1,8 @@
-#' Advertisement call of \emph{Physalaemus cuvieri}
+#' Advertisement call of Physalaemus cuvieri
 #'
-#' @description
 #' Recording of \emph{Physalaemus cuvieri} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+#'
+#' @name cuvieri
 #'
 #' @docType data
 #'
@@ -15,7 +16,7 @@
 #' Recorded at São José dos Campos Municipality, São Paulo State, Brazil, on 24 September 2013.
 #'
 #' @format
-#' An object of the class \code{"Wave"} (\code{\link{tuneR}} package).
+#' An object of class \code{"Wave"}; see (\code{\link{tuneR}} package).
 #'
 #' @source
 #' Original recording housed at Coleção Bioacústica da Universidade Federal de Minas Gerais (CBUFMG-00196). Recorded by Pedro Rocha.
