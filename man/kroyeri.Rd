@@ -12,7 +12,7 @@ Original recording housed at Fonoteca Neotropical Jacques Vielliard (FNJV-003204
 data(kroyeri)
 }
 \description{
-Recording of \emph{Physalaemus kroyeri} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+Recording of \emph{Physalaemus kroyeri} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 }
 \details{
 Duration = 3.73 s. Sampling Frequency = 22050 Hz. Air temperature 24ºC.

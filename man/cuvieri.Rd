@@ -12,7 +12,7 @@ Original recording housed at Coleção Bioacústica da Universidade Federal de M
 data(cuvieri)
 }
 \description{
-Recording of \emph{Physalaemus cuvieri} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+Recording of \emph{Physalaemus cuvieri} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 }
 \details{
 Duration = 2.37 s. Sampling Frequency = 22050 Hz. Air temperature 22ºC.
