@@ -66,24 +66,24 @@ dir.create(wav.at)
 store.at <- file.path(getwd(), "example SoundShape/output")
 dir.create(store.at)
 
-# Select three acoustic units within each sound data
-data("tico")
-spectro(tico) # Visualize sound data that will be used
+# Select acoustic units to be analyzed
+data(cuvieri)
+spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
 
 # Cut acoustic units from original Wave
-cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
-cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
-cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
+cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
+cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
+cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
 
-# Export Wave files containing acoustic units and store on previosly created folder
-writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
-writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
-writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
+# Export Wave files containing selected acoustic units and store on previosly created folder
+writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
+writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
+writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
 
 # Run twoDshape and store semilandmark coordinates on tps file
 twoDshape(wav.at = wav.at, store.at = store.at, add.points=TRUE,
-          flim=c(0, 12), tlim=c(0,0.22), plot.exp = TRUE, plot.as = "jpeg",
-          TPS.file = "twoDshape-example-tico.tps")
+          flim=c(0, 3), tlim=c(0,0.5), plot.exp = TRUE, plot.as = "jpeg",
+          TPS.file = "twoDshape-example.tps")
 
 
 }

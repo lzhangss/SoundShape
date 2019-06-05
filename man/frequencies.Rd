@@ -29,8 +29,8 @@ In addition, arguments \code{spec}, \code{f}, \code{mel} and \code{flim} are the
 \examples{
 library(seewave)
 
-data(tico)
-sample.sound <- spec(tico)
+data(cuvieri)
+sample.sound <- spec(cuvieri)
 
 # assign result to object
 sample.freq <- frequencies(sample.sound)
