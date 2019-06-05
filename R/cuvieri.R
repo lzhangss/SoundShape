@@ -1,4 +1,4 @@
-#' Advertisement call of Physalaemus cuvieri
+#' Advertisement call of \emph{Physalaemus cuvieri}
 #'
 #' Recording of \emph{Physalaemus cuvieri} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 #'
