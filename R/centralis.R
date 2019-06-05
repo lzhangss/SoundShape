@@ -1,6 +1,6 @@
-#' Advertisement call of Physalaemus centralis
+#' @title Advertisement call of Physalaemus centralis
 #'
-#' Recording of \emph{Physalaemus centralis} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+#' @description Recording of \emph{Physalaemus centralis} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 #'
 #' @docType data
 #'
