@@ -3,7 +3,7 @@
 \docType{data}
 \name{cuvieri}
 \alias{cuvieri}
-\title{Advertisement call of Physalaemus cuvieri}
+\title{Advertisement call of \emph{Physalaemus cuvieri}}
 \format{An object of class \code{"Wave"}; see (\code{\link{tuneR}} package).}
 \source{
 Original recording housed at Coleção Bioacústica da Universidade Federal de Minas Gerais (CBUFMG-00196). Recorded by Pedro Rocha.
