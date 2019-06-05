@@ -1,11 +1,11 @@
 #' Semilandmarks from a two-dimensional curve of relative amplitude
 #'
 #' @description
-#' For each \code{wave} file on a given folder, compute spectrogram data and acquire semilandmarks using cross-correlation between energy quantiles and a two-dimensional curve of relative amplitude (\code{dBlevel}).
+#' For each \code{Wave} file on a given folder, compute spectrogram data and acquire semilandmarks using cross-correlation between energy quantiles and a two-dimensional curve of relative amplitude (\code{dBlevel}).
 #'
 #' @author Pedro Rocha
 #'
-#' @param f sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}
+#' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for the analysis. By default: \code{wl} = 512.
 #' @param ovlp overlap between two successive windows (in percentage) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition. By default: \code{dBlevel = 25}
@@ -14,9 +14,9 @@
 #' @param trel relative scale to be used in the time (X-axis) when \code{tlim} is not null; relative to the numbers displayed on the time (X-axis) of spectrogram plots. By default: \code{trel == tlim}
 #' @param mag.time optional argument for magnifying the time coordinates. This is sometimes desired for small sound windows (e.g. less than 1 s), in which time coordinates will be on a different scale than that of frequency coordinates. In those cases, it is recommended to include \code{mag.time = 10} or \code{mag.time = 100}, depending on lenght of sound window. By default: \code{mag.time = 1} (i.e. no magnification is performed)
 #' @param EQ only applies when \code{add.points = TRUE}. A vector of energy quantiles intended (with \code{0 < EQ < 1}). By default: \code{EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95)} \strong{Note:} When dealing with narrow banded calls, any additional values could cause an error in subsequent steps of the analysis
-#' @param wav.at filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
+#' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
 #' @param store.at filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
-#' @param plot.exp a logical. If \code{TRUE}, for each \code{wave} file on the folder indicated by \code{wav.at}, \code{twoDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of spectrograms images and may include the longest curve of relative amplitude (\code{add.contour = TRUE}) and semilandmarks as points (\code{add.points = TRUE}). By default: \code{plot.exp = TRUE}
+#' @param plot.exp a logical. If \code{TRUE}, for each \code{Wave} file on the folder indicated by \code{wav.at}, \code{twoDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of spectrograms images and may include the longest curve of relative amplitude (\code{add.contour = TRUE}) and semilandmarks as points (\code{add.points = TRUE}). By default: \code{plot.exp = TRUE}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param TPS.file only applies when \code{add.points = TRUE}. Desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. By default: \code{TPS.file = NULL} (i.e. prevents \code{twoDshape} from creating a \code{tps} file)
 #' @param add.contour only applies when \code{plot.exp = TRUE}. A logical. If \code{TRUE}, exported spectrogram plots will include the longest curve of relative amplitude at the level specified by \code{dBlevel}. By default: \code{add.contour = TRUE}
@@ -42,7 +42,7 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' # Create folder at current working directory to store wave files
+#' # Create folder at current working directory to store Wave files
 #' wav.at <- file.path(getwd(), "example SoundShape")
 #' dir.create(wav.at)
 #'
@@ -54,12 +54,12 @@
 #' data("tico")
 #' spectro(tico) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 #' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 #' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 #'
-#' # Export wave files containing acoustic units and store on previosly created folder
+#' # Export Wave files containing acoustic units and store on previosly created folder
 #' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 #' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 #' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
@@ -198,7 +198,7 @@ twoDshape <- function(wav.at = getwd(), store.at = getwd(), dBlevel=25, flim=c(0
       rm(lmline, idline, SM)
     } # end update TPS.file
 
-  } # end loop for each wave file
+  } # end loop for each Wave file
 
   # Assign names to arrays' third dimension
   if(add.points==TRUE){

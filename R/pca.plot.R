@@ -37,7 +37,7 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' # Create folder at current working directory to store wave files
+#' # Create folder at current working directory to store Wave files
 #' wav.at <- file.path(getwd(), "example SoundShape")
 #' dir.create(wav.at)
 #'
@@ -49,7 +49,7 @@
 #' data("tico")
 #' spectro(tico) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 #' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 #' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
@@ -57,12 +57,12 @@
 #' data("orni")
 #' spectro(orni) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
 #' cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
 #' cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
 #'
-#' # Export wave files containing acoustic units and store on previosly created folder
+#' # Export Wave files containing acoustic units and store on previosly created folder
 #' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 #' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 #' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
@@ -80,7 +80,7 @@
 #'            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 #' # Go to folder specified by store.at and check jpeg files created
 #'
-#' # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
+#' # Run eigensound function using analysis.type = "threeDshape" on aligned Wave files
 #' # Store results as R object and tps file
 #' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
 #'                    wav.at = file.path(wav.at, "Aligned"), store.at = store.at,

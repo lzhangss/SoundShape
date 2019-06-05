@@ -1,14 +1,14 @@
 #' Sound waves onto morphometric data
 #'
 #' @description
-#' For each \code{wave} file on a given folder, compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (\code{analysis.type = "threeDshape"}), or the cross-correlation between energy quantiles and a curve of relative amplitude (\code{analysis.type = "twoDshape"}).
+#' For each \code{Wave} file on a given folder, compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (\code{analysis.type = "threeDshape"}), or the cross-correlation between energy quantiles and a curve of relative amplitude (\code{analysis.type = "twoDshape"}).
 #'
 #' @param analysis.type type of analysis intended. If \code{analysis.type = "threeDshape"}, semilandmarks are acquired from spectrogram data using a three-dimensional representation of sound (MacLeod et al., 2013). If \code{analysis.type = "twoDshape"}, semilandmarks are acquired using energy quantiles and a two-dimensional curve of relative amplitude. By default: \code{analysis.type = NULL} (i.e. method must be specified before the analysis).
-#' @param f sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}
+#' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for the analysis. By default: \code{wl} = 512.
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition in both \code{"threeDshape"} and \code{"twoDshape"}. By default: \code{dBlevel = 25}
-#' @param wav.at filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
+#' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
 #' @param store.at filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
 #' @param flim modifications of the frequency limits (Y-axis). Vector with two values in kHz. By default: \code{flim = c(0, 10)}
 #' @param tlim modifications of the time limits (X-axis). Vector with two values in seconds. By default: \code{tlim = c(0, 1)}
@@ -18,7 +18,7 @@
 #' @param x.length only applies when \code{analysis.type = "threeDshape"}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 100}
 #' @param y.length only applies when \code{analysis.type = "threeDshape"}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 70}
 #' @param log.scale only applies when \code{analysis.type = "threeDshape"}. A logical. If \code{TRUE}, \code{eigensound} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds). If \code{FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). By default: \code{log.scale = TRUE}
-#' @param plot.exp a logical. If \code{TRUE}, for each \code{wave} file on the folder indicated by \code{wav.at}, \code{eigensound} will store a spectrogram image on the folder indicated by \code{store.at}. Depending on the \code{analysis.type}, plots may consist of two or three-dimensional spectrogram images. By default: \code{plot.exp = TRUE}
+#' @param plot.exp a logical. If \code{TRUE}, for each \code{Wave} file on the folder indicated by \code{wav.at}, \code{eigensound} will store a spectrogram image on the folder indicated by \code{store.at}. Depending on the \code{analysis.type}, plots may consist of two or three-dimensional spectrogram images. By default: \code{plot.exp = TRUE}
 #' @param plot.type only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce a simplified three-dimensional sound surface from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param add.contour only applies when \code{analysis.type = "twoDshape"} and  \code{plot.exp = TRUE}. A logical. If \code{TRUE}, exported spectrogram plots will include the longest curve of relative amplitude at the level specified by \code{dBlevel}. By default: \code{add.contour = TRUE}
@@ -58,7 +58,7 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' # Create folder at current working directory to store wave files
+#' # Create folder at current working directory to store Wave files
 #' wav.at <- file.path(getwd(), "example SoundShape")
 #' dir.create(wav.at)
 #'
@@ -70,7 +70,7 @@
 #' data("tico")
 #' spectro(tico) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 #' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 #' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
@@ -78,12 +78,12 @@
 #' data("orni")
 #' spectro(orni) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
 #' cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
 #' cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
 #'
-#' # Export wave files containing acoustic units and store on previosly created folder
+#' # Export Wave files containing acoustic units and store on previosly created folder
 #' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 #' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 #' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
@@ -101,7 +101,7 @@
 #'            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 #' # Go to folder specified by store.at and check jpeg files created
 #'
-#' # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
+#' # Run eigensound function using analysis.type = "threeDshape" on aligned Wave files
 #' # Store results as R object and tps file
 #' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
 #'                    wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
@@ -144,7 +144,7 @@ eigensound <- function(analysis.type = NULL, dBlevel=25, wav.at = getwd(), store
   # Eigensound analysis
   if(analysis.type == "threeDshape"){
 
-    # Acquire 3D semilandmark coordinates for each wave file on a given folder
+    # Acquire 3D semilandmark coordinates for each Wave file on a given folder
     for(file in list.files(wav.at, pattern = ".wav"))
     {
       threeD <- tuneR::readWave(paste(wav.at,"/", file, sep=""))
@@ -198,7 +198,7 @@ eigensound <- function(analysis.type = NULL, dBlevel=25, wav.at = getwd(), store
                                           xlab="Time (s)", ylab="Frequency (kHz)", zlab="Amplitude (dB)",
                                           main= sub(".wav", "", file), clab=expression('Amplitude dB'))}
 
-        grDevices::dev.off()  } # end threeDshape plot of each wave file
+        grDevices::dev.off()  } # end threeDshape plot of each Wave file
 
       # Export semilandmark coordinates as TPS file
       if(!is.null(TPS.file)){

@@ -1,11 +1,11 @@
 #' Semilandmarks from a three-dimensional surface of sound
 #'
 #' @description
-#' For each \code{wave} file on a given folder, compute spectrogram data and acquire semilandmarks from a three-dimensional representation of sound.
+#' For each \code{Wave} file on a given folder, compute spectrogram data and acquire semilandmarks from a three-dimensional representation of sound.
 #'
 #' @author Pedro Rocha
 #'
-#' @param f sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}
+#' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for the analysis. By default: \code{wl} = 512
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition. By default: \code{dBlevel = 25}
@@ -14,9 +14,9 @@
 #' @param x.length length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 100}
 #' @param y.length length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 70}
 #' @param log.scale a logical. If \code{log.scale = TRUE}, \code{threeDshape} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (i.e. emphasize short duration sounds). If \code{log.scale = FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). By default: \code{log.scale = TRUE}
-#' @param wav.at filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
+#' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
 #' @param store.at filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
-#' @param plot.exp a logical. If \code{TRUE}, for each \code{wave} file on the folder indicated by \code{wav.at}, \code{threeDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of three-dimensional graphs in which semilandmards are represented either as points or as sound surface (specified by \code{plot.as}). By default: \code{plot.exp = TRUE}
+#' @param plot.exp a logical. If \code{TRUE}, for each \code{Wave} file on the folder indicated by \code{wav.at}, \code{threeDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of three-dimensional graphs in which semilandmards are represented either as points or as sound surface (specified by \code{plot.as}). By default: \code{plot.exp = TRUE}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param plot.type only applies when \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce a simplified three-dimensional sound surface from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}
 #' @param TPS.file desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. By default: \code{TPS.file = NULL} (i.e. prevents \code{threeDshape} from creating a \code{tps} file)
@@ -48,7 +48,7 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' # Create folder at current working directory to store wave files
+#' # Create folder at current working directory to store Wave files
 #' wav.at <- file.path(getwd(), "example SoundShape")
 #' dir.create(wav.at)
 #'
@@ -60,12 +60,12 @@
 #' data("tico")
 #' spectro(tico) # Visualize sound data that will be used
 #'
-#' # Cut acoustic units from original wave
+#' # Cut acoustic units from original Wave
 #' cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
 #' cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
 #' cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
 #'
-#' # Export wave files containing acoustic units and store on previosly created folder
+#' # Export Wave files containing acoustic units and store on previosly created folder
 #' writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
 #' writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
 #' writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
@@ -78,7 +78,7 @@
 #' twoDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'           flim=c(0, 12), tlim=c(0,0.3), plot.exp = TRUE, plot.as = "jpeg", dBlevel = 20)
 #'
-#' # Run threeDshape function on aligned wave files and store results as R object
+#' # Run threeDshape function on aligned Wave files and store results as R object
 #' threeD.sample <- threeDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'                       x.length = 80, y.length = 60, TPS.file = "threeD.sample.tps",
 #'                       flim=c(0, 12), tlim=c(0,0.2), dBlevel = 20, log.scale = FALSE,
@@ -94,7 +94,7 @@ if(!is.null(TPS.file)){
   file.create(TPS.path, showWarnings = TRUE)
 }
 
-# Loop to acquire semilandmark coordinates for each wave file on a given folder
+# Loop to acquire semilandmark coordinates for each Wave file on a given folder
 for(file in list.files(wav.at, pattern = ".wav"))
 {
   Wav <- tuneR::readWave(paste(wav.at,"/", file, sep=""))
