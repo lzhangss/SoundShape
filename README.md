@@ -7,7 +7,11 @@ variation in the dataset of sound waves. By doing so, complex waves are now be d
 
 Although MacLeod et al. (2013) clearly stated the methods for SM acquisition, they did not mention the softwares required for the so called *eigensound analysis*. Therefore, `SoundShape` package feature a set of functions that reproduce the methods from the positioning of sounds at beggining of sound window until the PCA plot with convex hulls around each group. 
 
+```{r, out.width = "52%"}
+  knitr::include_graphics(list.files("C:/R/example eigensound/output",
+                              pattern=".jpg", full.names = TRUE)) 
 
+```
 
 
 
