@@ -2,8 +2,6 @@
 #'
 #' Recording of \emph{Physalaemus cuvieri} advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 #'
-#' @name cuvieri
-#'
 #' @docType data
 #'
 #' @usage data(cuvieri)
@@ -27,5 +25,6 @@
 #' seewave::oscillo(cuvieri, f=22050)
 #' seewave::spectro(cuvieri, f=22050)
 #'
+"cuvieri"
 
 
