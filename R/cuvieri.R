@@ -24,7 +24,4 @@
 #'
 #' seewave::oscillo(cuvieri, f=22050)
 #' seewave::spectro(cuvieri, f=22050)
-#'
 "cuvieri"
-
-
