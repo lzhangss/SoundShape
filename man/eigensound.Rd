@@ -118,16 +118,16 @@ align.wave(wav.at = wav.at, wav.to = "Aligned",
 
 # Verify alignment using analysis.type = "twoDshape"
 eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
-           store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8), f=44100,
+           store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8),
            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 # Go to folder specified by store.at and check jpeg files created
 
 # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 # Store results as R object and tps file
-eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), f=44100, dBlevel = 25,
+eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), dBlevel = 25,
                         wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-                        x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
-                        plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
+                        x.length = 80, y.length = 60, plot.exp = TRUE, plot.type = "surface",
+                        TPS.file = "eigensound.sample.tps", log.scale = TRUE)
 # Go to folder specified by store.at and check jpeg files created
 
 # PCA using three-dimensional semilandmark coordinates

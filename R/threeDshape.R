@@ -78,7 +78,7 @@
 #'
 #' # Verify alignment using twoDshape function
 #' twoDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-#'           flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25, plot.exp = TRUE, plot.as = "jpeg", dBlevel = 20)
+#'           flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25, plot.exp = TRUE)
 #' # To see jpeg files created, check folder specified by store.at
 #'
 #' # Run threeDshape function on aligned Wave files

@@ -53,8 +53,8 @@
 #'            time.length = 0.5, time.perc = 0.01, dBlevel = 25)
 #'
 #' # Verify alignment
-#' eigensound(analysis.type = "twoDshape", flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25,
-#'           wav.at = file.path(wav.at, "Aligned"), store.at = store.at, plot.exp = TRUE, plot.as = "jpeg")
+#' eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
+#'            flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25, plot.exp = TRUE, plot.as = "jpeg")
 #' # To see jpeg files created, check folder specified by store.at
 #'
 #'
