@@ -15,7 +15,7 @@ data(cuvieri)
 Recording of \emph{Physalaemus cuvieri} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 }
 \details{
-Duration = 2.37 s. Sampling Frequency = 22050 Hz. Air temperature 22ºC.
+Duration = 1.96 s. Sampling Frequency = 44100 Hz. Air temperature 22ºC.
 
 Recorded at São José dos Campos Municipality, São Paulo State, Brazil, on 24 September 2013.
 }

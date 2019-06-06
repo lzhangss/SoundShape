@@ -68,17 +68,14 @@ dir.create(store.at)
 
 # Select acoustic units to be analyzed
 data(cuvieri)
-spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
+spectro(cuvieri, flim = c(0,4)) # Visualize sound data that will be used
 
 # Cut acoustic units from original Wave
-cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
-cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
-cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
-
-# Export Wave files containing selected acoustic units and store on previosly created folder
-writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
-writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
-writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
+data(cuvieri)
+spectro(cuvieri, flim = c(0,4))
+cut.cuvieri1 <- cutw(cuvieri, f=44100, from=0, to=0.5, output = "Wave")
+cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
+cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 
 # Run twoDshape and store semilandmark coordinates on tps file
 twoDshape(wav.at = wav.at, store.at = store.at, add.points=TRUE,

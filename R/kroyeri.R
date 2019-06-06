@@ -9,7 +9,7 @@
 #' @keywords datasets
 #'
 #' @details
-#' Duration = 3.73 s. Sampling Frequency = 22050 Hz. Air temperature 24ºC.
+#' Duration = 3.91 s. Sampling Frequency = 44100 Hz. Air temperature 24ºC.
 #'
 #' Recorded at Ilhéus Municipality, Bahia State, Brazil, on 05 August 1972.
 #'

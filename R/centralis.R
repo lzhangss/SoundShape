@@ -9,7 +9,7 @@
 #' @keywords datasets
 #'
 #' @details
-#' Duration = 3.03 s. Sampling Frequency = 22050 Hz. Air temperature 25ºC.
+#' Duration = 2.89 s. Sampling Frequency = 44100 Hz. Air temperature 25ºC.
 #'
 #' Recorded at Formoso do Araguaia Municipality, Tocantins State, Brazil, on 9 December 1992.
 #'

@@ -46,25 +46,26 @@
 #'
 #' # Select acoustic units to be analyzed
 #' data(cuvieri)
-#' spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
+#' spectro(cuvieri, flim = c(0,4)) # Visualize sound data that will be used
 #'
 #' # Cut acoustic units from original Wave
-#' cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
-#' cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
-#' cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
+#' data(cuvieri)
+#' spectro(cuvieri, flim = c(0,4))
+#' cut.cuvieri1 <- cutw(cuvieri, f=44100, from=0, to=0.5, output = "Wave")
+#' cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
+#' cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 #'
 #' data("centralis")
 #' spectro(centralis, flim = c(0,4))
-#' cut.centralis1 <- cutw(centralis, f=22050, from=0.1, to=0.8, output = "Wave")
-#' cut.centralis2 <- cutw(centralis, f=22050, from=1.2, to=1.9, output = "Wave")
-#' cut.centralis3 <- cutw(centralis, f=22050, from=2.15, to=2.85, output = "Wave")
+#' cut.centralis1 <- cutw(centralis, f=44100, from=0.1, to=0.8, output = "Wave")
+#' cut.centralis2 <- cutw(centralis, f=44100, from=1.05, to=1.75, output = "Wave")
+#' cut.centralis3 <- cutw(centralis, f=44100, from=2.1, to=2.8, output = "Wave")
 #'
 #' data("kroyeri")
 #' spectro(kroyeri, flim = c(0,4))
-#' cut.kroyeri1 <- cutw(kroyeri, f=22050, from=0.2, to=1, output = "Wave")
-#' cut.kroyeri2 <- cutw(kroyeri, f=22050, from=1.4, to=2.3, output = "Wave")
-#' cut.kroyeri3 <- cutw(kroyeri, f=22050, from=2.7, to=3.5, output = "Wave")
-#'
+#' cut.kroyeri1 <- cutw(kroyeri, f=44100, from=0.1, to=1, output = "Wave")
+#' cut.kroyeri2 <- cutw(kroyeri, f=44100, from=1.5, to=2.3, output = "Wave")
+#' cut.kroyeri3 <- cutw(kroyeri, f=44100, from=2.9, to=3.8, output = "Wave")
 #'
 #' # Export Wave files containing acoustic units and store on previosly created folder
 #' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
@@ -78,18 +79,18 @@
 #' writeWave(cut.kroyeri3, filename = file.path(wav.at, "cut.kroyeri3.wav"), extensible = FALSE)
 #'
 #' # Place sounds at beggining of sound window before analysis
-#' align.wave(wav.at = wav.at, wav.to = "Aligned", f=22050,
-#'            time.length = 0.8, time.perc = 0.01, dBlevel = 25)
+#' align.wave(wav.at = wav.at, wav.to = "Aligned",
+#'            time.length = 0.8, time.perc = 0.005, dBlevel = 25)
 #'
 #' # Verify alignment using analysis.type = "twoDshape"
 #' eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
-#'            store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8), f=22050,
+#'            store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8), f=44100,
 #'            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
 #' # Go to folder specified by store.at and check jpeg files created
 #'
 #' # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
 #' # Store results as R object and tps file
-#' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), f=22050, dBlevel = 25,
+#' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), f=44100, dBlevel = 25,
 #'                         wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'                         x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
 #'                         plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")

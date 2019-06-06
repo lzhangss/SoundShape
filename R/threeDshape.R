@@ -58,12 +58,14 @@
 #'
 #' # Select acoustic units to be analyzed
 #' data(cuvieri)
-#' spectro(cuvieri, flim = c(0,3)) # Visualize sound data that will be used
+#' spectro(cuvieri, flim = c(0,4)) # Visualize sound data that will be used
 #'
 #' # Cut acoustic units from original Wave
-#' cut.cuvieri1 <- cutw(cuvieri, f=22050, from=0, to=0.7, output = "Wave")
-#' cut.cuvieri2 <- cutw(cuvieri, f=22050, from=0.8, to=1.5, output = "Wave")
-#' cut.cuvieri3 <- cutw(cuvieri, f=22050, from=1.6, to=2.3, output = "Wave")
+#' data(cuvieri)
+#' spectro(cuvieri, flim = c(0,4))
+#' cut.cuvieri1 <- cutw(cuvieri, f=44100, from=0, to=0.5, output = "Wave")
+#' cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
+#' cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 #'
 #' # Export Wave files containing selected acoustic units and store on previosly created folder
 #' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
@@ -71,7 +73,7 @@
 #' writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
 #'
 #' # Align acoustic units selected at 1% of time window
-#' align.wave(wav.at = wav.at, wav.to = "Aligned", f=22050,
+#' align.wave(wav.at = wav.at, wav.to = "Aligned",
 #'            time.length = 0.5, time.perc = 0.01, dBlevel = 25)
 #'
 #' # Verify alignment using twoDshape function
@@ -83,7 +85,7 @@
 #' # Store results as R object and tps file
 #' threeD.sample <- threeDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
 #'                       x.length = 80, y.length = 60, TPS.file = "threeDshape.sample.tps",
-#'                       flim=c(0, 4), tlim=c(0, 0.8), f=22050, dBlevel = 25, log.scale = FALSE,
+#'                       flim=c(0, 4), tlim=c(0, 0.8), f=44100, dBlevel = 25, log.scale = FALSE,
 #'                       plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
 #' # Go to folder specified by store.at and check jpeg files created
 #'

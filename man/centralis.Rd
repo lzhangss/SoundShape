@@ -15,7 +15,7 @@ data(centralis)
 Recording of \emph{Physalaemus centralis} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
 }
 \details{
-Duration = 3.03 s. Sampling Frequency = 22050 Hz. Air temperature 25ºC.
+Duration = 2.89 s. Sampling Frequency = 44100 Hz. Air temperature 25ºC.
 
 Recorded at Formoso do Araguaia Municipality, Tocantins State, Brazil, on 9 December 1992.
 }
