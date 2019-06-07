@@ -3,7 +3,7 @@
 #' @description Recreate each \code{Wave} file on a given folder while placing calls at the beggining of sound window.
 #'
 #' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
-#' @param wl length of the window for the analysis. By default: \code{wl} = 512.
+#' @param wl length of the window for the analysis. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for call placement. By default: \code{dBlevel = 25}
 #' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)

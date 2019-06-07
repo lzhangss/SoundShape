@@ -26,7 +26,7 @@ hypo.surf(threeD.out = NULL, PC = 1, flim = c(0, 4), tlim = c(0,
 
 \item{f}{sampling frequency of \code{Wave} files (in Hz). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{f = 44100}}
 
-\item{wl}{length of the window for the analysis. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{wl} = 512.}
+\item{wl}{length of the window for the analysis. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{wl = 512}}
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{ovlp = 70}}
 

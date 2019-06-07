@@ -21,7 +21,7 @@ align.wave(wav.at = getwd(), wav.to = "Aligned", dBlevel = 25,
 
 \item{f}{sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}}
 
-\item{wl}{length of the window for the analysis. By default: \code{wl} = 512.}
+\item{wl}{length of the window for the analysis. By default: \code{wl = 512}}
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 }

@@ -6,7 +6,7 @@
 #' @author Pedro Rocha
 #'
 #' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
-#' @param wl length of the window for the analysis. By default: \code{wl} = 512.
+#' @param wl length of the window for the analysis. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in percentage) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition. By default: \code{dBlevel = 25}
 #' @param flim modifications of the frequency limits (Y-axis). Vector with two values in kHz. By default: \code{flim = c(0, 10)}

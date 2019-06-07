@@ -5,7 +5,7 @@
 #'
 #' @param analysis.type type of analysis intended. If \code{analysis.type = "threeDshape"}, semilandmarks are acquired from spectrogram data using a three-dimensional representation of sound (MacLeod et al., 2013). If \code{analysis.type = "twoDshape"}, semilandmarks are acquired using energy quantiles and a two-dimensional curve of relative amplitude. By default: \code{analysis.type = NULL} (i.e. method must be specified before the analysis).
 #' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
-#' @param wl length of the window for the analysis. By default: \code{wl} = 512.
+#' @param wl length of the window for the analysis. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
 #' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition in both \code{"threeDshape"} and \code{"twoDshape"}. By default: \code{dBlevel = 25}
 #' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
