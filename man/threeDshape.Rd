@@ -5,15 +5,15 @@
 \title{Semilandmarks from a three-dimensional surface of sound}
 \usage{
 threeDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
-  flim = c(0, 10), tlim = c(0, 1), x.length = 100, y.length = 70,
+  flim = c(0, 10), tlim = c(0, 1), x.length = 80, y.length = 60,
   log.scale = TRUE, f = 44100, wl = 512, ovlp = 70,
   plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface",
   TPS.file = NULL)
 }
 \arguments{
-\item{wav.at}{filepath to the folder where \code{wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
+\item{wav.at}{filepath to the folder where \code{".wav"} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
 
-\item{store.at}{filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
+\item{store.at}{filepath to the folder where spectrogram plots and \code{tps} file will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
 
 \item{dBlevel}{absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition. By default: \code{dBlevel = 25}}
 
@@ -21,39 +21,39 @@ threeDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
 
 \item{tlim}{modifications of the time limits (X-axis). Vector with two values in seconds. By default: \code{tlim = c(0, 1)}}
 
-\item{x.length}{length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 100}}
+\item{x.length}{length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 80}}
 
-\item{y.length}{length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 70}}
+\item{y.length}{length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 60}}
 
 \item{log.scale}{a logical. If \code{log.scale = TRUE}, \code{threeDshape} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (i.e. emphasize short duration sounds). If \code{log.scale = FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). By default: \code{log.scale = TRUE}}
 
-\item{f}{sampling frequency of \code{wave} files (in Hz). By default: \code{f = 44100}}
+\item{f}{sampling frequency of \code{Wave}'s for the analysis (in Hz). By default: \code{f = 44100}}
 
-\item{wl}{length of the window for the analysis. By default: \code{wl} = 512}
+\item{wl}{length of the window for the analysis. By default: \code{wl = 512}}
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 
-\item{plot.exp}{a logical. If \code{TRUE}, for each \code{wave} file on the folder indicated by \code{wav.at}, \code{threeDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of three-dimensional graphs in which semilandmards are represented either as points or as sound surface (specified by \code{plot.as}). By default: \code{plot.exp = TRUE}}
+\item{plot.exp}{a logical. If \code{TRUE}, for each \code{".wav"} file on the folder indicated by \code{wav.at}, \code{threeDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of three-dimensional graphs in which semilandmards are represented either as points or as sound surface (see \code{plot.type}). By default: \code{plot.exp = TRUE}}
 
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
-\item{plot.type}{only applies when \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce a simplified three-dimensional sound surface from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}}
+\item{plot.type}{only applies when \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce simplified three-dimensional sound surfaces from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}}
 
 \item{TPS.file}{desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. By default: \code{TPS.file = NULL} (i.e. prevents \code{threeDshape} from creating a \code{tps} file)}
 }
 \description{
-For each \code{wave} file on a given folder, compute spectrogram data and acquire semilandmarks from a three-dimensional representation of sound.
+For each \code{".wav"} file on a given folder, compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (same as in MacLeod et al., 2013).
 }
 \note{
 In order to store the results from \code{threeDshape} function and proceed with the Geometric Morphometric steps of the analysis (e.g. \code{\link{geomorph}} package; Adams et al., 2017), one can simultaneosly assign the function's output to an \code{R} object and/or store them as a \code{tps} file to be used by numerous softwares of geometric analysis of shape, such as the TPS series (Rohlf, 2015).
 
-Additionally, one might also export three-dimensional plots of semilandmarks either as simplified sound surfaces or as points. These images can be exported as \code{jpeg} (compressed image) or \code{tiff} (uncompressed image) file formats, which can be edited for publication purposes.
+Additionally, one might also export three-dimensional plots of semilandmarks (if \code{plot.exp = TRUE}) either as simplified sound surfaces or as points (see \code{plot.type}). These images can be exported as \code{jpeg} (compressed image) or \code{tiff} (uncompressed image) file formats, which can be edited for publication purposes.
 }
 \examples{
 library(seewave)
 library(tuneR)
 
-# Create folder at current working directory to store wave files
+# Create folder at current working directory to store ".wav" files
 wav.at <- file.path(getwd(), "example SoundShape")
 dir.create(wav.at)
 
@@ -61,33 +61,38 @@ dir.create(wav.at)
 store.at <- file.path(getwd(), "example SoundShape/output")
 dir.create(store.at)
 
-# Select three acoustic units within each sound data
-data("tico")
-spectro(tico) # Visualize sound data that will be used
+# Select acoustic units to be analyzed
+data(cuvieri)
+spectro(cuvieri, flim = c(0,4)) # Visualize sound data that will be used
 
-# Cut acoustic units from original wave
-cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
-cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
-cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
+# Cut acoustic units from original Wave
+data(cuvieri)
+spectro(cuvieri, flim = c(0,4))
+cut.cuvieri1 <- cutw(cuvieri, f=44100, from=0, to=0.5, output = "Wave")
+cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
+cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 
-# Export wave files containing acoustic units and store on previosly created folder
-writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
-writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
-writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
+# Export ".wav" files containing selected acoustic units and store on previosly created folder
+writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
+writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
+writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
 
-# Place sounds at beggining of sound window before analysis
+# Align acoustic units selected at 1\% of time window
 align.wave(wav.at = wav.at, wav.to = "Aligned",
-           time.length = 0.3, time.perc = 0.01, dBlevel = 25)
+           time.length = 0.5, time.perc = 0.01, dBlevel = 25)
 
 # Verify alignment using twoDshape function
 twoDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-          flim=c(0, 12), tlim=c(0,0.3), plot.exp = TRUE, plot.as = "jpeg", dBlevel = 20)
+          flim=c(0, 3), tlim=c(0,0.5), dBlevel = 25, plot.exp = TRUE)
+# To see jpeg files created, check folder specified by store.at
 
-# Run threeDshape function on aligned wave files and store results as R object
+# Run threeDshape function on aligned ".wav" files
+# Store results as R object and tps file
 threeD.sample <- threeDshape(wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-                      x.length = 80, y.length = 60, TPS.file = "threeD.sample.tps",
-                      flim=c(0, 12), tlim=c(0,0.2), dBlevel = 20, log.scale = FALSE,
+                      x.length = 80, y.length = 60, TPS.file = "threeDshape.sample.tps",
+                      flim=c(0, 4), tlim=c(0, 0.8), f=44100, dBlevel = 25, log.scale = FALSE,
                       plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
+# Go to folder specified by store.at and check jpeg files created
 
 }
 \references{

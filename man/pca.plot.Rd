@@ -4,18 +4,16 @@
 \alias{pca.plot}
 \title{Plot ordination of Principal Components with convex hulls}
 \usage{
-pca.plot(PCA.out = NULL, PCs = c(1, 2), groups = NULL,
+pca.plot(PCA.out = NULL, groups = NULL,
   col.gp = grDevices::rainbow(length(levels(groups))),
   conv.hulls = NULL,
-  col.conv = grDevices::rainbow(length(levels(conv.hulls))),
-  leg = FALSE, leg.labels = groups, leg.pos = "topright",
+  col.conv = grDevices::rainbow(length(levels(conv.hulls))), PCs = c(1,
+  2), leg = TRUE, leg.labels = groups, leg.pos = "topright",
   main = "Ordination of PCA coordinates", sp.as = "points",
   sp.text = NULL)
 }
 \arguments{
-\item{PCA.out}{the output of a Principal Components Analysis performed by \code{\link{prcomp}} function (\code{\link{stats}} package). By default: \code{PCA.out = NULL} (i.e. output must be specified before ploting)}
-
-\item{PCs}{a vector of length two with the Principal Components intended for the plot. By default: \code{PCs = c(1, 2)}}
+\item{PCA.out}{the output of a Principal Components Analysis performed by \code{\link{prcomp}} (\code{\link{stats}} package). By default: \code{PCA.out = NULL} (i.e. output must be specified before ploting)}
 
 \item{groups}{groups to use as colors and/or convex hulls. Must be a \code{factor} object with the same length as the number of rows in the coordinates of \code{PCA.out} (i.e. \code{length(groups) == nrow(PCA.out$x)}). By default: \code{groups = NULL} (i.e. \code{factor} must be specified before ploting)}
 
@@ -25,7 +23,9 @@ pca.plot(PCA.out = NULL, PCs = c(1, 2), groups = NULL,
 
 \item{col.conv}{a \code{factor} object with the colours intended for \code{conv.hulls}. Must be the same length as the number of levels in \code{conv.hulls} (i.e. \code{length(col.conv) == length(levels(conv.hulls))}). By default: \code{col.conv = grDevices::rainbow(length(levels(conv.hulls)))} (i.e. colors defined automatically)}
 
-\item{leg}{a logical. If \code{TRUE}, a legend is added to plot. By default: \code{leg = FALSE}}
+\item{PCs}{a vector of length two with the Principal Components intended for the plot. By default: \code{PCs = c(1, 2)}}
+
+\item{leg}{a logical. If \code{TRUE}, a legend is added to plot. By default: \code{leg = TRUE}}
 
 \item{leg.labels}{only applies when \code{leg = TRUE}. Must be the same length of levels in \code{groups} (i.e. \code{length(leg.labels) == length(levels(groups))}). By default: \code{leg.labels = groups} (i.e. labels will be the same as the levels from \code{groups})}
 
@@ -41,75 +41,29 @@ pca.plot(PCA.out = NULL, PCs = c(1, 2), groups = NULL,
 Require the output of \code{prcomp} and a vector with \code{groups} to plot. In addition, it is also possible to include convex hulls around each group (i.e. \code{conv.hulls}) and to control the colors intended for each group (i.e. \code{col.gp}) and for each convex hull (i.e. \code{col.conv}).
 }
 \description{
-Ordination of Principal Components from the output of a PCA performed by \code{\link{prcomp}} function (\code{\link{stats}} package).
+Ordination of Principal Components from the output of a PCA performed by \code{\link{prcomp}} function (\code{\link{stats}} package). Require a \code{factor} object with \code{groups}, which enable the plot to feature colored groups and convex hulls (if desired).
 }
 \examples{
-library(seewave)
-library(tuneR)
-
-# Create folder at current working directory to store wave files
-wav.at <- file.path(getwd(), "example SoundShape")
-dir.create(wav.at)
-
-# Create folder to store results
-store.at <- file.path(getwd(), "example SoundShape/output")
-dir.create(store.at)
-
-# Select three acoustic units within each sound data
-data("tico")
-spectro(tico) # Visualize sound data that will be used
-
-# Cut acoustic units from original wave
-cut.tico1 <- cutw(tico, f=44100, from=0, to=0.22, output = "Wave")
-cut.tico2 <- cutw(tico, f=44100, from=0.22, to=0.44, output = "Wave")
-cut.tico3 <- cutw(tico, f=44100, from=0.44, to=0.66, output = "Wave")
-
-data("orni")
-spectro(orni) # Visualize sound data that will be used
-
-# Cut acoustic units from original wave
-cut.orni1 <- cutw(orni, f=44100, from=0, to=0.08, output = "Wave")
-cut.orni2 <- cutw(orni, f=44100, from=0.12, to=0.22, output = "Wave")
-cut.orni3 <- cutw(orni, f=44100, from=0.21, to=0.29, output = "Wave")
-
-# Export wave files containing acoustic units and store on previosly created folder
-writeWave(cut.tico1, filename = file.path(wav.at, "cut.tico1.wav"), extensible = FALSE)
-writeWave(cut.tico2, filename = file.path(wav.at, "cut.tico2.wav"), extensible = FALSE)
-writeWave(cut.tico3, filename = file.path(wav.at, "cut.tico3.wav"), extensible = FALSE)
-writeWave(cut.orni1, filename = file.path(wav.at, "cut.orni1.wav"), extensible = FALSE)
-writeWave(cut.orni2, filename = file.path(wav.at, "cut.orni2.wav"), extensible = FALSE)
-writeWave(cut.orni3, filename = file.path(wav.at, "cut.orni3.wav"), extensible = FALSE)
-
-# Place sounds at beggining of sound window before analysis
-align.wave(wav.at = wav.at, wav.to = "Aligned",
-           time.length = 0.3, time.perc = 0.01, dBlevel = 25)
-
-# Verify alignment using analysis.type = "twoDshape"
-eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
-           store.at = store.at, flim=c(3, 18), tlim=c(0,0.22),
-           plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
-# Go to folder specified by store.at and check jpeg files created
-
-# Run eigensound function using analysis.type = "threeDshape" on aligned wave files
-# Store results as R object and tps file
-eig.sample <- eigensound(analysis.type="threeDshape", flim=c(3, 18), tlim=c(0,0.22), dBlevel = 25,
-                   wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-                   x.length = 80, y.length = 60, TPS.file = "eigensound.sample.tps", log.scale = TRUE,
-                   plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface")
-# Go to folder specified by store.at and check jpeg files created
+data(eig.sample)
 
 # PCA using three-dimensional semilandmark coordinates
 pca.eig.sample <- stats::prcomp(geomorph::two.d.array(eig.sample))
 
-# Create factor to use as groups in subsequent plot of principal components
-sample.gr <- factor(c(rep("orni", 3), rep("tico", 3)))
+# Verify names for each acoustic unit and the order in which they appear
+dimnames(eig.sample)[[3]]
+
+# Create factor to use as groups in subsequent ordination plot
+sample.gr <- factor(c(rep("centralis", 3), rep("cuvieri", 3), rep("kroyeri", 3)))
 
 # Clear current R plot to prevent errors
-dev.off()
+grDevices::dev.off()
 
 # Plot result of Principal Components Analysis
 pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
-         main="PCA of 3D coordinates", leg=TRUE, leg.pos = "bottomleft")
+         main="PCA of 3D coordinates", leg=TRUE, leg.pos = "top")
+
+# In addition, verify hypothetical sound surfaces for each PC
+hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60)
 
 }
 \references{
