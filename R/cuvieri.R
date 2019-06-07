@@ -1,6 +1,6 @@
 #' Advertisement call of \emph{Physalaemus cuvieri}
 #'
-#' Recording of \emph{Physalaemus cuvieri} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+#' Recording of \emph{Physalaemus cuvieri} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{".wav"} file for optimal sinal to noise ratio and reduced time duration.
 #'
 #' @docType data
 #'
@@ -9,9 +9,9 @@
 #' @keywords datasets
 #'
 #' @details
-#' Duration = 1.96 s. Sampling Frequency = 44100 Hz. Air temperature 22ºC.
+#' Duration = 1.96 s. Sampling Frequency = 44100 Hz.
 #'
-#' Recorded at São José dos Campos Municipality, São Paulo State, Brazil, on 24 September 2013.
+#' Recorded at São José dos Campos Municipality, São Paulo State, Brazil, on 24 September 2013. Air temperature 22ºC.
 #'
 #' @format
 #' An object of class \code{"Wave"}; see (\code{\link{tuneR}} package).
@@ -22,6 +22,7 @@
 #' @examples
 #' data(cuvieri)
 #'
-#' seewave::oscillo(cuvieri, f=22050)
-#' seewave::spectro(cuvieri, f=22050)
+#' seewave::oscillo(cuvieri)
+#' seewave::spectro(cuvieri)
+#' threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE)
 "cuvieri"

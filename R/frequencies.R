@@ -17,7 +17,7 @@
 #' In addition, arguments \code{spec}, \code{f}, \code{mel} and \code{flim} are the same as in \code{\link{specprop}}.
 #'
 #' @seealso
-#' \code{\link{specprop}}, \code{\link{spec}}, \code{\link{meanspec}}, \code{\link{seewave}}
+#' \code{\link{spectro}}, \code{\link{specprop}}, \code{\link{spec}}, \code{\link{meanspec}}, \code{\link{seewave}}
 #'
 #' Useful links:
 #' \itemize{

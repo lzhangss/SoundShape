@@ -4,16 +4,20 @@
 \alias{twoDshape}
 \title{Semilandmarks from a two-dimensional curve of relative amplitude}
 \usage{
-twoDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
-  flim = c(0, 10), tlim = c(0, 1), trel = tlim, mag.time = 1,
-  f = 44100, wl = 512, ovlp = 70, add.points = FALSE,
-  add.contour = FALSE, EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95),
-  plot.exp = TRUE, plot.as = "jpeg", TPS.file = NULL)
+twoDshape(wav.at = getwd(), store.at = getwd(), add.points = FALSE,
+  add.contour = FALSE, dBlevel = 25, flim = c(0, 10), tlim = c(0,
+  1), trel = tlim, EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95),
+  mag.time = 1, f = 44100, wl = 512, ovlp = 70, plot.exp = TRUE,
+  plot.as = "jpeg", TPS.file = NULL)
 }
 \arguments{
-\item{wav.at}{filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
+\item{wav.at}{filepath to the folder where \code{".wav"} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
 
 \item{store.at}{filepath to the folder where \code{tps} file and spectrogram plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
+
+\item{add.points}{a logical. If \code{TRUE}, \code{twoDshape} will compute semilandmarks acquired by cross-correlation between energy quantiles (i.e. \code{EQ}) and a curve of relative amplitude (i.e. \code{dBlevel}). If \code{plot.exp = TRUE}, semilandmarks will be included in spectrogram plots. By default: \code{add.points = FALSE} (see \code{Details}).}
+
+\item{add.contour}{only applies when \code{plot.exp = TRUE}. A logical. If \code{TRUE}, exported spectrogram plots will include the longest curve of relative amplitude at the level specified by \code{dBlevel}. By default: \code{add.contour = TRUE}}
 
 \item{dBlevel}{absolute amplitude value to be used as relative amplitude contour, which will serve as reference for semilandmark acquisition. By default: \code{dBlevel = 25}}
 
@@ -21,30 +25,26 @@ twoDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
 
 \item{tlim}{modifications of the time limits (X-axis). Vector with two values in seconds. By default: \code{tlim = c(0, 1)}}
 
-\item{trel}{relative scale to be used in the time (X-axis) when \code{tlim} is not null; relative to the numbers displayed on the time (X-axis) of spectrogram plots. By default: \code{trel == tlim}}
+\item{trel}{set the relative scale to be used on the time (X-axis); relative to the numbers displayed on the X-axis of spectrogram plots. By default: \code{trel == tlim}}
+
+\item{EQ}{only applies when \code{add.points = TRUE}. A vector of energy quantiles intended (with \code{0 < EQ < 1}). By default: \code{EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95)} \strong{Note:} When dealing with narrow banded calls, any additional values could cause an error in subsequent steps of the analysis.}
 
 \item{mag.time}{optional argument for magnifying the time coordinates. This is sometimes desired for small sound windows (e.g. less than 1 s), in which time coordinates will be on a different scale than that of frequency coordinates. In those cases, it is recommended to include \code{mag.time = 10} or \code{mag.time = 100}, depending on lenght of sound window. By default: \code{mag.time = 1} (i.e. no magnification is performed)}
 
-\item{f}{sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}}
+\item{f}{sampling frequency of \code{Wave}'s for the analysis (in Hz). By default: \code{f = 44100}}
 
 \item{wl}{length of the window for the analysis. By default: \code{wl = 512}}
 
 \item{ovlp}{overlap between two successive windows (in percentage) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 
-\item{add.points}{a logical. If \code{TRUE}, \code{twoDshape} will compute semilandmarks acquired by cross-correlation between energy quantiles (i.e. \code{EQ}) and a curve of relative amplitude (i.e. \code{dBlevel}). If \code{plot.exp = TRUE}, semilandmarks will be included in spectrogram plots. By default: \code{add.points = FALSE} (see \strong{Details})}
-
-\item{add.contour}{only applies when \code{plot.exp = TRUE}. A logical. If \code{TRUE}, exported spectrogram plots will include the longest curve of relative amplitude at the level specified by \code{dBlevel}. By default: \code{add.contour = TRUE}}
-
-\item{EQ}{only applies when \code{add.points = TRUE}. A vector of energy quantiles intended (with \code{0 < EQ < 1}). By default: \code{EQ = c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95)} \strong{Note:} When dealing with narrow banded calls, any additional values could cause an error in subsequent steps of the analysis}
-
-\item{plot.exp}{a logical. If \code{TRUE}, for each \code{Wave} file on the folder indicated by \code{wav.at}, \code{twoDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of spectrograms images and may include the longest curve of relative amplitude (\code{add.contour = TRUE}) and semilandmarks as points (\code{add.points = TRUE}). By default: \code{plot.exp = TRUE}}
+\item{plot.exp}{a logical. If \code{TRUE}, for each \code{".wav"} file on the folder indicated by \code{wav.at}, \code{twoDshape} will store a spectrogram image on the folder indicated by \code{store.at}. Plots consist of spectrograms images and may include the longest curve of relative amplitude (\code{add.contour = TRUE}) and semilandmarks as points (\code{add.points = TRUE}). By default: \code{plot.exp = TRUE}}
 
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
 \item{TPS.file}{only applies when \code{add.points = TRUE}. Desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. By default: \code{TPS.file = NULL} (i.e. prevents \code{twoDshape} from creating a \code{tps} file)}
 }
 \description{
-For each \code{Wave} file on a given folder, compute spectrogram data and acquire semilandmarks using cross-correlation between energy quantiles and a two-dimensional curve of relative amplitude (\code{dBlevel}).
+For each \code{".wav"} file on a given folder, compute spectrogram data and acquire semilandmarks using cross-correlation between energy quantiles and a two-dimensional curve of relative amplitude (\code{dBlevel}).
 }
 \details{
 When \code{add.points = TRUE}, \code{twoDshape} will compute spectrogram data and acquire semilandmarks through cross-correlation between energy quantiles (i.e. \code{EQ}) and a curve of relative amplitude (i.e. \code{dBlevel}). However, this is often subtle and prone to incur in errors (e.g. bad alignment of acoustic units; inappropriate X and Y coordinates for the sound window; narrow banded calls). Therefore, a more robust protocol for error verification is achieved using \code{add.points = FALSE} and \code{add.contour = TRUE} (default), which allow for quick verification of acoustic units alignment and the shape of each curve of relative amplitude (specified by \code{dBlevel}).
@@ -58,7 +58,7 @@ Additionally, one might also export spectrogram images with contour and semiland
 library(seewave)
 library(tuneR)
 
-# Create folder at current working directory to store Wave files
+# Create folder at current working directory to store ".wav" files
 wav.at <- file.path(getwd(), "example SoundShape")
 dir.create(wav.at)
 
@@ -81,7 +81,7 @@ cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 twoDshape(wav.at = wav.at, store.at = store.at, add.points=TRUE,
           flim=c(0, 3), tlim=c(0,0.5), plot.exp = TRUE, plot.as = "jpeg",
           TPS.file = "twoDshape-example.tps")
-
+# Go to folder specified by store.at and check jpeg files created
 
 }
 \references{

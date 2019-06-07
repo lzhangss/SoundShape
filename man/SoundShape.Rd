@@ -12,6 +12,8 @@ A set of functions that crosses the bridge between Bioacoustics and Geometric Mo
   \item{\code{\link{align.wave}}: Automatic placement of calls at beggining of sound window.}
   \item{\code{\link{eigensound}}: Calculate spectrogram data for each \code{Wave} file on a given folder and acquire semilandmarks using either a three-dimensional representation of sound, or the cross-correlation between energy quantiles and a curve of relative amplitude.}
   \item{\code{\link{pca.plot}}: Plot ordination of Principal Components with convex hulls.}
+  \item{\code{\link{hypo.surf}}}: Hypothetical three-dimensional plots of sound surfaces.
+  \item{\code{\link{threeDspectro}}}: Colorful spectrograms from a single object of class \code{"Wave"}.
 }
 }
 \seealso{

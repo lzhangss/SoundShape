@@ -55,7 +55,7 @@ Rocha, P. & Romano, P. (\emph{in prep}) The shape of sound: A new \code{R} packa
 Sueur J., Aubin T., Simonis C. (2008). Seewave: a free modular tool for sound analysis and synthesis. \emph{Bioacoustics, 18}: 213-226
 }
 \seealso{
-\code{\link{specprop}}, \code{\link{spec}}, \code{\link{meanspec}}, \code{\link{seewave}}
+\code{\link{spectro}}, \code{\link{specprop}}, \code{\link{spec}}, \code{\link{meanspec}}, \code{\link{seewave}}
 
 Useful links:
 \itemize{

@@ -1,21 +1,21 @@
 #' Automatic placement of calls at beggining of sound window
 #'
-#' @description Recreate each \code{Wave} file on a given folder while placing calls at the beggining of sound window.
+#' @description Recreate each \code{".wav"} file on a given folder while placing calls at the beggining of sound window.
 #'
-#' @param f sampling frequency of \code{Wave} files (in Hz). By default: \code{f = 44100}
+#' @param wav.at filepath to the folder where \code{".wav"} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
+#' @param wav.to name of the folder where new \code{".wav"} files will be stored. Should be presented between quotation marks. By default: \code{wav.to = "Aligned"}
+#' @param time.length intended length for the time (X-axis) in seconds. Should be a value that encompasses all sounds in the study. By default: \code{time.length = 1}
+#' @param time.perc slight time gap (in \%) relative to the intended length that encompass all sounds in the study (i.e. \code{time.length}). Intervals are added before and after the minimum and maximum time coordinates (X-values) from the selected curve of relative amplitude (\code{dBlevel}). By default: \code{time.perc = 0.005} (i.e. 0.5\%)
+#' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for call placement. By default: \code{dBlevel = 25}
+#' @param f sampling frequency of \code{".wav"} files (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for the analysis. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
-#' @param dBlevel absolute amplitude value to be used as relative amplitude contour, which will serve as reference for call placement. By default: \code{dBlevel = 25}
-#' @param wav.at filepath to the folder where \code{Wave} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
-#' @param wav.to name of the folder where new \code{Wave} files will be stored. Should be presented between quotation marks. By default: \code{wav.to = "Aligned"}
-#' @param time.length intended length in seconds for the time (X-axis) so that it encompasses all sounds in the study. By default: \code{time.length = 4}
-#' @param time.perc slight time gap (in \%) relative to the intended length that encompass all sounds in the study (i.e. \code{time.length}). Intervals are added before and after the minimum and maximum time coordinates (X-values) of the selected curve of relative amplitude (\code{dBlevel}). By default: \code{time.perc = 0.005} (i.e. 0.5\%)
 #'
 #' @author
 #' Pedro Rocha
 #'
 #' @seealso
-#' \code{\link{threeDshape}}, \code{\link{twoDshape}}, \code{\link{eigensound}}
+#' \code{\link{eigensound}}, \code{\link{threeDshape}}, \code{\link{twoDshape}}
 #'
 #' Useful links:
 #' \itemize{
@@ -26,7 +26,7 @@
 #' library(seewave)
 #' library(tuneR)
 #'
-#' # Create folder at current working directory to store Wave files
+#' # Create folder at current working directory to store ".wav" files
 #' wav.at <- file.path(getwd(), "example SoundShape")
 #' dir.create(wav.at)
 #'
@@ -43,12 +43,12 @@
 #' cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
 #' cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
 #'
-#' # Export Wave files containing selected acoustic units and store on previosly created folder
+#' # Export ".wav" files containing selected acoustic units and store on previosly created folder
 #' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
 #' writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
 #' writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
 #'
-#' # Align acoustic units selected at 1% of time window
+#' # Align acoustic units selected at 1% of time lenght
 #' align.wave(wav.at = wav.at, wav.to = "Aligned",
 #'            time.length = 0.5, time.perc = 0.01, dBlevel = 25)
 #'
@@ -66,12 +66,12 @@
 #'
 #' @export
 #'
-align.wave <- function(wav.at=getwd(), wav.to="Aligned", dBlevel=25, time.length=4, time.perc=0.005, f=44100, wl=512, ovlp=70)  {
+align.wave <- function(wav.at=getwd(), wav.to="Aligned", time.length=1, time.perc=0.005, dBlevel=25, f=44100, wl=512, ovlp=70)  {
 
   # Create folder to store aligned calls
   if(!dir.exists(file.path(wav.at, wav.to))) dir.create(file.path(wav.at, wav.to))
 
-  # Replace sounds for each Wave file in a folder
+  # Replace sounds for each ".wav" file in a folder
   for(file in list.files(wav.at, pattern = ".wav")){
 
     orig.wav0 <- tuneR::readWave(paste(wav.at,"/", file, sep=""))

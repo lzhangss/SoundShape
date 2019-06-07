@@ -4,7 +4,7 @@
 \name{centralis}
 \alias{centralis}
 \title{Advertisement call of \emph{Physalaemus centralis}}
-\format{An object of the class \code{"Wave"} (\code{\link{tuneR}} package.}
+\format{An object of the class \code{"Wave"} (\code{\link{tuneR}} package).}
 \source{
 Original recording housed at Fonoteca Neotropical Jacques Vielliard (FNJV-0031188). Recorded by Adão José Cardoso.
 }
@@ -12,17 +12,18 @@ Original recording housed at Fonoteca Neotropical Jacques Vielliard (FNJV-003118
 data(centralis)
 }
 \description{
-Recording of \emph{Physalaemus centralis} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{Wave} file for optimal sinal to noise ratio and reduced time duration.
+Recording of \emph{Physalaemus centralis} (Amphibia, Anura, Leptodactylidae) advertisement call containing three notes emitted in a sequence. Edited from original \code{".wav"} file for optimal sinal to noise ratio and reduced time duration.
 }
 \details{
-Duration = 2.89 s. Sampling Frequency = 44100 Hz. Air temperature 25ºC.
+Duration = 2.89 s. Sampling Frequency = 44100 Hz.
 
-Recorded at Formoso do Araguaia Municipality, Tocantins State, Brazil, on 9 December 1992.
+Recorded at Formoso do Araguaia Municipality, Tocantins State, Brazil, on 9 December 1992. Air temperature 25ºC.
 }
 \examples{
 data(centralis)
 
-seewave::oscillo(centralis, f=22050)
-seewave::spectro(centralis, f=22050)
+seewave::oscillo(centralis)
+seewave::spectro(centralis)
+threeDspectro(centralis,tlim=c(0, 0.8), flim=c(0, 4), samp.grid=FALSE, bgr=25)
 }
 \keyword{datasets}

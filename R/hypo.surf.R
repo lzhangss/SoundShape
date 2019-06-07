@@ -1,9 +1,9 @@
-#' Three-dimensional plots of hypothetical sound surfaces
+#' Hypothetical three-dimensional plots of sound surfaces
 #'
 #' @description
 #' Using the coordinates acquired by \code{eigensound(analysis.type = "threeDshape")}, this function creates three-dimensional plots containing hypothetical sound surfaces that represent minimum and maximum deformations relative to Principal Components.
 #'
-#' \strong{Note:} The output of \code{hypo.surf} must be analyzed \emph{after} the Principal Components Analysis employing the same results from \code{threeD.out}, and the ordination of Principal Components (e.g. \code{\link{pca.plot}}), thus enhancing the comprehension of how sound shape changed along the ordination plot.
+#' \strong{Note:} The output of \code{hypo.surf} must be interpreted along with the ordination of Principal Components (e.g. \code{\link{pca.plot}}), both featuring the same object used for \code{threeD.out}. By doing so, \code{hypo.surf} enhance the comprehension on how sound shape changed along the ordination plot .
 #'
 #' @param threeD.out the output of \code{\link{eigensound}} analysis with \code{analysis.type = "threeDshape"}. By default: \code{threeD.out = NULL} (i.e. output must be specified before ploting)
 #' @param PC Principal Component intended for the plot. By default: \code{PC = 1}
@@ -11,11 +11,11 @@
 #' @param tlim modifications of the time limits (X-axis). Vector with two values in seconds. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{tlim = c(0, 1)}
 #' @param x.length length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{x.length = 100}
 #' @param y.length length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{y.length = 70}
-#' @param log.scale a logical. If \code{TRUE}, \code{eigensound} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds). If \code{FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{log.scale = TRUE}
-#' @param f sampling frequency of \code{Wave} files (in Hz). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{f = 44100}
+#' @param log.scale a logical. If \code{TRUE}, \code{hypo.surf} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds). If \code{FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{log.scale = TRUE}
+#' @param f sampling frequency of \code{".wav"} files (in Hz). Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{f = 44100}
 #' @param wl length of the window for the analysis. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. Should be the same employed on \code{eigensound(analysis.type="threeDshape")}. By default: \code{ovlp = 70}
-#' @param plot.exp a logical. If \code{TRUE}, exports the three-dimensional output plot containing minimum and maximum deformations for the desired Principal Component and store on the folder indicated by \code{store.at}. By default: \code{plot.exp = TRUE}
+#' @param plot.exp a logical. If \code{TRUE}, exports the three-dimensional output plot containing minimum and maximum deformations for the desired Principal Component. Exported plot will be stored on the folder indicated by \code{store.at}. By default: \code{plot.exp = FALSE}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param store.at only applies when \code{plot.exp = TRUE}. Filepath to the folder where output plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
 #'
@@ -37,77 +37,31 @@
 #'
 #'
 #' @examples
-#' library(seewave)
-#' library(tuneR)
+#' data(eig.sample)
 #'
-#' # Create folder at current working directory to store Wave files
-#' wav.at <- file.path(getwd(), "example SoundShape")
-#' dir.create(wav.at)
+#' # PCA using three-dimensional semilandmark coordinates
+#' pca.eig.sample <- stats::prcomp(geomorph::two.d.array(eig.sample))
 #'
-#' # Create folder to store results
-#' store.at <- file.path(getwd(), "example SoundShape/output")
-#' dir.create(store.at)
+#' # Verify names for each acoustic unit and the order in which they appear
+#' dimnames(eig.sample)[[3]]
 #'
-#' # Select acoustic units to be analyzed
-#' utils::data(cuvieri)
-#' spectro(cuvieri, flim = c(0,4)) # Visualize sound data that will be used
+#' # Create factor to use as groups in subsequent ordination plot
+#' sample.gr <- factor(c(rep("centralis", 3), rep("cuvieri", 3), rep("kroyeri", 3)))
 #'
-#' # Cut acoustic units from original Wave
-#' data(cuvieri)
-#' spectro(cuvieri, flim = c(0,4))
-#' cut.cuvieri1 <- cutw(cuvieri, f=44100, from=0, to=0.5, output = "Wave")
-#' cut.cuvieri2 <- cutw(cuvieri, f=44100, from=0.7, to=1.2, output = "Wave")
-#' cut.cuvieri3 <- cutw(cuvieri, f=44100, from=1.4, to=1.9, output = "Wave")
+#' # Clear current R plot to prevent errors
+#' grDevices::dev.off()
 #'
-#' data("centralis")
-#' spectro(centralis, flim = c(0,4))
-#' cut.centralis1 <- cutw(centralis, f=44100, from=0.1, to=0.8, output = "Wave")
-#' cut.centralis2 <- cutw(centralis, f=44100, from=1.05, to=1.75, output = "Wave")
-#' cut.centralis3 <- cutw(centralis, f=44100, from=2.1, to=2.8, output = "Wave")
-#'
-#' data("kroyeri")
-#' spectro(kroyeri, flim = c(0,4))
-#' cut.kroyeri1 <- cutw(kroyeri, f=44100, from=0.1, to=1, output = "Wave")
-#' cut.kroyeri2 <- cutw(kroyeri, f=44100, from=1.5, to=2.3, output = "Wave")
-#' cut.kroyeri3 <- cutw(kroyeri, f=44100, from=2.9, to=3.8, output = "Wave")
-#'
-#' # Export Wave files containing acoustic units and store on previosly created folder
-#' writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible = FALSE)
-#' writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible = FALSE)
-#' writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible = FALSE)
-#' writeWave(cut.centralis1, filename = file.path(wav.at, "cut.centralis1.wav"), extensible = FALSE)
-#' writeWave(cut.centralis2, filename = file.path(wav.at, "cut.centralis2.wav"), extensible = FALSE)
-#' writeWave(cut.centralis3, filename = file.path(wav.at, "cut.centralis3.wav"), extensible = FALSE)
-#' writeWave(cut.kroyeri1, filename = file.path(wav.at, "cut.kroyeri1.wav"), extensible = FALSE)
-#' writeWave(cut.kroyeri2, filename = file.path(wav.at, "cut.kroyeri2.wav"), extensible = FALSE)
-#' writeWave(cut.kroyeri3, filename = file.path(wav.at, "cut.kroyeri3.wav"), extensible = FALSE)
-#'
-#' # Place sounds at beggining of sound window before analysis
-#' align.wave(wav.at = wav.at, wav.to = "Aligned",
-#'            time.length = 0.8, time.perc = 0.005, dBlevel = 25)
-#'
-#' # Verify alignment using analysis.type = "twoDshape"
-#' eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
-#'            store.at = store.at, flim=c(0, 4), tlim=c(0, 0.8), f=44100,
-#'            plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
-#' # Go to folder specified by store.at and check jpeg files created
-#'
-#' # Run eigensound function using analysis.type = "threeDshape" on aligned wave files
-#' # Store results as R object and tps file
-#' eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.8), dBlevel = 25,
-#'                         wav.at = file.path(wav.at, "Aligned"), store.at = store.at,
-#'                         x.length = 80, y.length = 60, plot.exp = TRUE, plot.type = "surface",
-#'                         TPS.file = "eigensound.sample.tps", log.scale = TRUE)
-#' # Go to folder specified by store.at and check jpeg files created
+#' # Plot result of Principal Components Analysis
+#' pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
+#'          main="PCA of 3D coordinates", leg=TRUE, leg.pos = "top")
 #'
 #' # Verify hypothetical sound surfaces using hypo.surf
-#' hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.8),
-#'           x.length=80, y.length=60, plot.exp = FALSE)
+#' hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60)
 #'
 #'
 #' @export
 #'
-hypo.surf <- function(threeD.out=NULL, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60, log.scale=TRUE, f=44100, wl=512, ovlp=70, plot.exp=TRUE, plot.as="jpeg", store.at = getwd())
+hypo.surf <- function(threeD.out=NULL, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60, log.scale=TRUE, f=44100, wl=512, ovlp=70, plot.exp=FALSE, plot.as="jpeg", store.at = getwd())
 {
   PCmax <- PC*2
   PCmin <- (PC*2)-1
