@@ -1,4 +1,4 @@
-# *Welcome to `SoundShape`*!
+# *Welcome to \code{SoundShape}*!
 
 
 SoundShape (development version)
