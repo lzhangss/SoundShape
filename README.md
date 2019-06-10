@@ -13,13 +13,17 @@ Although MacLeod et al. (2013) clearly stated the methods for SM acquisition, th
 
 
 ## Installation
-`# Development version from GitHub:`
+```ruby
+# Development version from GitHub:
 
-`# install.packages("devtools")`
+# install.packages("devtools")
 
-`devtools::install_github("p-rocha/SoundShape")`
-
+devtools::install_github("p-rocha/SoundShape")
+```
 
 
 ## References
-McLister, J. D., Stevens, E. D., & Bogart, J. P. (1995). Comparative contractile dynamics of calling and locomotor muscles in three hylid frogs. *The Journal of Experimental Biology, 198*, 1527-1538.
+MacLeod, N., Krieger, J. & Jones, K. E. (2013). Geometric morphometric approaches to acoustic signal analysis in mammalian biology. *Hystrix, the Italian Journal of Mammalogy, 24*(1), 110-125.
+
+Rocha, P. & Romano, P. (*in prep*) The shape of sound: A new `R` package that crosses the bridge between Bioacoustics and Geometric Morphometrics.
+
