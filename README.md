@@ -13,12 +13,10 @@ Although MacLeod et al. (2013) clearly stated the methods for SM acquisition, th
 
 
 ## Installation
-```{r installation}
-# Development version from GitHub:
+`# Development version from GitHub:`
 
-# install.packages("devtools")
-devtools::install_github("p-rocha/SoundShape")
-```
+`# install.packages("devtools")`
+`devtools::install_github("p-rocha/SoundShape")`
 
 
 
