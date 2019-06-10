@@ -1,7 +1,18 @@
 # Welcome to *SoundShape*!
 
+Here you will find informations on how to decompose sound waves onto Principal Components, which include tools extracted from Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and from Geometric Morphometrics (*i.e.* `geomorph` package). 
 
-SoundShape (development version)
+## Getting started
+
+Be aware that this is still an early version of `SoundShape`. Therefore, some errors are still likely to appear in a near future. Feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
+
+### Instalation
+```ruby
+# Development version from GitHub:
+
+# install.packages("devtools")
+devtools::install_github("p-rocha/SoundShape")
+```
 
 ## Crossing the bridge between Bioacoustics and Geometric Morphometrics
 
@@ -9,17 +20,6 @@ Geometric Morphometrics (GM) applied to bioacoustical analysis is a new approach
 variation in the dataset of sound waves. By doing so, complex waves are now be described by a few PCs that can be used to produce ordination plots encompassing the majority of variation among the calls.
 
 Although MacLeod et al. (2013) clearly stated the methods for SM acquisition, they did not mention the softwares required for the so called *eigensound analysis*. Therefore, `SoundShape` package feature a set of functions that reproduce the methods from the positioning of sounds at beggining of sound window until the PCA plot with convex hulls around each group. 
-
-
-
-## Installation
-```ruby
-# Development version from GitHub:
-
-# install.packages("devtools")
-
-devtools::install_github("p-rocha/SoundShape")
-```
 
 
 ## References
