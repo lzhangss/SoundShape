@@ -7,9 +7,9 @@
 threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
   plot.type = "surface", x.length = 100, y.length = 70,
   log.scale = FALSE, plot.exp = FALSE, store.at = getwd(),
-  plot.as = "jpeg", color = seewave::spectro.colors(80), f = 44100,
-  wl = 512, ovlp = 70, bgr = 40, resfac = 1, rotate.Xaxis = 30,
-  rotate.Yaxis = 35, main = "Spectrogram 3D")
+  plot.as = "jpeg", cex = 0.5, color = seewave::spectro.colors(80),
+  f = 44100, wl = 512, ovlp = 70, bgr = 40, resfac = 1,
+  rotate.Xaxis = 30, rotate.Yaxis = 35, main = "Spectrogram 3D")
 }
 \arguments{
 \item{wave}{an \code{R} object of the class \code{"Wave"}}
@@ -33,6 +33,8 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
 \item{store.at}{only applies when \code{plot.exp = TRUE}. Filepath to the folder where three-dimensional plot will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
 
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
+
+\item{cex}{only applies when \code{plot.as = "jpeg"}. Similarly as \code{\link{par}}, intended size for points. By default: \code{cex = 0.5}}
 
 \item{color}{Color palette to be used for the amplitude (Z-axis). Same default as \code{\link{spectro}}: \code{color=spectro.colors(80)}. See \code{Details}.}
 
