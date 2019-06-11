@@ -1,19 +1,21 @@
 <img align="right" height="250" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png" />
 
 # Welcome to *SoundShape* 
+Here, you will find informations on a promising, yet little explored approach for biacoustical analysis: the *eigensound* protocol (MacLeod el al., 2013). 
 
-Here you will find informations on how to decompose sound waves onto Principal Components, which include tools extracted from Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and from Geometric Morphometrics (*i.e.* `geomorph` package). 
-
+This somewhat new approach focuses on the direct comparison between stereotyped (*i.e.* homologous) acoustic units from different species. In light of the protocols originally described, `SoundShape` package was built to enable anyone to easily go from sound waves onto Principal Components using tools extracted from traditional Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and Geometric Morphometrics (*i.e.* `geomorph` package).
 
 ## Getting started
-
-Be aware that this is still an early version of `SoundShape`. Therefore, some errors are still likely to appear in a near future. Feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
+Be aware that this is still an early version of `SoundShape`. Should you experience any errors, please feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
 ### Instalation
-```yml
-# Development version from GitHub:
+`SoundShape` is currently only available in `R` platform as a development version from GitHub. In order to download it, make sure to have an sligtly updated `R` version (>=3.3.1) and the package `devtools`. 
 
+```yml
+# In case you do not have devtools
 # install.packages("devtools")
+
+# Proceed with download of the development version from GitHub:
 devtools::install_github("p-rocha/SoundShape")
 ```
 
