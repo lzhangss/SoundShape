@@ -1,4 +1,6 @@
-# Welcome to *SoundShape* <img src="man/figures/SoundShape logo.png" align="right" height = 210/>
+# Welcome to *SoundShape* [logo](man/figures/SoundShape logo.png) 
+
+align="right" height = 210/>
 
 Here you will find informations on how to decompose sound waves onto Principal Components, which include tools extracted from Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and from Geometric Morphometrics (*i.e.* `geomorph` package). 
 
@@ -7,7 +9,7 @@ Here you will find informations on how to decompose sound waves onto Principal C
 Be aware that this is still an early version of `SoundShape`. Therefore, some errors are still likely to appear in a near future. Feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
 ### Instalation
-```r
+```yml
 # Development version from GitHub:
 
 # install.packages("devtools")
