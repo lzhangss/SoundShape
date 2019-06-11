@@ -6,10 +6,11 @@
 \usage{
 threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
   plot.type = "surface", x.length = 100, y.length = 70,
-  log.scale = FALSE, plot.exp = FALSE, store.at = getwd(),
-  plot.as = "jpeg", cex = 0.5, color = seewave::spectro.colors(80),
-  f = 44100, wl = 512, ovlp = 70, bgr = 40, resfac = 1,
-  rotate.Xaxis = 30, rotate.Yaxis = 35, main = "Spectrogram 3D")
+  log.scale = FALSE, cex = 0.5, lwd = 0.1, plot.exp = FALSE,
+  store.at = getwd(), plot.as = "jpeg",
+  color = seewave::spectro.colors(80), f = 44100, wl = 512,
+  ovlp = 70, bgr = 40, resfac = 1, rotate.Xaxis = 30,
+  rotate.Yaxis = 35, main = "Spectrogram 3D")
 }
 \arguments{
 \item{wave}{an \code{R} object of the class \code{"Wave"}}
@@ -28,13 +29,15 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
 
 \item{log.scale}{only applies when \code{samp.grid = TRUE}. A logical. If \code{TRUE}, \code{threeDspectro} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds). If \code{FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). By default: \code{log.scale = FALSE}}
 
+\item{cex}{only applies when \code{samp.grid = TRUE} and \code{plot.type = "points"}. Similarly as in \code{\link{par}}, intended size for points. By default: \code{cex = 0.5}}
+
+\item{lwd}{only applies when \code{samp.grid = TRUE} and \code{plot.type = "surface"}. Similarly as in \code{\link{par}}, intended line width for sampling grid. By default: \code{lwd = 0.1}}
+
 \item{plot.exp}{a logical. If \code{TRUE}, output plot from \code{wave} is exported and stored on the folder indicated by \code{store.at}. By default: \code{plot.exp = FALSE}}
 
 \item{store.at}{only applies when \code{plot.exp = TRUE}. Filepath to the folder where three-dimensional plot will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
 
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
-
-\item{cex}{only applies when \code{plot.as = "jpeg"}. Similarly as \code{\link{par}}, intended size for points. By default: \code{cex = 0.5}}
 
 \item{color}{Color palette to be used for the amplitude (Z-axis). Same default as \code{\link{spectro}}: \code{color=spectro.colors(80)}. See \code{Details}.}
 

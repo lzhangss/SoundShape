@@ -13,10 +13,11 @@
 #' @param x.length only applies when \code{samp.grid = TRUE}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 100}
 #' @param y.length only applies when \code{samp.grid = TRUE}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 70}
 #' @param log.scale only applies when \code{samp.grid = TRUE}. A logical. If \code{TRUE}, \code{threeDspectro} will use a logarithmic scale on the time (X-axis), which is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds). If \code{FALSE}, a linear scale is used instead (same as MacLeod et al., 2013). By default: \code{log.scale = FALSE}
+#' @param cex only applies when \code{samp.grid = TRUE} and \code{plot.type = "points"}. Similarly as in \code{\link{par}}, intended size for points. By default: \code{cex = 0.5}
+#' @param lwd only applies when \code{samp.grid = TRUE} and \code{plot.type = "surface"}. Similarly as in \code{\link{par}}, intended line width for sampling grid. By default: \code{lwd = 0.1}
 #' @param plot.exp a logical. If \code{TRUE}, output plot from \code{wave} is exported and stored on the folder indicated by \code{store.at}. By default: \code{plot.exp = FALSE}
 #' @param store.at only applies when \code{plot.exp = TRUE}. Filepath to the folder where three-dimensional plot will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
-#' @param cex only applies when \code{plot.as = "jpeg"}. Similarly as \code{\link{par}}, intended size for points. By default: \code{cex = 0.5}
 #' @param color Color palette to be used for the amplitude (Z-axis). Same default as \code{\link{spectro}}: \code{color=spectro.colors(80)}. See \code{Details}.
 #' @param f sampling frequency of \code{wave} (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for spectrogram calculation. By default: \code{wl = 512}
@@ -76,7 +77,7 @@
 #'
 #' @export
 #'
-threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=TRUE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", cex=0.5, color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, bgr=40, resfac=1, rotate.Xaxis=30, rotate.Yaxis=35, main="Spectrogram 3D")
+threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=TRUE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, cex=0.5, lwd=0.1, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, bgr=40, resfac=1, rotate.Xaxis=30, rotate.Yaxis=35, main="Spectrogram 3D")
   {
 
   # Acquire spectrogram data
@@ -133,7 +134,7 @@ threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=TRUE, plot.type=
 
   if(isTRUE(samp.grid)){
     if(plot.type=="surface")
-      {plot3D::persp3D(x=time.sub, y=freq.sub, z=t(amp.sub), border="black", lwd=0.1,
+      {plot3D::persp3D(x=time.sub, y=freq.sub, z=t(amp.sub), border="black", lwd=lwd,
                        theta=rotate.Xaxis, phi=rotate.Yaxis, resfac=resfac, r=3, expand=0.5, cex.axis=0.7,
                        scale=T, axes=T, col=color, ticktype="detailed",
                        nticks=4,xlab="Time (s)", ylab="Frequency (kHz)", zlab="Amplitude (dB)",
