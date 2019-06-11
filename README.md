@@ -1,4 +1,4 @@
-<img align="right" height="300" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png" />
+<img align="right" height="300" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/logo.png" />
 
 # Welcome to *SoundShape* 
 Here, you will find informations on a promising, yet little explored approach for biacoustical analysis: the *eigensound* protocol (MacLeod el al., 2013). 
@@ -22,18 +22,12 @@ devtools::install_github("p-rocha/SoundShape")
 ### Workflow using `SoundShape`
 The method described by MacLeod et al. (2013) considers the graphical representation of sound (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous semilandmarks (SM) are acquired. 
 
-![]
+<img height="180" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/spectros.jpg" />
+
 
 
 
 ## Crossing the bridge between Bioacoustics and Geometric Morphometrics
-
-
-
-
-
-
-
 
 The three-dimensional SM coordinates can be submitted to Principal Components Analysis, which will calculate new variables (Principal Components – PC) that are independent from each other and represent the axis of greatest
 variation in the dataset of sound waves. By doing so, complex waves are now be described by a few PCs that can be used to produce ordination plots encompassing the majority of variation among the calls.
