@@ -1,10 +1,9 @@
+<img align="right" height = "250" src=https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png >
 
-# Welcome to *SoundShape* <img src=https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png align="right" height = 250/>
+# Welcome to *SoundShape* 
 
 Here you will find informations on how to decompose sound waves onto Principal Components, which include tools extracted from Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and from Geometric Morphometrics (*i.e.* `geomorph` package). 
 
-
-![SoundShape logo](https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png)
 
 ## Getting started
 
