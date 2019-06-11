@@ -1,5 +1,5 @@
 # Welcome to *SoundShape* <img src=”man/figures/SoundShape logo.png” align=”right” height = 210/>
-![logo](man/figures/SoundShape logo.png) 
+![logo](/man/figures/SoundShape logo.png) 
 
 align="right" height = 210/>
 
