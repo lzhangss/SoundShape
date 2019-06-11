@@ -1,4 +1,4 @@
-<img align="right" height = "250" src=https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png >
+<img align="right" height="250" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png" />
 
 # Welcome to *SoundShape* 
 
