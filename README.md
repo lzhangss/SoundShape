@@ -1,6 +1,6 @@
 # Welcome to *SoundShape* <img src=”man/figures/SoundShape logo.png” align=”right” height = 210/>
 
-![SoundShape logo](man/figures/SoundShape logo.png) 
+![SoundShape logo](https://github.com/p-rocha/SoundShape/blob/master/man/figures/SoundShape%20logo.png) 
 
 align="right" height = 210/>
 
