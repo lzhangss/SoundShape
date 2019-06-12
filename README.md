@@ -1,4 +1,4 @@
-<img align="right" height="300" src="https://github.com/p-rocha/SoundShape/blob/master/logo.png" />
+<img align="right" height="300" src="logo.png" />
 
 # Welcome to *SoundShape* 
 Here, you will find informations on a promising, yet little explored approach for biacoustical analysis: the *eigensound* protocol (MacLeod el al., 2013). 
