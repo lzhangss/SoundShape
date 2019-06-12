@@ -11,10 +11,10 @@ Here, you will find informations on a promising, yet little explored method for 
 
 **Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
-## Getting started
+# Getting started
 
 
-### Instalation
+## Instalation
 `SoundShape` is currently available on [R platform](https://www.r-project.org/) as a development version from GitHub. In order to download it, make sure to have already installed an updated `R` version (>=3.3.1) and [devtools](https://www.rstudio.com/products/rpackages/devtools) package. 
 
 ```r
@@ -25,7 +25,7 @@ install.packages("devtools")
 devtools::install_github("p-rocha/SoundShape")
 ```
 
-### Workflow using `SoundShape`
+## Workflow using `SoundShape`
 The method described by MacLeod *et al.* (2013) considers the graphical representation of sound (*i.e.* a spectrogram) as complex three-dimensional (3D) surfaces from which topologically homologous semilandmarks (SM) can be acquired using a predefined sampling grid.
 
 `threeDspectro` provide an easy way to visualize sound waves as 3D graphs with or without a sampling grid, and also to view the sampled 3D SM as colored points.
@@ -34,7 +34,7 @@ The method described by MacLeod *et al.* (2013) considers the graphical represen
   <img height="180" src="figures/spectros.jpg" />
 </p>
 
-#### Codes for the images above:
+#### Codes for the images:
 ```r
 # Sample data from SoundShape
 data(cuvieri)
@@ -60,12 +60,10 @@ threeDspectro(cuvieri.cut, samp.grid=TRUE, x.length=70, y.length=50, plot.type="
               flim=c(0, 2.5), rotate.Xaxis=60, rotate.Yaxis=40)
 ```
 
-The `eigensound` function, on the other hand, focus on the acquisition of SM coordinates from multiple `".wav"` files. For each `".wav"` file on a given folder, `eigensound` will compute spectrogram data and acquire semilandmarks that can be within the sample of species. 
-
-However, all `".wav"` files must be stored on the same folder, which can be created at the current [working directory](http://rprogramming.net/set-working-directory-in-r/). In addition, we also create a subfolder to store the upcoming outputs from `eigensound`.
+The `eigensound` function, on the other hand, focus on the acquisition of SM coordinates from multiple `".wav"` files, which must be stored on the same folder. This folder can be created at the current [working directory](http://rprogramming.net/set-working-directory-in-r/) using `dir.create`. We also create a subfolder to store the upcoming outputs from `eigensound`.
 
 ```r
-# Create folder at current working directory
+# Create folder to store ".wav" files
 wav.at <- file.path(getwd(), "example SoundShape")
 dir.create(wav.at)
 
@@ -74,13 +72,15 @@ store.at <- file.path(getwd(), "example SoundShape/output")
 dir.create(store.at)
 ```
 
-Each `".wav"` file must represent a single homologous (*i.e.* stereotyped) acoustic unit selected from the sample. The selection can be performed on numerous softwares of acoustic analysis outside `R` platform (*e.g.* [Audacity](https://www.audacityteam.org/), [Raven Pro](http://ravensoundsoftware.com/software/raven-pro/)). 
+### Stereotyped acoustic units as separate `".wav"` files
 
-Or using some functions from [seewave](http://rug.mnhn.fr/seewave/).
+Each `".wav"` file should represent a single acoustic unit selected from the original sound wave. 
 
-  <img height="250" align="center" src="figures/Units from sample.jpg" />
+In the `cuvieri` sample, for instance, there are three stereotyped calls of *Physalaemus cuvieri* (Amphibia, Anura, Leptodactylidae) emitted in a sequence, each constituting a comparable acoustic unit.
 
-#### Codes for the image above:
+<img height="250" src="figures/Acoustic units - cuvieri.jpg" />
+
+#### Codes for the image:
 ```r
 # Sample data from SoundShape
 data(cuvieri)
@@ -88,54 +88,36 @@ data(cuvieri)
 # Plot spectro from sample and highlight acoustic units
 seewave::spectro(cuvieri, flim = c(0,2.5))
 graphics::abline(v=c(0.05, 0.45, 0.73, 1.13, 1.47, 1.87), lty=2)
+```
 
+Once the acoustic units have been defined, the selection can be performed on numerous softwares of acoustic analysis outside `R` platform (*e.g.* [Audacity](https://www.audacityteam.org/), [Raven Pro](http://ravensoundsoftware.com/software/raven-pro/)). 
+
+Or, we can use some functions from [seewave](http://rug.mnhn.fr/seewave/).
+
+```r
 # Select acoustic units
 cut.cuvieri1 <- seewave::cutw(cuvieri, f=44100, from=0.05, to=0.45, output = "Wave")
 cut.cuvieri2 <- seewave::cutw(cuvieri, f=44100, from=0.73, to=1.13, output = "Wave")
 cut.cuvieri3 <- seewave::cutw(cuvieri, f=44100, from=1.47, to=1.87, output = "Wave")
 
-# Export new ".wav" files containing acoustic units and store on previosly created folder
+# Export new ".wav" files containing acoustic units; store on previosly created folder
 seewave::writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible=FALSE)
 seewave::writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible=FALSE)
 seewave::writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible=FALSE)
 ```
 
-In addition to `cuvieri` sample data, `SoundShape` also feature `centralis` and `kroyeri` `"Wave"` samples. We repeated the same procedure to acquire stereotyped calls from these species and stored the new `".wav"` files on the same folder specified by `wav.at`. 
+In addition to the `cuvieri` sample data, we can also acquire stereotyped calls from `centralis` and `kroyeri` samples (*Physalaemus centralis* and *P. kroyeri*, respectively), which will be used for `eigensound` analysis.
 
-Therefore, our sample data is composed of nine acoustic units (three per species). 
+<img height="450" src="figures/Acoustic units - centralis kroyeri.jpg" />
 
-**Note:** Codes omitted for practical reasons
+In order to select the acoustic units from `centralis` and `kroyeri`, we adapted the same codes displayed above and stored the new `".wav"` files on the same folder specified by `wav.at`. Codes were omitted for practical reasons.
 
-```r
-# Sample data
-data(centralis)
-data(kroyeri)
+In the end, our sample data is composed of nine acoustic units, three per species.
 
-# Plot spectros from sample and highlight acoustic units
-seewave::spectro(centralis, flim = c(0, 3)) 
-graphics::abline(v=c(0.1, 0.8, 1.08, 1.78, 2.1, 2.8), lty=2)
+**Note:** We recommend at least five acoustic units per species on real data trials. In addition, selection should also account for optimal signal to noise ratio, and no overlapping frequencies from background noise. 
 
-seewave::spectro(kroyeri, flim = c(0, 4), grid=FALSE, scalecexlab = 1.5, cexlab = 1.3, cexaxis = 1.3, oma=c(1,1,1,1)) # Visualize sound data that will be used
-graphics::abline(v=c(0.16, 0.96, 1.55, 2.35, 2.9, 3.8), lty=2)
 
-# Select acoustic units
-cut.centralis1 <- seewave::cutw(centralis, f=44100, from=0.1, to=0.8, output = "Wave")
-cut.centralis2 <- seewave::cutw(centralis, f=44100, from=1.08, to=1.78, output = "Wave")
-cut.centralis3 <- seewave::cutw(centralis, f=44100, from=2.1, to=2.8, output = "Wave")
-
-cut.kroyeri1 <- seewave::cutw(kroyeri, f=44100, from=0.16, to=0.96, output = "Wave")
-cut.kroyeri2 <- seewave::cutw(kroyeri, f=44100, from=1.55, to=2.35, output = "Wave")
-cut.kroyeri3 <- seewave::cutw(kroyeri, f=44100, from=2.9, to=3.8, output = "Wave")
-
-# Export new ".wav" files containing acoustic units and store on previosly created folder
-seewave::writeWave(cut.centralis1, filename = file.path(wav.at, "cut.centralis1.wav"), extensible = FALSE)
-seewave::writeWave(cut.centralis2, filename = file.path(wav.at, "cut.centralis2.wav"), extensible = FALSE)
-seewave::writeWave(cut.centralis3, filename = file.path(wav.at, "cut.centralis3.wav"), extensible = FALSE)
-seewave::writeWave(cut.kroyeri1, filename = file.path(wav.at, "cut.kroyeri1.wav"), extensible = FALSE)
-seewave::writeWave(cut.kroyeri2, filename = file.path(wav.at, "cut.kroyeri2.wav"), extensible = FALSE)
-seewave::writeWave(cut.kroyeri3, filename = file.path(wav.at, "cut.kroyeri3.wav"), extensible = FALSE)
-
-```
+ so that `eigensound` can compute spectrogram data and acquire semilandmarks that can be within the sample of species. 
 For each `".wav"` file on a given folder, `eigensound` will compute spectrogram data and acquire SM using a three-dimensional representation of sound (`analysis.type = "threeDshape"`), or the cross-correlation between energy quantiles and a curve of relative amplitude (`analysis.type = "twoDshape"`). The results can be simultaneosly assigned to an `R` object, and/or stored as a `".tps"` file to be used by numerous softwares of geometric analysis of shape, such as the TPS series ([Rohlf, 2015](http://www.italian-journal-of-mammalogy.it/The-tps-series-of-software,77186,0,2.html)).
 
 (whose path can be specified by `store.at`)
