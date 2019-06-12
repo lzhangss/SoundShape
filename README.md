@@ -7,7 +7,7 @@ The approach crosses the bridge between Bioacoustics and Geometric Morphometric,
 
 `SoundShape` was built to fill this gap. It feature the functions required for anyone to easily go from sound waves onto Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* `tuneR` and `seewave` packages), Geometric Morphometrics (*i.e.* `geomorph` package) and multivariate analysis (*e.g.* `stats` package).
 
-*Thanks for using `SoundShape` and enjoy your reading 
+*Thanks for using `SoundShape` and enjoy your reading* 
 
 
 **Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
@@ -16,13 +16,13 @@ The approach crosses the bridge between Bioacoustics and Geometric Morphometric,
 
 
 ### Instalation
-`SoundShape` is currently available on `R` platform as a development version from GitHub. In order to download it, make sure to have an updated `R` version (>=3.3.1) and the package `devtools` already installed. 
+`SoundShape` is currently available on `R` platform as a development version from GitHub. In order to download it, make sure to have already installed an updated `R` version (>=3.3.1) and `devtools` package. 
 
 ```r
-# In case you don't have devtools
-# install.packages("devtools")
+# devtools - In case you don't have it
+install.packages("devtools")
 
-# Install the development version from GitHub:
+# SoundShape - Install the development version from GitHub
 devtools::install_github("p-rocha/SoundShape")
 ```
 
