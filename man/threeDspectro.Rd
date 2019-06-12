@@ -4,12 +4,12 @@
 \alias{threeDspectro}
 \title{Three-dimensinal plots from \code{"Wave"} objects}
 \usage{
-threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
+threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = FALSE,
   plot.type = "surface", x.length = 100, y.length = 70,
   log.scale = FALSE, cex = 0.5, lwd = 0.1, plot.exp = FALSE,
   store.at = getwd(), plot.as = "jpeg",
   color = seewave::spectro.colors(80), f = 44100, wl = 512,
-  ovlp = 70, bgr = 40, resfac = 1, rotate.Xaxis = 30,
+  ovlp = 70, bgr = 30, resfac = 1, rotate.Xaxis = 30,
   rotate.Yaxis = 35, main = "Spectrogram 3D")
 }
 \arguments{
@@ -19,7 +19,7 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
 
 \item{flim}{modifications of the frequency limits (Y-axis). Vector with two values in kHz. By default: \code{flim = NULL}}
 
-\item{samp.grid}{a logical. If \code{TRUE}, a sampling grid with dimensions \code{x.length} and \code{y.length} is applied over the three-dimensional surface. An amplitude value is collected at each node in the grid and a new matrix of amplitude coordinates is used in the plot. Recomended for faster plots and as protocol for error verification in point acquisition. See also \code{plot.type}. By default: \code{samp.grid = TRUE}}
+\item{samp.grid}{a logical. If \code{TRUE}, a sampling grid with dimensions \code{x.length} and \code{y.length} is applied over the three-dimensional surface. An amplitude value is collected at each node in the grid and a new matrix of amplitude coordinates is used in the plot. Recomended for faster plots and as protocol for error verification in point acquisition. See also \code{plot.type}. By default: \code{samp.grid = FALSE}}
 
 \item{plot.type}{only applies when \code{samp.grid = TRUE}. \code{plot.type = "surface"} will produce a simplified three-dimensional sound surface using the amplitude values colected by the sampling grid (same output employed by MacLeod et al., 2013). \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}}
 
@@ -47,7 +47,7 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = TRUE,
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 
-\item{bgr}{absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 40}}
+\item{bgr}{absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 30}}
 
 \item{resfac}{resolution factor, in which an value > 1 will increase the resolution. Can be one value or a vector of two numbers, for the x and y- values respectively. \strong{Note:} Same as in \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{resfac = 1}}
 

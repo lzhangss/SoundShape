@@ -8,7 +8,7 @@
 #' @param wave an \code{R} object of the class \code{"Wave"}
 #' @param tlim modifications of the time limits (X-axis). Vector with two values in seconds. By default: \code{tlim = NULL}
 #' @param flim modifications of the frequency limits (Y-axis). Vector with two values in kHz. By default: \code{flim = NULL}
-#' @param samp.grid a logical. If \code{TRUE}, a sampling grid with dimensions \code{x.length} and \code{y.length} is applied over the three-dimensional surface. An amplitude value is collected at each node in the grid and a new matrix of amplitude coordinates is used in the plot. Recomended for faster plots and as protocol for error verification in point acquisition. See also \code{plot.type}. By default: \code{samp.grid = TRUE}
+#' @param samp.grid a logical. If \code{TRUE}, a sampling grid with dimensions \code{x.length} and \code{y.length} is applied over the three-dimensional surface. An amplitude value is collected at each node in the grid and a new matrix of amplitude coordinates is used in the plot. Recomended for faster plots and as protocol for error verification in point acquisition. See also \code{plot.type}. By default: \code{samp.grid = FALSE}
 #' @param plot.type only applies when \code{samp.grid = TRUE}. \code{plot.type = "surface"} will produce a simplified three-dimensional sound surface using the amplitude values colected by the sampling grid (same output employed by MacLeod et al., 2013). \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}
 #' @param x.length only applies when \code{samp.grid = TRUE}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the time (X-axis).  By default: \code{x.length = 100}
 #' @param y.length only applies when \code{samp.grid = TRUE}. Length of sequence (i.e. number of cells per side on sound window) to be used as sampling grid coordinates on the frequency (Y-axis). By default: \code{y.length = 70}
@@ -22,7 +22,7 @@
 #' @param f sampling frequency of \code{wave} (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for spectrogram calculation. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
-#' @param bgr absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 40}
+#' @param bgr absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 30}
 #' @param resfac resolution factor, in which an value > 1 will increase the resolution. Can be one value or a vector of two numbers, for the x and y- values respectively. \strong{Note:} Same as in \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{resfac = 1}
 #' @param rotate.Xaxis rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 30}
 #' @param rotate.Yaxis rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 35}
@@ -77,7 +77,7 @@
 #'
 #' @export
 #'
-threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=TRUE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, cex=0.5, lwd=0.1, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, bgr=40, resfac=1, rotate.Xaxis=30, rotate.Yaxis=35, main="Spectrogram 3D")
+threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=FALSE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, cex=0.5, lwd=0.1, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, bgr=30, resfac=1, rotate.Xaxis=30, rotate.Yaxis=35, main="Spectrogram 3D")
   {
 
   # Acquire spectrogram data
