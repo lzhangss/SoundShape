@@ -3,11 +3,11 @@
 # Welcome to *SoundShape*!
 Here, you will find informations on a promising, yet little explored method for biacoustical analysis: the *eigensound* protocol ([MacLeod *et al.*, 2013](http://www.italian-journal-of-mammalogy.it/Geometric-Morphometric-Approaches-to-Acoustic-Signal-Analysis-in-Mammalian-Biology,77249,0,2.html)). 
 
-*Eigensound* is a multidisciplinary approach that crosses the bridge between Bioacoustics and Geometric Morphometrics, thus enabling the direct comparison between stereotyped calls from different species. However well described by Macleod *et al.*, the method still lacked a viable platform to run the analysis, meaning that the bridge is still not *crossable* for those unfamiliar with programing codes.
+*Eigensound* is a multidisciplinary approach that crosses the bridge between Bioacoustics and Geometric Morphometrics, thus enabling the direct comparison between stereotyped calls from different species. However well described by Macleod *et al.*, the method still lacked a viable platform to run the analysis, meaning that the bridge is still not *crossable* for those unfamiliar with programming codes.
 
-`SoundShape` was built to fill this gap. It feature the functions required for anyone to easily go from sound waves onto Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* [tuneR](https://cran.r-project.org/web/packages/tuneR/index.html) and [seewave](http://rug.mnhn.fr/seewave/) packages), Geometric Morphometrics (*i.e.* [geomorph](https://cran.r-project.org/web/packages/geomorph/index.html) package) and multivariate analysis (*e.g.* [stats](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html) package). In addition to the original methods description (MacLeod *et al.,* 2013), we are currently developing a throughout paper detailing `SoundShape` (Rocha & Romano *in prep*).
+`SoundShape` was built to fill this gap. It feature functions that enable anyone to easily go from sound waves to Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* [tuneR](https://cran.r-project.org/web/packages/tuneR/index.html) and [seewave](http://rug.mnhn.fr/seewave/) packages), Geometric Morphometrics (*i.e.* [geomorph](https://cran.r-project.org/web/packages/geomorph/index.html) package) and multivariate analysis (*e.g.* [stats](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html) package). In addition to the original description (MacLeod *et al.,* 2013), we are currently developing a throughout paper detailing `SoundShape` (Rocha & Romano *in prep*).
 
-*Thanks for using* `SoundShape` *and enjoy your reading!* 
+*Thanks for using* `SoundShape`* and enjoy your reading!* 
 
 **Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
@@ -15,7 +15,7 @@ Here, you will find informations on a promising, yet little explored method for 
 
 
 ## Instalation
-`SoundShape` is currently available on [R platform](https://www.r-project.org/) as a development version from GitHub. In order to download it, make sure to have already installed an updated `R` version (>=3.3.1) and [devtools](https://www.rstudio.com/products/rpackages/devtools) package. 
+`SoundShape` is available on [R platform](https://www.r-project.org/) as a development version from GitHub. In order to download it, make sure to have already installed an updated `R` version (>=3.3.1) and [devtools](https://www.rstudio.com/products/rpackages/devtools) package. 
 
 ```r
 # devtools - In case you don't have it
@@ -73,8 +73,9 @@ dir.create(store.at)
 ```
 
 ### Stereotyped acoustic units as separate `".wav"` files
+Unlike most traditional protocols of bioacoustical analysis (*e.g.* Köhler *et al.,* 2017), *eigensound* is centered around stereotyped (*i.e.* homologous) acoustic units. Therefore, the first and foremost step in sound shape study is the careful definition of units from which analysis will be conducted. Although there is no universal concept of a homologous unit of biological sound encompassing the majority of calling organisms, each higher taxon has its own approaches for homologous sound comparison (Rocha & Romano *in prep*).
 
-Each `".wav"` file should represent a single acoustic unit selected from the original sound wave. 
+Once the stereotyped units have been defined, a reasonable number of units should be selected from the sample and stored as new `".wav"` file. Each `".wav"` file should represent a single acoustic unit selected from the original sound wave. 
 
 In the `cuvieri` sample, for instance, there are three stereotyped calls of *Physalaemus cuvieri* (Amphibia, Anura, Leptodactylidae) emitted in a sequence, each constituting a comparable acoustic unit.
 
@@ -92,21 +93,21 @@ graphics::abline(v=c(0.05, 0.45, 0.73, 1.13, 1.47, 1.87), lty=2)
 
 Once the acoustic units have been defined, the selection can be performed on numerous softwares of acoustic analysis outside `R` platform (*e.g.* [Audacity](https://www.audacityteam.org/), [Raven Pro](http://ravensoundsoftware.com/software/raven-pro/)). 
 
-Or, we can use some functions from [seewave](http://rug.mnhn.fr/seewave/).
+Or, we can use some functions from [seewave](http://rug.mnhn.fr/seewave/):
 
 ```r
 # Select acoustic units
-cut.cuvieri1 <- seewave::cutw(cuvieri, f=44100, from=0.05, to=0.45, output = "Wave")
-cut.cuvieri2 <- seewave::cutw(cuvieri, f=44100, from=0.73, to=1.13, output = "Wave")
-cut.cuvieri3 <- seewave::cutw(cuvieri, f=44100, from=1.47, to=1.87, output = "Wave")
+cut.cuv1 <- seewave::cutw(cuvieri, f=44100, from=0.05, to=0.45, output = "Wave")
+cut.cuv2 <- seewave::cutw(cuvieri, f=44100, from=0.73, to=1.13, output = "Wave")
+cut.cuv3 <- seewave::cutw(cuvieri, f=44100, from=1.47, to=1.87, output = "Wave")
 
 # Export new ".wav" files containing acoustic units; store on previosly created folder
-seewave::writeWave(cut.cuvieri1, filename = file.path(wav.at, "cut.cuvieri1.wav"), extensible=FALSE)
-seewave::writeWave(cut.cuvieri2, filename = file.path(wav.at, "cut.cuvieri2.wav"), extensible=FALSE)
-seewave::writeWave(cut.cuvieri3, filename = file.path(wav.at, "cut.cuvieri3.wav"), extensible=FALSE)
+seewave::writeWave(cut.cuv1, filename=file.path(wav.at, "cut.cuv1.wav"), extensible=FALSE)
+seewave::writeWave(cut.cuv2, filename=file.path(wav.at, "cut.cuv2.wav"), extensible=FALSE)
+seewave::writeWave(cut.cuv3, filename=file.path(wav.at, "cut.cuv3.wav"), extensible=FALSE)
 ```
 
-In addition to the `cuvieri` sample data, we can also acquire stereotyped calls from `centralis` and `kroyeri` samples (*Physalaemus centralis* and *P. kroyeri*, respectively), which will be used for `eigensound` analysis.
+In addition to the calls of `cuvieri`, we also acquire stereotyped units from `centralis` and `kroyeri` samples (*Physalaemus centralis* and *P. kroyeri*, respectively).
 
 <img height="450" src="figures/Acoustic units - centralis kroyeri.jpg" />
 
@@ -114,7 +115,34 @@ In order to select the acoustic units from `centralis` and `kroyeri`, we adapted
 
 In the end, our sample data is composed of nine acoustic units, three per species.
 
-**Note:** We recommend at least five acoustic units per species on real data trials. In addition, selection should also account for optimal signal to noise ratio, and no overlapping frequencies from background noise. 
+**Note:** We recommend at least five acoustic units per species when dealing with real data. In addition, selection should also account for optimal signal to noise ratio, and no overlapping frequencies from background noise. 
+
+### Alignment of units at beggining of sound window
+
+Although our sample of `".wav"` files is now stored on a single folder from which `eigensound` can proceed with semilandmark acquisition, the *eigensound* protocol still require a few actions before proceeding.
+
+First is the definition of a relative value of amplitude (`dBlevel`) to use as background in the 3D spectrogram. This an iterative process that lead to minimum influence from background noise. However, this does not eliminate the variance given by
+different placement of sounds within the sound window of a spectrogram - nor changes in the dimensions of the window itself. 
+
+Therefore, sound window dimensions (*i.e.* `tlim` and `flim`) must be defined prior to running `eigensound`, and each call from our sample of `".wav"` files must be set to begin at the beggining of the sound window . This ensures that variation in each semilandmark is due to energy shifts within the call, and not to changes in their position within the sound window - or in the window itself.
+
+Alignment is easily performed with `align.wave` function. It considers the `time.lenght` that encompasses all sounds in the study, and the relative amplitude value (`dBlevel`) as reference for call placement:
+
+```r
+# Place sounds at beggining of sound window before analysis
+align.wave(wav.at = wav.at, wav.to = "Aligned", time.length = 0.8, dBlevel = 25)
+```
+
+In order to verify the alignment, we run `eigensound` with `analysis.type="twoDshape"` and `plot.exp=TRUE`. This will export two-dimensional spectrogram images for each `".wav"` file on the folder indicated by `wav.at` and store on the folder indicated by `store.at`. Recommended as a useful protocol for error verification.
+
+```r
+# Verify alignment using analysis.type = "twoDshape"
+eigensound(analysis.type = "twoDshape", wav.at = file.path(wav.at, "Aligned"),
+           store.at = store.at, flim=c(0, 4), tlim=c(0, 0.7), 
+           plot.exp = TRUE, plot.as = "jpeg", dBlevel = 25)
+```
+
+<img height="450" src="figures/Acoustic units - centralis kroyeri.jpg" />
 
 
  so that `eigensound` can compute spectrogram data and acquire semilandmarks that can be within the sample of species. 
