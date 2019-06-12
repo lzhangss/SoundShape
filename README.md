@@ -1,17 +1,24 @@
-<img align="right" height="300" src="logo.png" />
+<img align="right" height="300" src="figures/logo.png" />
 
-# Welcome to *SoundShape* 
-Here, you will find informations on a promising, yet little explored approach for biacoustical analysis: the *eigensound* protocol (MacLeod el al., 2013). 
+# Welcome to *SoundShape*!
+Here, you will find informations on a promising, yet little explored approach for biacoustical analysis: the *eigensound* protocol (MacLeod *el al.*, 2013). 
 
-This somewhat new approach focuses on the direct comparison between stereotyped (*i.e.* homologous) acoustic units from different species. In light of the protocols originally described, `SoundShape` package was built to enable anyone to easily go from sound waves onto Principal Components using tools extracted from traditional Bioacoustics (*i.e.* `tuneR` and `seewave` packages) and Geometric Morphometrics (*i.e.* `geomorph` package).
+The approach crosses the bridge between Bioacoustics and Geometric Morphometric, enabling the direct comparison between stereotyped calls emitted by different species. However well described by Macleod *et al.*, the *eigensound* method still lack a viable platform to perform its analysis, meaning that the bridge is still not *crossable* for those unfamiliar with programing codes.
+
+`SoundShape` was built to fill this gap. It feature the functions required for anyone to easily go from sound waves onto Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* `tuneR` and `seewave` packages), Geometric Morphometrics (*i.e.* `geomorph` package) and multivariate analysis (*e.g.* `stats` package).
+
+*Thanks for using `SoundShape` and enjoy your reading 
+
+
+**Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
 ## Getting started
-**Note:** This is still an early version of `SoundShape`. Should you experience any errors, please feel free to provide feedback or report any [issues here](https://github.com/p-rocha/SoundShape/issues).
+
 
 ### Instalation
-`SoundShape` is currently available on `R` platform as a development version from GitHub. In order to download it, make sure to have an updated `R` version (>=3.3.1) and the package `devtools`. 
+`SoundShape` is currently available on `R` platform as a development version from GitHub. In order to download it, make sure to have an updated `R` version (>=3.3.1) and the package `devtools` already installed. 
 
-```yml
+```r
 # In case you don't have devtools
 # install.packages("devtools")
 
@@ -20,9 +27,36 @@ devtools::install_github("p-rocha/SoundShape")
 ```
 
 ### Workflow using `SoundShape`
-The method described by MacLeod et al. (2013) considers the graphical representation of sound (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous semilandmarks (SM) are acquired. 
+The method described by MacLeod et al. (2013) considers the graphical representation of sound (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous semilandmarks (SM) are acquired.
 
-<img height="180" src="https://github.com/p-rocha/SoundShape/blob/master/man/figures/spectros.jpg" />
+<img height="180" src="figures/spectros.jpg" />
+
+```r
+# Codes for the images above:
+data(cuvieri)
+
+# Select acoustic unit from sample
+cuvieri.cut <- seewave::cutw(cuvieri, f=44100, from = 0.05, to=0.45, output="Wave")
+
+# a. Oscillogram
+seewave::oscillo(cuvieri.cut)
+
+# b. 2D spectrogram
+seewave::spectro(cuvieri.cut, flim=c(0, 2.5), grid=FALSE, scale=FALSE)
+
+# c. 3D spectrogram
+threeDspectro(cuvieri.cut, flim=c(0, 2.5), rotate.Xaxis=60, rotate.Yaxis=40)
+
+# d. 3D spectrogram - sampled surface
+threeDspectro(cuvieri.cut, samp.grid=TRUE, x.length=70, y.length=50,
+              flim=c(0, 2.5), rotate.Xaxis=60, rotate.Yaxis=40)
+
+# e. 3D spectrogram - semilandmarks from sampled surface
+threeDspectro(cuvieri.cut, samp.grid=TRUE, x.length=70, y.length=50, plot.type="points",
+              flim=c(0, 2.5), rotate.Xaxis=60, rotate.Yaxis=40)
+```
+
+
 
 
 
