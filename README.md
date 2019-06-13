@@ -7,13 +7,11 @@ Eigensound is a multidisciplinary approach that crosses the bridge between Bioac
 
 `SoundShape` package was built to fill this gap. It feature functions that enable anyone to easily go from sound waves to Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* [tuneR](https://cran.r-project.org/web/packages/tuneR/index.html) and [seewave](http://rug.mnhn.fr/seewave/) packages), Geometric Morphometrics (*i.e.* [geomorph](https://cran.r-project.org/web/packages/geomorph/index.html) package) and multivariate analysis (*e.g.* [stats](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html) package). In addition to the original description (MacLeod *et al.,* 2013), we are currently developing a throughout paper detailing `SoundShape` (Rocha & Romano *in prep*).
 
-<p align="center">
 Thanks for using `SoundShape` and enjoy your reading!
-</p>
 
 **Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
-## A three-dimensional approach to bioacoustical analysis 
+### A three-dimensional approach to bioacoustical analysis 
 Eigensound analysis is centered around homologous acoustic units between species (MacLeod *et al.*, 2013), which are often the most stereotyped calls within a biological group (Rocha & Romano *in prep*). The method considers the graphical representation of sound waves (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous points (*i.e.* semilandmarks) can be sampled using a grid.
 
 An easy way to visualize sound waves (a, b) as three-dimensional graphs is using the function `threeDspectro` from `SoundShape` package. The function enable its user to create 3D graphs from spectrogram data with (d), or without (c) a sampling grid. Alternatively, it is also possible the visualization of semilandmarks as colored points (e) sampled from spectrogram data.
@@ -24,9 +22,9 @@ An easy way to visualize sound waves (a, b) as three-dimensional graphs is using
 
 [Codes for the images](https://github.com/p-rocha/SoundShape/blob/master/Codes%20for%20threeDspectro.R)
 
-# Getting started
+## Getting started
 
-## Instalation
+### Instalation
 `SoundShape` package is available on [R platform](https://www.r-project.org/) as a development version from [GitHub](https://github.com/). In order to download it, make sure to have already installed an updated `R` version (>=3.3.1) and [devtools](https://www.rstudio.com/products/rpackages/devtools) package. 
 
 ```r
@@ -108,7 +106,7 @@ Therefore, second is the definition of sound window dimensions of time (X-axis) 
 
 Thus, we use `eigensound` with arguments `analysis.type = "twoDshape` and `plot.exp = TRUE`, which will create two-dimensional spectrogram plots for each `".wav"` file on the folder specified by `wav.at`, and store the images on the folder specified by `store.at`. In addition, this is also very useful when defining the relative amplitude value (`dBlevel`).
 
-In our example including `cuvieri`, `centralis`, and `kroyeri` samples, we defined iteratively that the sound window that encompassed our whole sound data had dimensions `flim = c(0, 4)` and `tlim = c(0, 0.7)`. The relative amplitude that minimized background noise was `dBlevel = 25`.
+In our example including `cuvieri`, `centralis`, and `kroyeri`, we defined iteratively that the sound window that encompassed our whole sound data has dimensions `flim = c(0, 4)` and `tlim = c(0, 0.7)`. The relative amplitude that minimized background noise was `dBlevel = 25`.
 
 ```r
 # Iteratively define sound window dimensions and relative amplitude background
@@ -126,7 +124,7 @@ Ultimately, each call from our sample must be placed at the beggining of the sou
 
 Alignment is easily performed with `align.wave` function. It considers the `time.lenght` that encompasses all sounds in the study, and uses the relative amplitude value (`dBlevel`) as reference for call placement.
 
-In order to verify the alignment, we once again run `eigensound` with `analysis.type = "twoDshape"` and `plot.exp = TRUE`. Since aligned waves were stored elsewhere, we adapt the `wav.at` argument.
+In order to verify the alignment, we once again run `eigensound` with `analysis.type = "twoDshape"` and `plot.exp = TRUE`. Given that aligned waves were stored elsewhere, we adapt the `wav.at` argument.
 
 ```r
 # Place sounds at beggining of sound window
