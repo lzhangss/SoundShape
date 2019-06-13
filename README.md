@@ -20,7 +20,7 @@ An easy way to visualize sound waves (a, b) as three-dimensional graphs is using
   <img height="180" width="827" src="figures/spectros.jpg" />
 </p>
 
-[Codes for the images](https://github.com/p-rocha/SoundShape/blob/master/Codes%20for%20threeDspectro.R)
+[Codes for the images](https://github.com/p-rocha/SoundShape/blob/master/Codes_for_threeDspectro.R)
 
 ## Getting started
 
@@ -61,7 +61,7 @@ Once the stereotyped units have been defined, a reasonable number of units shoul
 
 In the `cuvieri` sample from `SoundShape` package, for instance, there are three stereotyped calls of *Physalaemus cuvieri* (Amphibia, Anura, Leptodactylidae) emitted in a sequence, each constituting a comparable acoustic unit.
 
-<img height="250" width="752" src="figures/Acoustic units - cuvieri.jpg" />
+<img height="250" width="752" src="figures/Acoustic_units-cuvieri.jpg" />
 
 ##### Codes for the image:
 ```r
@@ -94,19 +94,19 @@ Given that eigensound analysis focuses on the direct comparison between stereoty
 
 In the end, our sample data was composed of nine acoustic units, three per species.
 
-<img height="450" width="746" src="figures/Acoustic units - centralis kroyeri.jpg" />
+<img height="450" width="746" src="figures/Acoustic_units-centralis_kroyeri.jpg" />
 
 ### 4. Define dimensions for the sound window 
-Although our sample of `".wav"` files is now stored on a single folder from which `eigensound` could proceed with semilandmark acquisition, the eigensound protocol still require a couple of actions before actually acquiring sonic semilandmarks.
+Although our sample of `".wav"` files is now stored on a single folder from which we could run `eigensound`, the eigensound protocol still require a couple of actions to secure a meaningful comparison of point coordinates.
 
 First is the definition of a relative amplitude value (`dBlevel`) to use as background in the 3D spectrogram. This an iterative process that should lead to minimum influence from background noise. However, it does not eliminate the variance given by
 different placement of sounds within the sound window of a spectrogram---nor the variance from changes in the dimensions of the window itself. 
 
-Therefore, second is the definition of sound window dimensions of time (X-axis) and frequency (Y-axis) (*i.e.* arguments `tlim` and `flim`, respectively, from `eigensound` function). These must be defined prior to acquiring three-dimensional coordinates using `eigensound`, granting that the window encompasses all sounds from the sample. This is an iterative process that can be quite arduous outside `R` platform.
+Therefore, second is the definition of sound window dimensions for time (X-axis) and frequency (Y-axis) (*i.e.* arguments `tlim` and `flim`, respectively; `eigensound` function). This is an iterative process that ensure all sounds from the sample are encompassed by the window.
 
-Thus, we use `eigensound` with arguments `analysis.type = "twoDshape` and `plot.exp = TRUE`, which will create two-dimensional spectrogram plots for each `".wav"` file on the folder specified by `wav.at`, and store the images on the folder specified by `store.at`. In addition, this is also very useful when defining the relative amplitude value (`dBlevel`).
+Thus, we use `eigensound` with arguments `analysis.type = "twoDshape` and `plot.exp = TRUE`, which will create two-dimensional spectrogram plots for each `".wav"` file on the folder specified by `wav.at`, and store the output images on the folder specified by `store.at`. In addition, this is also very useful for defining the relative amplitude value (`dBlevel`).
 
-In our example including `cuvieri`, `centralis`, and `kroyeri`, we defined iteratively that the sound window that encompassed our whole sound data has dimensions `flim = c(0, 4)` and `tlim = c(0, 0.7)`. The relative amplitude that minimized background noise was `dBlevel = 25`.
+In our example including `cuvieri`, `centralis`, and `kroyeri`, we defined iteratively that the sound window that encompass our whole sound data has dimensions `flim = c(0, 4)` and `tlim = c(0, 0.7)`. The relative amplitude that minimized background noise was `dBlevel = 25`.
 
 ```r
 # Iteratively define sound window dimensions and relative amplitude background
@@ -116,8 +116,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
 # Go to folder specified by store.at and check jpeg files created
 # Try other settings until achieving ideal dimensions
 ```
-
-IMAGEM:  TRES SONOGRAMAS COM NOTAS DESALINHADAS NA JANELA
+<img height="250" width="1036" src="figures/window_dimensions.jpg" />
 
 ### 5. Alignment of units at beggining of sound window
 Ultimately, each call from our sample must be placed at the beggining of the sound window. This ensures that variation in each semilandmark is due to energy shifts within the call, and not to changes in their position within the sound window.
@@ -133,36 +132,73 @@ align.wave(wav.at=wav.at, wav.to="Aligned", time.length = 0.8, dBlevel = 25)
 # Verify alignment using analysis.type = "twoDshape"
 eigensound(analysis.type="twoDshape", wav.at = file.path(wav.at, "Aligned"), store.at=store.at, 
            plot.exp=TRUE, flim=c(0, 4), tlim=c(0, 0.7), dBlevel = 25)
+           
+# Go to folder specified by store.at and check jpeg files created
 ```
 
-IMAGEM:  TRES SONOGRAMAS COM NOTAS ALINHADAS NA JANELA
+<img height="250" width="1036" src="figures/alignment_waves.jpg" />
 
+### 6. Acquire point coordinates for each ".wav" file on a folder 
+The last thing we need to decide before acquiring three-dimensional point coordinates is the number of cells per side on our sampling grid (*i.e.* `x.length` and `y.length` arguments), and wheather or not to employ a logarithmic scale on the time (X-axis). This is recommeded when the analyzed sounds present great variation on this axis (e.g. emphasize short duration sounds) and default from `eigensound` (`log.scale = TRUE`).
 
- so that `eigensound` can compute spectrogram data and acquire semilandmarks that can be within the sample of species. 
-For each `".wav"` file on a given folder, `eigensound` will compute spectrogram data and acquire SM using a three-dimensional representation of sound (`analysis.type = "threeDshape"`), or the cross-correlation between energy quantiles and a curve of relative amplitude (`analysis.type = "twoDshape"`). The results can be simultaneosly assigned to an `R` object, and/or stored as a `".tps"` file to be used by numerous softwares of geometric analysis of shape, such as the TPS series ([Rohlf, 2015](http://www.italian-journal-of-mammalogy.it/The-tps-series-of-software,77186,0,2.html)).
+Keep in mind that the number semilandmarks acquired by `eigensound` (*i.e.* variables in our dataset) will be given by the multiplication of both sides. So a large sampling grid might be computatinally very demanding, whereas a small grid could be an oversimplification of the sound surface. In our example, we opted for 80 cells on the time (X-axis, `x.length = 80`) and 60 cells on the frequency (Y-axis, `y.length = 60`), thus resulting in 4800 semilandmarks. 
 
-(whose path can be specified by `store.at`)
+We are now ready to run `eigensound`. For each aligned `".wav"` file on the folder specified by `wav.at`, the function will compute spectrogram data and acquire semilandmarks using a three-dimensional representation of sound (`analysis.type = "threeDshape"`). We also export plots of simplified sound surfaces calculated from the point coordinates acquired. 
 
-SM can be acquired using a 3D representation of sound (`analysis.type = "threeDshape"`), or the cross-correlation between energy quantiles and a curve of relative amplitude (`analysis.type = "twoDshape"`), which will be further discussed in Rocha & Romano (*in prep*). Ultimately, one might also export two or three-dimensional plots as `jpeg` (compressed image) or `tiff` (uncompressed image) file formats, which can be edited for publication purposes.
+Results can be simultaneosly assigned to an `R` object, and/or stored as a `".tps"` file to be used by numerous softwares of geometric analysis of shape, such as the TPS series ([Rohlf, 2015](http://www.italian-journal-of-mammalogy.it/The-tps-series-of-software,77186,0,2.html)). Here, we focus on the analysis within `R` platform, so the results are only stored as `eig.sample` object.
 
 ```r
+# Run eigensound function on aligned wave files and store results as R object
+eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.7), dBlevel = 25,
+                         plot.exp = TRUE, wav.at = file.path(wav.at, "Aligned"), store.at = store.at, 
+                         x.length = 80, y.length = 60, log.scale = TRUE)
 
-
+# Go to folder specified by store.at and check jpeg files created
 ```
 
+**Note:** `eig.sample` is available as sample data from `SoundShape` package. 
 
+IMAGEM: 3D SURFACES FOR EACH SPECIES
 
+### 7. Run a Principal Components Analysis on three-dimensional point coordinates
+The three-dimensional point coordinates `eig.sample` can be submitted to Principal Components Analysis, which will calculate new variables (Principal Components – PC) that are independent from each other and represent the axis of greatest variation our dataset. 
 
+By doing so, complex waves are now be described by a few PCs that can be used for ordination plots encompassing the majority of variation among the calls.
 
-## Crossing the bridge between Bioacoustics and Geometric Morphometrics
+```r
+# PCA using three-dimensional semilandmark coordinates
+pca.eig.sample <- stats::prcomp(geomorph::two.d.array(eig.sample))
+```
 
-The three-dimensional SM coordinates can be submitted to Principal Components Analysis, which will calculate new variables (Principal Components – PC) that are independent from each other and represent the axis of greatest
-variation in the dataset of sound waves. By doing so, complex waves are now be described by a few PCs that can be used to produce ordination plots encompassing the majority of variation among the calls.
+**Note:** At this point, consider employing a stopping rule to select which PCs should be retained as nontrivial and interpretable, and which ones should be ignored (*e.g.* broken stick models, [vegan](http://cc.oulu.fi/~jarioksa/softhelp/vegan/html/screeplot.cca.html) package) (Jackson, 1993)
 
-Although MacLeod et al. (2013) clearly stated the methods for SM acquisition, they did not mention the softwares required for the so called *eigensound analysis*. Therefore, `SoundShape` package feature a set of functions that reproduce the methods from the positioning of sounds at beggining of sound window until the PCA plot with convex hulls around each group. 
+### 8. Hypothetical sound surfaces and ordination of Principal Components
+Before proceeding to the ordination plot, we will also create hypothetical sound surfaces for the calculated Principal Components using `hypo.surf` function. This function creates three-dimensional plots containing hypothetical surfaces that represent minimum and maximum deformations relative to Principal Components. 
+
+These hypothetical surfaces must be interpreted along with the ordination of Principal Components (*e.g.* `pca.plot`), both featuring the same object used for `threeD.out`. By doing so, `hypo.surf` enhance the comprehension on how sound shape changed along the ordination plot.
+
+**Note:** Some of codes from `hypo.surf` were adapted from [plotTangentSpace](https://www.rdocumentation.org/packages/geomorph/versions/3.1.2/topics/plotTangentSpace) (`geomorph` package). More specifically, the code chunk related to the acquisition of hypothetical point configurations for each Principal Component (calculated by `prcomp`, `stats` package) is exactly the same as in `plotTangentSpace`.
+
+```r
+# Create factor to use as groups in subsequent ordination plot
+sample.gr <- factor(c(rep("centralis", 3), rep("cuvieri", 3), rep("kroyeri", 3)))
+
+# Plot result of Principal Components Analysis
+pca.plot(PCA.out = pca.eig.sample, groups = sample.gr, conv.hulls = sample.gr,
+         main="PCA of 3D coordinates", leg=TRUE, leg.pos = "top")
+
+# Verify hypothetical sound surfaces using hypo.surf
+hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
+hypo.surf(threeD.out=eig.sample, PC=2, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
+```
+
+IMAGEM: PCA + HYPOTHETICAL SURFACES
 
 
 ## References
+Jackson, D. A. (1993). Stopping rules in Principal Components Analysis: A comparison of heuristical and statistical
+approaches. *Ecology, 74*(8), 2204-2214.
+
 MacLeod, N., Krieger, J. & Jones, K. E. (2013). Geometric morphometric approaches to acoustic signal analysis in mammalian biology. *Hystrix, the Italian Journal of Mammalogy, 24*(1), 110-125.
 
 Rocha, P. & Romano, P. (*in prep*) The shape of sound: A new `R` package that crosses the bridge between Bioacoustics and Geometric Morphometrics.
