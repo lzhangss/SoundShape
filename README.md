@@ -1,13 +1,13 @@
-<img align="right" height="300" src="figures/logo.png" />
+<img align="right" height="300" width="300" src="figures/logo.png" />
 
 # Welcome to *SoundShape*!
 Here, you will find informations on a promising, yet little explored method for biacoustical analysis: the *eigensound* protocol ([MacLeod *et al.*, 2013](http://www.italian-journal-of-mammalogy.it/Geometric-Morphometric-Approaches-to-Acoustic-Signal-Analysis-in-Mammalian-Biology,77249,0,2.html)). 
 
-*Eigensound* is a multidisciplinary approach that crosses the bridge between Bioacoustics and Geometric Morphometrics, thus enabling the direct comparison between stereotyped calls from different species. However well described by Macleod *et al.*, the method still lacked a viable platform to run the analysis, meaning that the bridge is still not *crossable* for those unfamiliar with programming codes.
+*Eigensound* is a multidisciplinary approach that crosses the bridge between Bioacoustics and Geometric Morphometrics, thus enabling the direct comparison between stereotyped calls from different species. Although well described by Macleod *et al.*, the method still lacked a viable platform to run the analysis, meaning that the bridge was still not *crossable* for those unfamiliar with programming codes.
 
 `SoundShape` was built to fill this gap. It feature functions that enable anyone to easily go from sound waves to Principal Components, using tools extracted from traditional Bioacoustics (*i.e.* [tuneR](https://cran.r-project.org/web/packages/tuneR/index.html) and [seewave](http://rug.mnhn.fr/seewave/) packages), Geometric Morphometrics (*i.e.* [geomorph](https://cran.r-project.org/web/packages/geomorph/index.html) package) and multivariate analysis (*e.g.* [stats](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html) package). In addition to the original description (MacLeod *et al.,* 2013), we are currently developing a throughout paper detailing `SoundShape` (Rocha & Romano *in prep*).
 
-*Thanks for using* `SoundShape`* and enjoy your reading!* 
+*Thanks for using* `SoundShape` *and enjoy your reading!* 
 
 **Note:** This is still an early version of `SoundShape`. Should you experience problems running any function, please feel free to report any [issues here](https://github.com/p-rocha/SoundShape/issues).
 
@@ -31,7 +31,7 @@ The method described by MacLeod *et al.* (2013) considers the graphical represen
 `threeDspectro` provide an easy way to visualize sound waves as 3D graphs with or without a sampling grid, and also to view the sampled 3D SM as colored points.
 
 <p align="center">
-  <img height="180" src="figures/spectros.jpg" />
+  <img height="180" width="827" src="figures/spectros.jpg" />
 </p>
 
 #### Codes for the images:
@@ -79,7 +79,7 @@ Once the stereotyped units have been defined, a reasonable number of units shoul
 
 In the `cuvieri` sample, for instance, there are three stereotyped calls of *Physalaemus cuvieri* (Amphibia, Anura, Leptodactylidae) emitted in a sequence, each constituting a comparable acoustic unit.
 
-<img height="250" src="figures/Acoustic units - cuvieri.jpg" />
+<img height="250" width="752" src="figures/Acoustic units - cuvieri.jpg" />
 
 #### Codes for the image:
 ```r
@@ -109,7 +109,7 @@ seewave::writeWave(cut.cuv3, filename=file.path(wav.at, "cut.cuv3.wav"), extensi
 
 In addition to the calls of `cuvieri`, we also acquire stereotyped units from `centralis` and `kroyeri` samples (*Physalaemus centralis* and *P. kroyeri*, respectively).
 
-<img height="450" src="figures/Acoustic units - centralis kroyeri.jpg" />
+<img height="450" width="746" src="figures/Acoustic units - centralis kroyeri.jpg" />
 
 In order to select the acoustic units from `centralis` and `kroyeri`, we adapted the same codes displayed above and stored the new `".wav"` files on the same folder specified by `wav.at`. Codes were omitted for practical reasons.
 
