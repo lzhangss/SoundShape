@@ -23,6 +23,8 @@
 #' @param plot.exp a logical. If \code{TRUE}, for each \code{".wav"} file on the folder indicated by \code{wav.at}, \code{eigensound} will store a spectrogram image on the folder indicated by \code{store.at}. Depending on the \code{analysis.type}, plots may consist of two or three-dimensional spectrogram images. By default: \code{plot.exp = TRUE}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param plot.type only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce simplified three-dimensional sound surfaces from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}
+#' @param rotate.Xaxis only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. Rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}
+#' @param rotate.Yaxis only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. Rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}
 #' @param TPS.file Desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. \strong{Note:} Whenever \code{analysis.type = "twoDshape"}, it will only work if \code{add.points = TRUE}. By default: \code{TPS.file = NULL} (i.e. prevents \code{eigensound} from creating a \code{tps} file)
 #'
 #' @details
@@ -139,7 +141,7 @@
 #'
 #' @export
 #'
-eigensound <- function(analysis.type = NULL, wav.at = getwd(), store.at = getwd(), dBlevel=25, flim=c(0, 10), tlim = c(0, 1), trel=tlim, x.length=80, y.length=60, log.scale=TRUE, add.points=FALSE, add.contour=TRUE, EQ= c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95), mag.time=1, f=44100, wl=512, ovlp=70, plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface", TPS.file = NULL){
+eigensound <- function(analysis.type = NULL, wav.at = getwd(), store.at = getwd(), dBlevel=25, flim=c(0, 10), tlim = c(0, 1), trel=tlim, x.length=80, y.length=60, log.scale=TRUE, add.points=FALSE, add.contour=TRUE, EQ= c(0.05, 0.15, 0.3, 0.5, 0.7, 0.85, 0.95), mag.time=1, f=44100, wl=512, ovlp=70, plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface", rotate.Xaxis=60, rotate.Yaxis=40, TPS.file = NULL){
 
   # Create TPS file before analysis
   if(analysis.type == "twoDshape"){
@@ -204,11 +206,11 @@ eigensound <- function(analysis.type = NULL, wav.at = getwd(), store.at = getwd(
         if(plot.as=="tiff"|plot.as=="tif"){grDevices::tiff(width=5000, height=3500, units="px", res=500,
                                                 filename=paste(store.at, "/", sub(".wav", "", file), ".tif", sep=""))} # uncompressed images
         if(plot.type=="surface"){plot3D::persp3D(x=time.sub, y=freq.sub, z=t(amp.sub),
-                                         border="black", lwd=0.1, theta=30, phi=35, resfac=1, r=3,expand=0.5, cex.axis=0.7,
+                                         border="black", lwd=0.1, theta=rotate.Xaxis, phi=rotate.Yaxis, resfac=1, r=3,expand=0.5, cex.axis=0.7,
                                          scale=T, axes=T, col=seewave::spectro.colors(n=100), ticktype="detailed", nticks=4,            xlab="Time (s)", ylab="Frequency (kHz)", zlab="Amplitude (dB)",
                                          main= sub(".wav", "", file), clab=expression('Amplitude dB'))}
         if(plot.type=="points"){plot3D::scatter3D(x=ind.3D[,1], y=ind.3D[,2], z=ind.3D[,3],
-                                          pch=21, cex=0.5, theta=30, phi=35, resfac=1, r=3, expand=0.5, cex.axis=0.7,
+                                          pch=21, cex=0.5, theta=rotate.Xaxis, phi=rotate.Yaxis, resfac=1, r=3, expand=0.5, cex.axis=0.7,
                                           scale=T, axes=T, col=seewave::spectro.colors(n=100), ticktype="detailed", nticks=4,
                                           xlab="Time (s)", ylab="Frequency (kHz)", zlab="Amplitude (dB)",
                                           main= sub(".wav", "", file), clab=expression('Amplitude dB'))}

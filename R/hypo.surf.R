@@ -18,6 +18,8 @@
 #' @param plot.exp a logical. If \code{TRUE}, exports the three-dimensional output plot containing minimum and maximum deformations for the desired Principal Component. Exported plot will be stored on the folder indicated by \code{store.at}. By default: \code{plot.exp = FALSE}
 #' @param plot.as only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}
 #' @param store.at only applies when \code{plot.exp = TRUE}. Filepath to the folder where output plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)
+#' @param rotate.Xaxis rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}
+#' @param rotate.Yaxis rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}
 #'
 #' @note
 #' Some of codes from \code{hypo.surf} were adapted from \code{\link{plotTangentSpace}} (\code{\link{geomorph}} package). More specifically, the chunk related to the acquisition of hypothetical point configurations for each Principal Component (calculated by \code{\link{prcomp}}, \code{\link{stats}} package) is exactly the same as in \code{\link{plotTangentSpace}}.
@@ -61,7 +63,7 @@
 #'
 #' @export
 #'
-hypo.surf <- function(threeD.out=NULL, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60, log.scale=TRUE, f=44100, wl=512, ovlp=70, plot.exp=FALSE, plot.as="jpeg", store.at = getwd())
+hypo.surf <- function(threeD.out=NULL, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.length=80, y.length=60, log.scale=TRUE, f=44100, wl=512, ovlp=70, plot.exp=FALSE, plot.as="jpeg", store.at = getwd(), rotate.Xaxis=60, rotate.Yaxis=40)
 {
   PCmax <- PC*2
   PCmin <- (PC*2)-1
@@ -133,13 +135,13 @@ hypo.surf <- function(threeD.out=NULL, PC=1, flim=c(0, 4), tlim=c(0, 0.8), x.len
                       filename=paste(store.at,"/", "Hypothetical surfaces - PC", PC,".tif", sep=""))} # uncompressed images
   } # end plot.exp=TRUE
   graphics::par(mfrow=c(1,2))
-  plot3D::persp3D(x=time.sub, y=freq.sub, z=t(min.hPC), theta=30, phi=35, resfac=1, r=3,
+  plot3D::persp3D(x=time.sub, y=freq.sub, z=t(min.hPC), theta=rotate.Xaxis, phi=rotate.Yaxis, resfac=1, r=3,
                   expand=0.5, scale=T, axes=T, ticktype="detailed", nticks=4,
                   cex.axis=0.7, border="black", lwd=0.1, col=seewave::spectro.colors(n=100),
                   xlab="Time coordinates", ylab="Frequency coordinates", zlab="Amplitude coordinates",
                   clab=expression('Amplitude'), main=paste("PC", PC, " - Minimum", sep=""))
 
-  plot3D::persp3D(x=time.sub, y=freq.sub, z=t(max.hPC), theta=30, phi=35, resfac=1, r=3,
+  plot3D::persp3D(x=time.sub, y=freq.sub, z=t(max.hPC), theta=rotate.Xaxis, phi=rotate.Yaxis, resfac=1, r=3,
                   expand=0.5, scale=T, axes=T, ticktype="detailed", nticks=4,
                   cex.axis=0.7, border="black", lwd=0.1, col=seewave::spectro.colors(n=100),
                   xlab="Time coordinates", ylab="Frequency coordinates", zlab="Amplitude coordinates",

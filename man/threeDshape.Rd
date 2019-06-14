@@ -8,7 +8,7 @@ threeDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
   flim = c(0, 10), tlim = c(0, 1), x.length = 80, y.length = 60,
   log.scale = TRUE, f = 44100, wl = 512, ovlp = 70,
   plot.exp = TRUE, plot.as = "jpeg", plot.type = "surface",
-  TPS.file = NULL)
+  rotate.Xaxis = 60, rotate.Yaxis = 40, TPS.file = NULL)
 }
 \arguments{
 \item{wav.at}{filepath to the folder where \code{".wav"} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)}
@@ -38,6 +38,10 @@ threeDshape(wav.at = getwd(), store.at = getwd(), dBlevel = 25,
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
 \item{plot.type}{only applies when \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce simplified three-dimensional sound surfaces from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}}
+
+\item{rotate.Xaxis}{only applies when \code{plot.exp = TRUE}. Rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}}
+
+\item{rotate.Yaxis}{only applies when \code{plot.exp = TRUE}. Rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}}
 
 \item{TPS.file}{desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. By default: \code{TPS.file = NULL} (i.e. prevents \code{threeDshape} from creating a \code{tps} file)}
 }

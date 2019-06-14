@@ -9,8 +9,8 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = FALSE,
   log.scale = FALSE, cex = 0.5, lwd = 0.1, plot.exp = FALSE,
   store.at = getwd(), plot.as = "jpeg",
   color = seewave::spectro.colors(80), f = 44100, wl = 512,
-  ovlp = 70, bgr = 30, resfac = 1, rotate.Xaxis = 30,
-  rotate.Yaxis = 35, main = "Spectrogram 3D")
+  ovlp = 70, dBlevel = 30, resfac = 1, rotate.Xaxis = 60,
+  rotate.Yaxis = 40, main = "Spectrogram 3D")
 }
 \arguments{
 \item{wave}{an \code{R} object of the class \code{"Wave"}}
@@ -47,13 +47,13 @@ threeDspectro(wave, tlim = NULL, flim = NULL, samp.grid = FALSE,
 
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 
-\item{bgr}{absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 30}}
+\item{dBlevel}{absolute amplitude value to be used as relative background on three-dimensional plot. Same as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{dBlevel = 30}}
 
 \item{resfac}{resolution factor, in which an value > 1 will increase the resolution. Can be one value or a vector of two numbers, for the x and y- values respectively. \strong{Note:} Same as in \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{resfac = 1}}
 
-\item{rotate.Xaxis}{rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 30}}
+\item{rotate.Xaxis}{rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}}
 
-\item{rotate.Yaxis}{rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 35}}
+\item{rotate.Yaxis}{rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}}
 
 \item{main}{main title of output plot. Should be presented between quotation marks. By default: \code{main = "Spectrogram 3D"}}
 }
@@ -74,7 +74,7 @@ threeDspectro(kroyeri)
 # Controling some arguments
 threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4))
 threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE)
-threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE, bgr=60)
+threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE, dBlevel=60)
 
 # Try some different colors
 threeDspectro(cuvieri, color=seewave::reverse.terrain.colors(80),

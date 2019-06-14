@@ -10,7 +10,8 @@ eigensound(analysis.type = NULL, wav.at = getwd(),
   add.points = FALSE, add.contour = TRUE, EQ = c(0.05, 0.15, 0.3,
   0.5, 0.7, 0.85, 0.95), mag.time = 1, f = 44100, wl = 512,
   ovlp = 70, plot.exp = TRUE, plot.as = "jpeg",
-  plot.type = "surface", TPS.file = NULL)
+  plot.type = "surface", rotate.Xaxis = 60, rotate.Yaxis = 40,
+  TPS.file = NULL)
 }
 \arguments{
 \item{analysis.type}{type of analysis intended. If \code{analysis.type = "threeDshape"}, semilandmarks are acquired from spectrogram data using a three-dimensional representation of sound (same as in MacLeod et al., 2013). If \code{analysis.type = "twoDshape"} and \code{add.points = TRUE}, semilandmarks are acquired using energy quantiles and a two-dimensional curve of relative amplitude. By default: \code{analysis.type = NULL} (i.e. method must be specified before the analysis).}
@@ -52,6 +53,10 @@ eigensound(analysis.type = NULL, wav.at = getwd(),
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection of semilandmarks; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
 \item{plot.type}{only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. \code{plot.type = "surface"} will produce simplified three-dimensional sound surfaces from the calculated semilandmarks (same output employed by MacLeod et al., 2013); \code{plot.type = "points"} will produce three-dimensional graphs with semilandmarks as points. By default: \code{plot.type = "surface"}}
+
+\item{rotate.Xaxis}{only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. Rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}}
+
+\item{rotate.Yaxis}{only applies when \code{analysis.type = "threeDshape"} and  \code{plot.exp = TRUE}. Rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}}
 
 \item{TPS.file}{Desired name for the \code{tps} file containing semilandmark coordinates. Should be presented between quotation marks. \strong{Note:} Whenever \code{analysis.type = "twoDshape"}, it will only work if \code{add.points = TRUE}. By default: \code{TPS.file = NULL} (i.e. prevents \code{eigensound} from creating a \code{tps} file)}
 }

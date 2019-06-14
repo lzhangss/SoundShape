@@ -7,7 +7,7 @@
 hypo.surf(threeD.out = NULL, PC = 1, flim = c(0, 4), tlim = c(0,
   0.8), x.length = 80, y.length = 60, log.scale = TRUE, f = 44100,
   wl = 512, ovlp = 70, plot.exp = FALSE, plot.as = "jpeg",
-  store.at = getwd())
+  store.at = getwd(), rotate.Xaxis = 60, rotate.Yaxis = 40)
 }
 \arguments{
 \item{threeD.out}{the output of \code{\link{eigensound}} analysis with \code{analysis.type = "threeDshape"}. By default: \code{threeD.out = NULL} (i.e. output must be specified before ploting)}
@@ -35,6 +35,10 @@ hypo.surf(threeD.out = NULL, PC = 1, flim = c(0, 4), tlim = c(0,
 \item{plot.as}{only applies when \code{plot.exp = TRUE}. \code{plot.as = "jpeg"} will generate compressed images for quick inspection; \code{plot.as = "tiff"} or \code{"tif"} will generate uncompressed high resolution images that can be edited and used for publication. By default: \code{plot.as = "jpeg"}}
 
 \item{store.at}{only applies when \code{plot.exp = TRUE}. Filepath to the folder where output plots will be stored. Should be presented between quotation marks. By default: \code{store.at = getwd()} (i.e. use current working directory)}
+
+\item{rotate.Xaxis}{rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}}
+
+\item{rotate.Yaxis}{rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}}
 }
 \description{
 Using the coordinates acquired by \code{eigensound(analysis.type = "threeDshape")}, this function creates three-dimensional plots containing hypothetical sound surfaces that represent minimum and maximum deformations relative to Principal Components.

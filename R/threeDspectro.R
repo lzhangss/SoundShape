@@ -22,10 +22,10 @@
 #' @param f sampling frequency of \code{wave} (in Hz). By default: \code{f = 44100}
 #' @param wl length of the window for spectrogram calculation. By default: \code{wl = 512}
 #' @param ovlp overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}
-#' @param bgr absolute amplitude value to be used as relative background on three-dimensional plot. Similar as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{bgr = 30}
+#' @param dBlevel absolute amplitude value to be used as relative background on three-dimensional plot. Same as \code{dBlevel} from \code{\link{eigensound}} and \code{\link{align.wave}}. By default: \code{dBlevel = 30}
 #' @param resfac resolution factor, in which an value > 1 will increase the resolution. Can be one value or a vector of two numbers, for the x and y- values respectively. \strong{Note:} Same as in \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{resfac = 1}
-#' @param rotate.Xaxis rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 30}
-#' @param rotate.Yaxis rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 35}
+#' @param rotate.Xaxis rotation of the X-axis. Same as \code{theta} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Xaxis = 60}
+#' @param rotate.Yaxis rotation of the Y-axis. Same as \code{phi} from \code{\link{persp3D}} (\code{\link{plot3D}} package). By default: \code{rotate.Yaxis = 40}
 #' @param main main title of output plot. Should be presented between quotation marks. By default: \code{main = "Spectrogram 3D"}
 #'
 #' @details
@@ -57,7 +57,7 @@
 #' # Controling some arguments
 #' threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4))
 #' threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE)
-#' threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE, bgr=60)
+#' threeDspectro(cuvieri, tlim=c(0, 0.5), flim=c(0, 4), samp.grid=FALSE, dBlevel=60)
 #'
 #' # Try some different colors
 #' threeDspectro(cuvieri, color=seewave::reverse.terrain.colors(80),
@@ -77,15 +77,15 @@
 #'
 #' @export
 #'
-threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=FALSE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, cex=0.5, lwd=0.1, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, bgr=30, resfac=1, rotate.Xaxis=30, rotate.Yaxis=35, main="Spectrogram 3D")
+threeDspectro <- function(wave, tlim=NULL, flim=NULL, samp.grid=FALSE, plot.type="surface", x.length=100, y.length=70, log.scale=FALSE, cex=0.5, lwd=0.1, plot.exp=FALSE, store.at=getwd(), plot.as="jpeg", color=seewave::spectro.colors(80), f=44100, wl=512, ovlp=70, dBlevel=30, resfac=1, rotate.Xaxis=60, rotate.Yaxis=40, main="Spectrogram 3D")
   {
 
   # Acquire spectrogram data
   s <- seewave::spectro(wave, plot=F, f=f, wl=wl, ovlp=ovlp, tlim=tlim, flim=flim)
 
   # Set background
-  for(i in 1:length(s$amp)){if(s$amp[i] == -Inf |s$amp[i] <= -bgr)
-  {s$amp[i] <- -bgr}}
+  for(i in 1:length(s$amp)){if(s$amp[i] == -Inf |s$amp[i] <= -dBlevel)
+  {s$amp[i] <- -dBlevel}}
 
   if(samp.grid==TRUE){
 
