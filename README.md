@@ -114,7 +114,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
            wav.at=wav.at, store.at=store.at)
 
 # Go to folder specified by store.at and check jpeg files created
-# Try other settings until achieving ideal dimensions
+# Try other settings until ideal dimensions
 ```
 <img height="250" width="1036" src="figures/window_dimensions.jpg" />
 
