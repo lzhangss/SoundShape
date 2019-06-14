@@ -158,7 +158,8 @@ eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.
 
 **Note:** `eig.sample` is available as sample data from `SoundShape` package. 
 
-IMAGEM: 3D SURFACES FOR EACH SPECIES
+<img height="250" width="866" src="figures/sampled_spectros.jpg" />
+
 
 ### 7. Run a Principal Components Analysis on three-dimensional point coordinates
 The three-dimensional point coordinates `eig.sample` can be submitted to Principal Components Analysis, which will calculate new variables (Principal Components – PC) that are independent from each other and represent the axis of greatest variation our dataset. 
@@ -192,8 +193,9 @@ hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.7), x.length=80
 hypo.surf(threeD.out=eig.sample, PC=2, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
 ```
 
-IMAGEM: PCA + HYPOTHETICAL SURFACES
+<img height="700" width="927" src="figures/ordination_hypo-surf.jpg" />
 
+ 
 
 ## References
 Jackson, D. A. (1993). Stopping rules in Principal Components Analysis: A comparison of heuristical and statistical
