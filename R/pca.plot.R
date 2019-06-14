@@ -17,6 +17,9 @@
 #' @param main main title of output plot. Should be presented between quotation marks. By default: \code{main = "Ordination of PCA coordinates"}
 #' @param sp.as enables one to choose between ploting elements as \code{"points"} or \code{"text"}. If \code{sp.as = "text"}, then one must also input a \code{factor} of characters to use as text (i.e. \code{sp.text}). By default: \code{sp.as = "points"}
 #' @param sp.text only applies when \code{sp.as = "text"}. A \code{factor} including elements as texts intended in the plot. Has to be the same length as the number of rows in the coordinates of \code{PCA.out} (i.e. \code{length(sp.text) == nrow(PCA.out$x)}) . By default: \code{sp.text = NULL}
+#' @param cex.axix same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}
+#' @param cex.lab same as in \code{\link{par}}. The magnification to be used for x and y labels. By default: \code{cex.lab = 1}
+#' @param cex.main same as in \code{\link{par}}. The magnification to be used for main title. By default: \code{cex.main = 1}
 #'
 #' @return
 #' Require the output of \code{prcomp} and a vector with \code{groups} to plot. In addition, it is also possible to include convex hulls around each group (i.e. \code{conv.hulls}) and to control the colors intended for each group (i.e. \code{col.gp}) and for each convex hull (i.e. \code{col.conv}).
@@ -56,7 +59,7 @@
 #'
 #' @export
 #'
-pca.plot <- function(PCA.out=NULL, groups=NULL, col.gp = grDevices::rainbow(length(levels(groups))), conv.hulls=NULL, col.conv=grDevices::rainbow(length(levels(conv.hulls))), PCs=c(1,2), leg=TRUE, leg.labels=groups, leg.pos="topright", main="Ordination of PCA coordinates", sp.as="points", sp.text=NULL){
+pca.plot <- function(PCA.out=NULL, groups=NULL, col.gp = grDevices::rainbow(length(levels(groups))), conv.hulls=NULL, col.conv=grDevices::rainbow(length(levels(conv.hulls))), PCs=c(1,2), leg=TRUE, leg.labels=groups, leg.pos="topright", main="Ordination of PCA coordinates", sp.as="points", sp.text=NULL, cex.axis=1, cex.lab=1, cex.main=1){
 
   if(is.null(PCA.out))
   {stop('Please define PCA.out as an object containing the output of a Principal
@@ -80,7 +83,7 @@ pca.plot <- function(PCA.out=NULL, groups=NULL, col.gp = grDevices::rainbow(leng
 
   #Principal components species distribution
   graphics::plot(PCA.out$x[,PCs[1]], PCA.out$x[,PCs[2]], type='n', las=1, xlab=xlab, ylab=ylab, main=main,
-       cex.axis=1.1, cex.lab=1.55, cex.main=1.8)
+       cex.axis=cex.axis, cex.lab=cex.lab, cex.main=cex.main)
 
   # Add convex hulls
   if(!is.null(conv.hulls)){ for(j in 1:nlevels(conv.hulls)) {

@@ -10,7 +10,7 @@ pca.plot(PCA.out = NULL, groups = NULL,
   col.conv = grDevices::rainbow(length(levels(conv.hulls))), PCs = c(1,
   2), leg = TRUE, leg.labels = groups, leg.pos = "topright",
   main = "Ordination of PCA coordinates", sp.as = "points",
-  sp.text = NULL)
+  sp.text = NULL, cex.axis = 1, cex.lab = 1, cex.main = 1)
 }
 \arguments{
 \item{PCA.out}{the output of a Principal Components Analysis performed by \code{\link{prcomp}} (\code{\link{stats}} package). By default: \code{PCA.out = NULL} (i.e. output must be specified before ploting)}
@@ -36,6 +36,12 @@ pca.plot(PCA.out = NULL, groups = NULL,
 \item{sp.as}{enables one to choose between ploting elements as \code{"points"} or \code{"text"}. If \code{sp.as = "text"}, then one must also input a \code{factor} of characters to use as text (i.e. \code{sp.text}). By default: \code{sp.as = "points"}}
 
 \item{sp.text}{only applies when \code{sp.as = "text"}. A \code{factor} including elements as texts intended in the plot. Has to be the same length as the number of rows in the coordinates of \code{PCA.out} (i.e. \code{length(sp.text) == nrow(PCA.out$x)}) . By default: \code{sp.text = NULL}}
+
+\item{cex.lab}{same as in \code{\link{par}}. The magnification to be used for x and y labels. By default: \code{cex.lab = 1}}
+
+\item{cex.main}{same as in \code{\link{par}}. The magnification to be used for main title. By default: \code{cex.main = 1}}
+
+\item{cex.axix}{same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}}
 }
 \value{
 Require the output of \code{prcomp} and a vector with \code{groups} to plot. In addition, it is also possible to include convex hulls around each group (i.e. \code{conv.hulls}) and to control the colors intended for each group (i.e. \code{col.gp}) and for each convex hull (i.e. \code{col.conv}).
