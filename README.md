@@ -14,7 +14,7 @@ Thanks for using `SoundShape` and enjoy your reading!
 ### A three-dimensional approach to bioacoustical analysis 
 Eigensound is centered around homologous acoustic units from different species (MacLeod *et al.*, 2013), which are often the most stereotyped calls within a biological group (Rocha & Romano *in prep*). The method considers the graphical representation of sound waves (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous points (*i.e.* analogous to geometric morphometric semilandmarks) can be sampled using a grid.
 
-<img height="160" width="827" src="figures/spectros.jpg" />
+<img height="160" width="735" src="figures/spectros.jpg" />
 
 **Figure 1:** Graphical outputs using `cuvieri` sample, `SoundShape` package. a) Oscillogram created with `oscillo` function, `seewave` package; b) 2D spectrogram created with `spectro` function, `seewave` package; c) 3D spectrogram created with `threeDspectro` function, `SoundShape` package; d) 3D spectrogram with sampling grid, `threeDspectro` function, `SoundShape` package; e) Points (*i.e.* semilandmarks) sampled from 3D spectrogram data, `threeDspectro` function, `SoundShape` package.
 
