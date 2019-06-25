@@ -114,7 +114,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
 # Try other settings until ideal dimensions
 ```
 
-<img height="250" width="1036" src="figures/window_dimensions.jpg" />
+<img height="230" width="953" src="figures/window_dimensions.jpg" />
 
 **Figure 4:** Sound window dimensions highlighted by red circles. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -136,7 +136,7 @@ eigensound(analysis.type="twoDshape", wav.at = file.path(wav.at, "Aligned"), sto
 # Go to folder specified by store.at and check jpeg files created
 ```
 
-<img height="250" width="1036" src="figures/alignment_waves.jpg" />
+<img height="230" width="953" src="figures/alignment_waves.jpg" />
 
 **Figure 5:** Acoustic units aligned at beggining of sound window. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -206,7 +206,7 @@ hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.7), x.length=80
 hypo.surf(threeD.out=eig.sample, PC=2, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
 ```
 
-<img height="700" width="927" src="figures/ordination_hypo-surf.jpg" />
+<img height="700" width="861" src="figures/ordination_hypo-surf.jpg" />
 
  **Figure 7:** Ordination analysis (center) using `eig.sample` data acquired from the sample of `cuvieri`, `centralis` and `kroyeri`. Hypothetical sound surfaces (edges) representing minimum and maximum deformations relative to Principal Components.
  
