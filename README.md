@@ -14,7 +14,7 @@ Thanks for using `SoundShape` and enjoy your reading!
 ### A three-dimensional approach to bioacoustical analysis 
 Eigensound is centered around homologous acoustic units from different species (MacLeod *et al.*, 2013), which are often the most stereotyped calls within a biological group (Rocha & Romano *in prep*). The method considers the graphical representation of sound waves (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous points (*i.e.* analogous to geometric morphometric semilandmarks) can be sampled using a grid.
 
-<img height="190" width="874" src="figures/spectros.jpg" />
+<img height="170" width="782" src="figures/spectros.jpg" />
 
 **Figure 1:** Graphical outputs using `cuvieri` sample, `SoundShape` package. a) Oscillogram created with `oscillo` function, `seewave` package; b) 2D spectrogram created with `spectro` function, `seewave` package; c) 3D spectrogram created with `threeDspectro` function, `SoundShape` package; d) 3D spectrogram with sampling grid, `threeDspectro` function, `SoundShape` package; e) Points (*i.e.* semilandmarks) sampled from 3D spectrogram data, `threeDspectro` function, `SoundShape` package.
 
@@ -114,7 +114,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
 # Try other settings until ideal dimensions
 ```
 
-<img height="230" width="954" src="figures/window_dimensions.jpg" />
+<img height="190" width="788" src="figures/window_dimensions.jpg" />
 
 **Figure 4:** Sound window dimensions highlighted by red circles. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -136,7 +136,7 @@ eigensound(analysis.type="twoDshape", wav.at = file.path(wav.at, "Aligned"), sto
 # Go to folder specified by store.at and check jpeg files created
 ```
 
-<img height="230" width="954" src="figures/alignment_waves.jpg" />
+<img height="190" width="788" src="figures/alignment_waves.jpg" />
 
 **Figure 5:** Acoustic units aligned at beggining of sound window. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
