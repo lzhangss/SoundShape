@@ -14,7 +14,7 @@ Thanks for using `SoundShape` and enjoy your reading!
 ### A three-dimensional approach to bioacoustical analysis 
 Eigensound is centered around homologous acoustic units from different species (MacLeod *et al.*, 2013), which are often the most stereotyped calls within a biological group (Rocha & Romano *in prep*). The method considers the graphical representation of sound waves (*i.e.* a spectrogram) as complex three-dimensional surfaces from which topologically homologous points (*i.e.* analogous to geometric morphometric semilandmarks) can be sampled using a grid.
 
-<img height="160" width="735" src="figures/spectros.jpg" />
+<img height="190" width="874" src="figures/spectros.jpg" />
 
 **Figure 1:** Graphical outputs using `cuvieri` sample, `SoundShape` package. a) Oscillogram created with `oscillo` function, `seewave` package; b) 2D spectrogram created with `spectro` function, `seewave` package; c) 3D spectrogram created with `threeDspectro` function, `SoundShape` package; d) 3D spectrogram with sampling grid, `threeDspectro` function, `SoundShape` package; e) Points (*i.e.* semilandmarks) sampled from 3D spectrogram data, `threeDspectro` function, `SoundShape` package.
 
@@ -57,7 +57,7 @@ Since eigensound is centered around stereotyped acoustic units, the first and fo
 
 Once the stereotyped units have been defined (Fig. 2), a reasonable number of units should be selected from the sample and stored as new `".wav"` files on the folder specified by `wav.at`. Each `".wav"` file should represent a single acoustic unit selected from the original sound wave. Besides, selection must account for optimal signal to noise ratio (*i.e.* "clean" recording), and no overlapping frequencies from other individuals, species, or background noise. Editing and filtering of sound waves must be restricted to a bare minimum. 
 
-<img height="250" width="752" src="figures/Acoustic_units-cuvieri.jpg" />
+<img height="250" width="753" src="figures/Acoustic_units-cuvieri.jpg" />
 
 **Figure 2:** Spectrogram image of `cuvieri` sample (`SoundShape` package) containing a sequence of three stereotyped notes from the advertisement call of *P. cuvieri*. Each note represent a comparable acoustic unit.
 
@@ -114,7 +114,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
 # Try other settings until ideal dimensions
 ```
 
-<img height="230" width="953" src="figures/window_dimensions.jpg" />
+<img height="230" width="954" src="figures/window_dimensions.jpg" />
 
 **Figure 4:** Sound window dimensions highlighted by red circles. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -136,7 +136,7 @@ eigensound(analysis.type="twoDshape", wav.at = file.path(wav.at, "Aligned"), sto
 # Go to folder specified by store.at and check jpeg files created
 ```
 
-<img height="230" width="953" src="figures/alignment_waves.jpg" />
+<img height="230" width="954" src="figures/alignment_waves.jpg" />
 
 **Figure 5:** Acoustic units aligned at beggining of sound window. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -162,7 +162,7 @@ eig.sample <- eigensound(analysis.type="threeDshape", flim=c(0, 4), tlim=c(0, 0.
 # Go to folder specified by store.at and check jpeg files created
 ```
 
-<img height="250" width="866" src="figures/sampled_spectros.jpg" />
+<img height="230" width="798" src="figures/sampled_spectros.jpg" />
 
 **Figure 6:** Simplified sound surfaces calculated from aligned `".wav"` files. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -206,7 +206,7 @@ hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.7), x.length=80
 hypo.surf(threeD.out=eig.sample, PC=2, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
 ```
 
-<img height="700" width="861" src="figures/ordination_hypo-surf.jpg" />
+<img height="700" width="615" src="figures/ordination_hypo-surf.jpg" />
 
  **Figure 7:** Ordination analysis (center) using `eig.sample` data acquired from the sample of `cuvieri`, `centralis` and `kroyeri`. Hypothetical sound surfaces (edges) representing minimum and maximum deformations relative to Principal Components.
  
