@@ -29,6 +29,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Carla Guimaraes \email{sguimaraes.carla@gmail.com} [contributor]
   \item Pedro Romano \email{psrromano@gmail.com} [contributor]
 }
 

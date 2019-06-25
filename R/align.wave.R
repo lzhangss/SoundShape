@@ -1,6 +1,6 @@
 #' Automatic placement of calls at beggining of sound window
 #'
-#' @description Recreate each \code{".wav"} file on a given folder while placing calls at the beggining of sound window.
+#' @description Recreate each \code{".wav"} file on a given folder while placing calls at the beggining of sound window. New \code{".wav"} files will be stored on a new folder, which is automatically created.
 #'
 #' @param wav.at filepath to the folder where \code{".wav"} files are stored. Should be presented between quotation marks. By default: \code{wav.at = getwd()} (i.e. use current working directory)
 #' @param wav.to name of the folder where new \code{".wav"} files will be stored. Should be presented between quotation marks. By default: \code{wav.to = "Aligned"}

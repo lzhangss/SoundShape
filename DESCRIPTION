@@ -3,7 +3,8 @@ Title: Sound Waves Onto Morphometric Data
 Version: 0.9.1
 Date: 2019-06-04
 Authors@R: c(
-  person("Pedro", "Rocha", email="p.rocha1990@gmail.com", role = c("aut", "cre")), 
+  person("Pedro", "Rocha", email="p.rocha1990@gmail.com", role = c("aut", "cre")),
+  person("Carla", "Guimaraes", email="sguimaraes.carla@gmail.com", role="ctb"),
   person("Pedro", "Romano", email="psrromano@gmail.com", role="ctb"))
 Description: A set of functions that crosses the bridge between Bioacoustics and Geometric Morphometrics. SoundShape uses functions from seewave and tuneR packages in order to compute spectrogram data from sound wave files. This data is used for the acquisition of semilandmarks that can be analyzed within R platform (geomorph package) or exported as tps files that can be used by numerous softwares of geometric analysis of shape (e.g. TPS series; Rohlf, 2015).
 Depends: R (>= 3.3.1)

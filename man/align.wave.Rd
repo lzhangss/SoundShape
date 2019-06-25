@@ -26,7 +26,7 @@ align.wave(wav.at = getwd(), wav.to = "Aligned", time.length = 1,
 \item{ovlp}{overlap between two successive windows (in \%) for increased spectrogram resolution. By default: \code{ovlp = 70}}
 }
 \description{
-Recreate each \code{".wav"} file on a given folder while placing calls at the beggining of sound window.
+Recreate each \code{".wav"} file on a given folder while placing calls at the beggining of sound window. New \code{".wav"} files will be stored on a new folder, which is automatically created.
 }
 \examples{
 library(seewave)
