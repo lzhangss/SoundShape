@@ -114,7 +114,7 @@ eigensound(analysis.type="twoDshape", plot.exp=TRUE, dBlevel = 25, flim=c(0, 4),
 # Try other settings until ideal dimensions
 ```
 
-<img height="190" width="788" src="figures/window_dimensions.jpg" />
+<img height="195" width="800" src="figures/window_dimensions.jpg" />
 
 **Figure 4:** Sound window dimensions highlighted by red circles. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
@@ -136,7 +136,7 @@ eigensound(analysis.type="twoDshape", wav.at = file.path(wav.at, "Aligned"), sto
 # Go to folder specified by store.at and check jpeg files created
 ```
 
-<img height="190" width="788" src="figures/alignment_waves.jpg" />
+<img height="195" width="800" src="figures/alignment_waves.jpg" />
 
 **Figure 5:** Acoustic units aligned at beggining of sound window. Spectrogram images from the sample of `cuvieri`, `centralis` and `kroyeri`. 
 
