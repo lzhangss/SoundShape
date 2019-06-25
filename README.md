@@ -206,7 +206,7 @@ hypo.surf(threeD.out=eig.sample, PC=1, flim=c(0, 4), tlim=c(0, 0.7), x.length=80
 hypo.surf(threeD.out=eig.sample, PC=2, flim=c(0, 4), tlim=c(0, 0.7), x.length=80, y.length=60)
 ```
 
-<img height="700" width="615" src="figures/ordination_hypo-surf.jpg" />
+<img height="600" width="795" src="figures/ordination_hypo-surf.jpg" />
 
  **Figure 7:** Ordination analysis (center) using `eig.sample` data acquired from the sample of `cuvieri`, `centralis` and `kroyeri`. Hypothetical sound surfaces (edges) representing minimum and maximum deformations relative to Principal Components.
  
