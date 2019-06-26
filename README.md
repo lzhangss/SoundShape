@@ -1,6 +1,7 @@
 <img align="right" height="300" width="300" src="figures/logo.png" />
 
-# Welcome to *SoundShape* (Rocha, 2019)
+# Welcome to *SoundShape* 
+## (Rocha, 2019)
 Here, you will find informations on a promising, yet little explored method for biacoustical analysis: the *eigensound* protocol ([MacLeod *et al.*, 2013](http://www.italian-journal-of-mammalogy.it/Geometric-Morphometric-Approaches-to-Acoustic-Signal-Analysis-in-Mammalian-Biology,77249,0,2.html)). 
 
 Eigensound is a multidisciplinary method that crosses the bridge between Bioacoustics and Geometric Morphometrics, thus enabling the direct comparison between stereotyped calls from different species. Although well described by Macleod *et al.*, the method still lacked a viable platform to run the analysis, meaning that the bridge was still not "crossable" for those unfamiliar with programming codes.
