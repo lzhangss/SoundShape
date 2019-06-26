@@ -24,6 +24,6 @@ data(centralis)
 
 seewave::oscillo(centralis)
 seewave::spectro(centralis)
-threeDspectro(centralis,tlim=c(0, 0.8), flim=c(0, 4), samp.grid=FALSE, bgr=25)
+threeDspectro(centralis,tlim=c(0, 0.8), flim=c(0, 4), samp.grid=FALSE, dBlevel=25)
 }
 \keyword{datasets}

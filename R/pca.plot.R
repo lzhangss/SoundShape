@@ -17,7 +17,7 @@
 #' @param main main title of output plot. Should be presented between quotation marks. By default: \code{main = "Ordination of PCA coordinates"}
 #' @param sp.as enables one to choose between ploting elements as \code{"points"} or \code{"text"}. If \code{sp.as = "text"}, then one must also input a \code{factor} of characters to use as text (i.e. \code{sp.text}). By default: \code{sp.as = "points"}
 #' @param sp.text only applies when \code{sp.as = "text"}. A \code{factor} including elements as texts intended in the plot. Has to be the same length as the number of rows in the coordinates of \code{PCA.out} (i.e. \code{length(sp.text) == nrow(PCA.out$x)}) . By default: \code{sp.text = NULL}
-#' @param cex.axix same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}
+#' @param cex.axis same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}
 #' @param cex.lab same as in \code{\link{par}}. The magnification to be used for x and y labels. By default: \code{cex.lab = 1}
 #' @param cex.main same as in \code{\link{par}}. The magnification to be used for main title. By default: \code{cex.main = 1}
 #'

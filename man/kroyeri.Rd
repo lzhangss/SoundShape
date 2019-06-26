@@ -24,6 +24,6 @@ data(kroyeri)
 
 seewave::oscillo(kroyeri)
 seewave::spectro(kroyeri)
-threeDspectro(kroyeri,tlim=c(0, 1), flim=c(0, 4), samp.grid=FALSE, bgr=25)
+threeDspectro(kroyeri,tlim=c(0, 1), flim=c(0, 4), samp.grid=FALSE, dBlevel=25)
 }
 \keyword{datasets}

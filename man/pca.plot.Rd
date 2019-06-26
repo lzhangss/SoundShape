@@ -37,11 +37,11 @@ pca.plot(PCA.out = NULL, groups = NULL,
 
 \item{sp.text}{only applies when \code{sp.as = "text"}. A \code{factor} including elements as texts intended in the plot. Has to be the same length as the number of rows in the coordinates of \code{PCA.out} (i.e. \code{length(sp.text) == nrow(PCA.out$x)}) . By default: \code{sp.text = NULL}}
 
+\item{cex.axis}{same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}}
+
 \item{cex.lab}{same as in \code{\link{par}}. The magnification to be used for x and y labels. By default: \code{cex.lab = 1}}
 
 \item{cex.main}{same as in \code{\link{par}}. The magnification to be used for main title. By default: \code{cex.main = 1}}
-
-\item{cex.axix}{same as in \code{\link{par}}. The magnification to be used for axis annotation. By default: \code{cex.axix = 1}}
 }
 \value{
 Require the output of \code{prcomp} and a vector with \code{groups} to plot. In addition, it is also possible to include convex hulls around each group (i.e. \code{conv.hulls}) and to control the colors intended for each group (i.e. \code{col.gp}) and for each convex hull (i.e. \code{col.conv}).
